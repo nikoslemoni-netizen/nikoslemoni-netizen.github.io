@@ -1,0 +1,179 @@
+/* intentionally left blank */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&display=swap');
+
+:root{
+  --bg:#f5f3dd;
+  --text:#4d5350;
+  --muted:#6a6f69;
+  --accent:#3e4541;
+  --line:#5a605b;
+  --panel:#f5f3dd;
+  --photo:url("hero-waterdrop.jpg");
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Comfortaa','Helvetica Neue',Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+a{color:inherit;text-decoration:none}
+
+.bio-shell{
+  display:grid;
+  grid-template-columns:48vw 1fr;
+  min-height:100vh;
+  background:var(--bg);
+}
+.left{
+  display:flex;
+  flex-direction:column;
+  background:var(--panel);
+}
+.photo{
+  flex:0 0 50vh;
+  min-height:50vh;
+  background:var(--panel);
+  display:flex;
+  align-items:stretch;
+  justify-content:stretch;
+  padding:0;
+  overflow:hidden;
+}
+.left-fill{
+  flex:1 1 auto;
+  background:var(--panel);
+}
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:left top;
+  border-radius:0;
+  box-shadow:none;
+}
+.left-info{
+  background:var(--panel);
+  padding:2.8rem 2.4rem 2.4rem;
+  margin-top:-2vh;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.name{
+  margin:clamp(0.5rem,1vh,1.2rem) 0 .35rem;
+  font-size:clamp(2.4rem,2vw + 1.6rem,3.3rem);
+  font-weight:600;
+  letter-spacing:.02em;
+  color:var(--accent);
+}
+.brand-mark{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.4rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--text);
+  margin-bottom:clamp(1rem,2vh,2.4rem);
+}
+.brand-mark{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.4rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--text);
+  margin-top:clamp(5rem,10vh,12vh);
+  margin-bottom:clamp(1.2rem,3vh,3rem);
+}
+.brand-logo{
+  width:220px;
+  height:auto;
+  display:block;
+  object-fit:contain;
+  filter:saturate(.95) brightness(.98);
+  mix-blend-mode:multiply;
+}
+
+.right{
+  background:#e2e8ca;
+  padding:3.4rem 3.3rem 2.4rem;
+  display:flex;
+  flex-direction:column;
+}
+.content{
+  max-width:780px;
+  margin:0 auto;
+}
+.heading{
+  margin:0 0 1.2rem;
+  padding-bottom:.9rem;
+  border-bottom:1px solid var(--line);
+  font-size:clamp(2.2rem,1.7vw + 1.4rem,2.8rem);
+  font-weight:600;
+  letter-spacing:.02em;
+}
+.lead{
+  margin:0 0 .5rem;
+  font-weight:700;
+  font-size:1.04rem;
+  letter-spacing:.01em;
+}
+.upper{
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--accent);
+  font-size:1.02rem;
+}
+p{
+  margin:0 0 .55rem;
+  font-size:1.05rem;
+}
+ul{
+  margin:.15rem 0 1rem 1.1rem;
+  padding:0;
+  color:var(--text);
+}
+li{
+  margin:0 0 .35rem;
+  font-size:1.05rem;
+}
+
+.social{
+  margin-top:auto;
+  display:flex;
+  justify-content:flex-end;
+  gap:.8rem;
+  padding-top:1.4rem;
+}
+.social a{
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(90,96,91,.55);
+  border-radius:50%;
+  background:var(--panel);
+  transition:background .2s ease, transform .2s ease;
+}
+.social a:hover{
+  background:rgba(208,211,191,.8);
+  transform:translateY(-2px);
+}
+.social svg{
+  width:22px;
+  height:22px;
+  fill:var(--text);
+}
+
+@media (max-width:1080px){
+  .bio-shell{grid-template-columns:1fr}
+  .right{padding:2.6rem 1.8rem 2.1rem}
+  .left-info{padding:2.2rem 1.6rem 2rem}
+  .social{justify-content:flex-start}
+}
