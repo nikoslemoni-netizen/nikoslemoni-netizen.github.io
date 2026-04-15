@@ -1,19 +1,6 @@
 const CONFIG = {
-  SIMPLYBOOK_CLIENT: "YOUR_CLIENT",
-  RECAPTCHA_SITE_KEY: "6LcYe5YsAAAAALUgOI3wi2aAY31oz4AMHR3Ad4Vk",
-  RECAPTCHA_TEST_SITE_KEY: "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+  SIMPLYBOOK_CLIENT: "YOUR_CLIENT"
 };
-
-const isLocalRecaptchaHost = ()=>{
-  const host = window.location.hostname;
-  return host === 'localhost' || host === '127.0.0.1';
-};
-
-const getRecaptchaSiteKey = ()=> isLocalRecaptchaHost()
-  ? CONFIG.RECAPTCHA_TEST_SITE_KEY
-  : CONFIG.RECAPTCHA_SITE_KEY;
-
-const shouldUseRecaptcha = ()=> !isLocalRecaptchaHost();
 
 function getSafeStorage(){
   try{
@@ -279,13 +266,12 @@ if (heroVideoNodes.length) {
 
 const toggle = document.querySelector('.menu-toggle');
 const nav = document.getElementById('primaryNav');
-const closeButton = document.querySelector('.menu-close');
 if (toggle && nav) {
   const setMenuState = (open)=>{
     nav.classList.toggle('is-open', open);
     toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Κλείσιμο μενού' : 'Άνοιγμα μενού');
     document.body.classList.toggle('menu-open', open);
-    closeButton?.classList.toggle('is-open', open);
   };
 
   toggle.addEventListener('click', () => {
@@ -296,8 +282,6 @@ if (toggle && nav) {
   nav.querySelectorAll('a').forEach((link)=>{
     link.addEventListener('click', ()=> setMenuState(false));
   });
-
-  closeButton?.addEventListener('click', ()=> setMenuState(false));
 
   window.addEventListener('resize', ()=>{
     if(window.innerWidth > 900){
@@ -418,170 +402,6 @@ document.addEventListener('DOMContentLoaded', () => {
         link.href = url;
         setTimeout(()=>URL.revokeObjectURL(url), 1000);
       });
-    });
-  }
-
-  const cf = document.getElementById('contactForm');
-  if(cf){
-    const wrap = cf.closest('.contact-form-wrap');
-    const msg = document.getElementById('formMsg');
-    const success = document.getElementById('formSuccess');
-    const captchaNode = document.getElementById('contactRecaptcha');
-    const formFields = Array.from(cf.querySelectorAll('input:not([type="checkbox"]), textarea'));
-    let recaptchaWidgetId = null;
-    const FIELD_ERROR_TEXT = 'Συμπληρώστε σωστά τα στοιχεία σας';
-    const NAME_PATTERN = /^[\p{L}\s]+$/u;
-    const EMAIL_PATTERN = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-
-    const renderRecaptcha = ()=>{
-      if(!shouldUseRecaptcha()){
-        captchaNode?.closest('.recaptcha-slot')?.setAttribute('hidden', '');
-        return;
-      }
-      if(!captchaNode || recaptchaWidgetId !== null) return;
-      if(!window.grecaptcha || typeof window.grecaptcha.render !== 'function') return;
-      recaptchaWidgetId = window.grecaptcha.render(captchaNode, {
-        sitekey: getRecaptchaSiteKey()
-      });
-    };
-
-    if(window.__mentaliaRecaptchaReady){
-      renderRecaptcha();
-    }else{
-      window.addEventListener('mentalia:recaptcha-ready', renderRecaptcha, {once:true});
-    }
-
-    const showError = (text)=>{
-      if(!msg) return;
-      msg.textContent = text;
-      msg.classList.remove('visually-hidden');
-      msg.classList.add('is-error');
-    };
-
-    const clearError = ()=>{
-      if(!msg) return;
-      msg.textContent = '';
-      msg.classList.remove('is-error');
-      msg.classList.remove('visually-hidden');
-    };
-
-    const getFieldContainer = (field)=> field.closest('.field');
-
-    const setFieldError = (field, text)=>{
-      const fieldContainer = getFieldContainer(field);
-      if(!fieldContainer) return;
-      fieldContainer.classList.add('is-error');
-      const errorNode = fieldContainer.querySelector('.field-error');
-      if(!errorNode) return;
-      errorNode.hidden = false;
-      errorNode.textContent = text;
-    };
-
-    const clearFieldError = (field)=>{
-      const fieldContainer = getFieldContainer(field);
-      if(!fieldContainer) return;
-      fieldContainer.classList.remove('is-error');
-      const errorNode = fieldContainer.querySelector('.field-error');
-      if(errorNode){
-        errorNode.hidden = true;
-        errorNode.textContent = '';
-      }
-    };
-
-    const validateName = (value)=>{
-      const normalized = value.trim().replace(/\s+/g, ' ');
-      if(!normalized) return 'Το ονοματεπώνυμο είναι υποχρεωτικό.';
-      if(normalized.length < 3) return 'Το ονοματεπώνυμο πρέπει να έχει τουλάχιστον 3 χαρακτήρες.';
-      if(!NAME_PATTERN.test(normalized)) return 'Χρησιμοποιήστε μόνο γράμματα και κενά.';
-      if(normalized.split(' ').length < 2) return 'Συμπληρώστε όνομα και επώνυμο.';
-      return '';
-    };
-
-    const validateEmail = (value)=>{
-      const normalized = value.trim();
-      if(!normalized) return 'Το email είναι υποχρεωτικό.';
-      if(/\s/.test(normalized)) return 'Το email δεν πρέπει να περιέχει κενά.';
-      if((normalized.match(/@/g) || []).length !== 1) return 'Το email πρέπει να περιέχει ένα μόνο @.';
-      if(!EMAIL_PATTERN.test(normalized)) return 'Συμπληρώστε ένα έγκυρο email.';
-      return '';
-    };
-
-    const validateMessage = (value)=> value.trim()
-      ? ''
-      : 'Το μήνυμα είναι υποχρεωτικό.';
-
-    const getFieldErrorText = (field)=>{
-      if(field.id === 'name') return validateName(field.value);
-      if(field.id === 'email') return validateEmail(field.value);
-      if(field.id === 'message') return validateMessage(field.value);
-      return field.checkValidity() ? '' : FIELD_ERROR_TEXT;
-    };
-
-    const validateField = (field, silent = false)=>{
-      clearFieldError(field);
-      const errorText = getFieldErrorText(field);
-      field.setCustomValidity(errorText);
-
-      if(errorText){
-        if(!silent){
-          setFieldError(field, errorText);
-        }
-        return false;
-      }
-
-      return true;
-    };
-
-    formFields.forEach((field)=>{
-      field.addEventListener('input', ()=> validateField(field));
-      field.addEventListener('blur', ()=> validateField(field));
-    });
-
-    cf.addEventListener('submit', async e=>{
-      e.preventDefault();
-      const invalidFields = formFields.filter((field)=> !validateField(field));
-      if(invalidFields.length){
-        showError(FIELD_ERROR_TEXT);
-        invalidFields[0].focus();
-        return;
-      }
-      if(shouldUseRecaptcha() && window.grecaptcha && typeof window.grecaptcha.getResponse === 'function'){
-        const captchaToken = window.grecaptcha.getResponse(recaptchaWidgetId ?? undefined);
-        if(!captchaToken){
-          showError('Επιβεβαιώστε ότι δεν είστε ρομπότ.');
-          return;
-        }
-        try{
-          const response = await fetch('/api/verify-recaptcha', {
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({token: captchaToken})
-          });
-          const payload = await response.json();
-          if(!response.ok || !payload.success){
-            showError('Η επαλήθευση ασφαλείας απέτυχε. Δοκιμάστε ξανά.');
-            if(window.grecaptcha && typeof window.grecaptcha.reset === 'function'){
-              window.grecaptcha.reset(recaptchaWidgetId ?? undefined);
-            }
-            return;
-          }
-        }catch(err){
-          showError('Δεν ήταν δυνατή η επαλήθευση ασφαλείας. Δοκιμάστε ξανά.');
-          return;
-        }
-      }
-
-      clearError();
-      if(msg){
-        msg.textContent = 'Το μήνυμα εστάλη.';
-        msg.classList.add('visually-hidden');
-      }
-      if(wrap) wrap.classList.add('is-sent');
-      if(success) success.setAttribute('aria-hidden', 'false');
-      cf.reset();
-      if(shouldUseRecaptcha() && window.grecaptcha && typeof window.grecaptcha.reset === 'function'){
-        window.grecaptcha.reset(recaptchaWidgetId ?? undefined);
-      }
     });
   }
 

@@ -21,15 +21,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 
-  <!-- JS -->
-  <script>
-    window.__mentaliaRecaptchaReady = false;
-    window.__mentaliaOnRecaptchaLoad = function(){
-      window.__mentaliaRecaptchaReady = true;
-      window.dispatchEvent(new Event('mentalia:recaptcha-ready'));
-    };
-  </script>
-  <script src="https://www.google.com/recaptcha/api.js?onload=__mentaliaOnRecaptchaLoad&render=explicit" async defer></script>
   <script type="module" defer src="main.js"></script>
 </head>
 <body>
@@ -49,12 +40,7 @@
           <span class="menu-toggle__bars" aria-hidden="true">
             <span class="menu-toggle__bar"></span>
             <span class="menu-toggle__bar"></span>
-            <span class="menu-toggle__bar"></span>
           </span>
-        </button>
-        <button class="menu-close" type="button" aria-label="Κλείσιμο μενού">
-          <span class="menu-close__icon" aria-hidden="true"></span>
-          <span class="menu-close__label">Πίσω</span>
         </button>
         <ul id="primaryNav" class="nav">
           <li><a href="#home">ΑΡΧΙΚΗ</a></li>
@@ -303,65 +289,23 @@
     <section id="contact" class="fullpage-section tone-cream parallax-section">
       <div class="container reveal">
         <h2>ΕΠΙΚΟΙΝΩΝΙΑ</h2>
-        <div class="contact-form-wrap">
-          <h3>Φόρμα Επικοινωνίας</h3>
-          <form class="contact-form" id="contactForm">
-            <div class="field">
-              <label for="name">Ονοματεπώνυμο</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                minlength="3"
-                autocomplete="name"
-                pattern="^[A-Za-zÀ-ÿΑ-Ωα-ωΆ-Ώά-ώ\s]+$"
-              />
-              <p class="field-error" data-error-for="name" hidden></p>
-            </div>
-            <div class="field">
-              <label for="email">Email</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                autocomplete="email"
-                inputmode="email"
-                pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
-              />
-              <p class="field-error" data-error-for="email" hidden></p>
-            </div>
-            <div class="field">
-              <label for="message">Μήνυμα</label>
-              <textarea id="message" name="message" rows="4" required></textarea>
-              <p class="field-error" data-error-for="message" hidden></p>
-            </div>
-            <label class="gdpr">
-              <input type="checkbox" required />
-              <span class="gdpr-copy">Συμφωνώ με την <a href="#" target="_blank" rel="noopener">Πολιτική Απορρήτου</a>.</span>
-            </label>
-            <div class="recaptcha-slot">
-              <div id="contactRecaptcha"></div>
-            </div>
-            <button type="submit" class="btn primary">Αποστολή</button>
-            <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
-          </form>
-          <div class="form-success" id="formSuccess" aria-hidden="true">✓</div>
-        </div>
         <div class="contact-grid">
-          <div>
+          <div class="contact-panel">
+            <p class="contact-intro">Είμαστε διαθέσιμοι για πληροφορίες, ραντεβού και άμεση επικοινωνία με την ομάδα της MENTALIA.</p>
             <h3>Στοιχεία</h3>
             <ul class="contact-list">
               <li>Διεύθυνση: Αποστόλου Σούζου 6, Κομοτηνή, 69133</li>
               <li>Email: <a href="mailto:info@mentalia.gr">info@mentalia.gr</a></li>
               <li>Instagram: <a href="https://www.instagram.com/mentalia.co?igsh=MTdncGN6b3ZjNXV4bw==" target="_blank" rel="noopener">@mentalia.co</a></li>
             </ul>
-            <div class="map-wrap" aria-label="Χάρτης Google">
-              <iframe title="MENTALIA στο χάρτη" width="100%" height="300" style="border:0" loading="lazy" allowfullscreen
-                referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d478.2482878814085!2d25.4058704!3d41.1164016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14adee9e48ae2571%3A0x607630892e03b443!2zzpHOtc65zq_OvyDOkc6xzr3OrM6_zrvOtM6_z4zOtc-FIM6fzr_Ouc66zr3Otc-DIM6kzrnOuc6vzrHOrM-EIDY!5e0!3m2!1sel!2sgr!4v1730950000"></iframe>
+            <div class="contact-cta-wrap">
+              <a class="btn contact-cta" href="mailto:info@mentalia.gr?subject=%CE%95%CF%80%CE%B9%CE%BA%CE%BF%CE%B9%CE%BD%CF%89%CE%BD%CE%AF%CE%B1%20%CE%BC%CE%B5%20MENTALIA">Άμεση Επικοινωνία</a>
             </div>
+          </div>
+          <div class="map-wrap" aria-label="Χάρτης Google">
+            <iframe title="MENTALIA στο χάρτη" width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d478.2482878814085!2d25.4058704!3d41.1164016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14adee9e48ae2571%3A0x607630892e03b443!2zzpHOtc65zq_OvyDOkc6xzr3OrM6_zrvOtM6_z4zOtc-FIM6fzr_Ouc66zr3Otc-DIM6kzrnOuc6vzrHOrM-EIDY!5e0!3m2!1sel!2sgr!4v1730950000"></iframe>
           </div>
         </div>
       </div>
@@ -374,13 +318,6 @@
       <div>
         <h3>MENTALIA</h3>
         <p>Ολιστικές, επιστημονικά τεκμηριωμένες υπηρεσίες ψυχικής υγείας.</p>
-      </div>
-      <div>
-        <h3>Στοιχεία</h3>
-        <ul class="contact-list">
-          <li>Αποστόλου Σούζου 6, Κομοτηνή, 69133</li>
-          <li><a href="mailto:info@mentalia.gr">info@mentalia.gr</a></li>
-        </ul>
       </div>
     </div>
     <div class="container footer-legal">

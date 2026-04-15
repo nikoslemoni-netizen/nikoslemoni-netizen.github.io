@@ -1,6 +1,5 @@
 const toggle = document.querySelector('.menu-toggle');
 const nav = document.getElementById('primaryNav');
-const closeButton = document.querySelector('.menu-close');
 const logoLink = document.querySelector('.logo-link');
 const navWrap = document.querySelector('.nav-wrap');
 const articleBackLink = document.querySelector('.article-back');
@@ -38,8 +37,8 @@ if (toggle && nav) {
   const setMenuState = (open)=>{
     nav.classList.toggle('is-open', open);
     toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Κλείσιμο μενού' : 'Άνοιγμα μενού');
     document.body.classList.toggle('menu-open', open);
-    closeButton?.classList.toggle('is-open', open);
   };
 
   toggle.addEventListener('click', () => {
@@ -50,8 +49,6 @@ if (toggle && nav) {
   nav.querySelectorAll('a').forEach((link)=>{
     link.addEventListener('click', ()=> setMenuState(false));
   });
-
-  closeButton?.addEventListener('click', ()=> setMenuState(false));
 
   window.addEventListener('resize', ()=>{
     if(window.innerWidth > 900){
