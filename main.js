@@ -2,36 +2,76 @@ const CONFIG = {
   SIMPLYBOOK_CLIENT: "YOUR_CLIENT"
 };
 
-function getSafeStorage(){
-  try{
-    const testKey = '__mentalia_storage_test__';
-    localStorage.setItem(testKey, 'ok');
-    localStorage.removeItem(testKey);
-    return localStorage;
-  }catch(err){
-    console.warn('Local storage unavailable, cookie banner will not be persisted.', err);
-    return null;
-  }
-}
-const SAFE_STORAGE = getSafeStorage();
-const getCookieChoice = ()=> SAFE_STORAGE ? SAFE_STORAGE.getItem('cookiesChoice') : null;
-const setCookieChoice = (value)=>{
-  if(!SAFE_STORAGE) return false;
-  try{
-    SAFE_STORAGE.setItem('cookiesChoice', value);
-    return true;
-  }catch(err){
-    console.warn('Failed to persist cookie choice', err);
-    return false;
-  }
-};
-
 const forEachNode = (nodes, callback)=>{
   if(!nodes || typeof callback !== 'function') return;
   for(let i = 0; i < nodes.length; i += 1){
     callback(nodes[i], i);
   }
 };
+
+function initNavCurrentState(){
+  const navRoot = document.getElementById('primaryNav');
+  if(!navRoot) return;
+
+  const navLinks = Array.from(navRoot.querySelectorAll('a'));
+  if(!navLinks.length) return;
+
+  const clearCurrent = ()=>{
+    navLinks.forEach((link)=> link.removeAttribute('aria-current'));
+  };
+
+  const setCurrentLink = (matcher)=>{
+    const next = navLinks.find(matcher);
+    if(!next) return false;
+    clearCurrent();
+    next.setAttribute('aria-current', 'page');
+    return true;
+  };
+
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  if(path !== 'index.html'){
+    return;
+  }
+
+  const sectionIds = ['home', 'services', 'team', 'contact'];
+  const sections = sectionIds
+    .map((id)=> document.getElementById(id))
+    .filter(Boolean);
+
+  const setCurrentSection = (sectionId)=>{
+    const normalized = sectionId || 'home';
+    setCurrentLink((link)=>{
+      const href = link.getAttribute('href') || '';
+      return href === `#${normalized}` || href === `index.html#${normalized}`;
+    });
+  };
+
+  const updateCurrentFromViewport = ()=>{
+    const headerOffset = header ? header.getBoundingClientRect().height : 0;
+    const probeY = window.scrollY + headerOffset;
+    let currentId = sections[0]?.id || 'home';
+
+    for(let i = 0; i < sections.length; i += 1){
+      const section = sections[i];
+      const nextSection = sections[i + 1];
+      if(!nextSection) break;
+
+      const switchPoint = section.offsetTop + (section.offsetHeight * 0.75);
+      if(probeY >= switchPoint){
+        currentId = nextSection.id;
+      }
+    }
+
+    setCurrentSection(currentId);
+  };
+
+  updateCurrentFromViewport();
+  window.addEventListener('hashchange', ()=>{
+    requestAnimationFrame(updateCurrentFromViewport);
+  });
+  window.addEventListener('scroll', updateCurrentFromViewport, { passive:true });
+  window.addEventListener('resize', updateCurrentFromViewport);
+}
 
 const header = document.getElementById('siteHeader');
 if (header) {
@@ -334,6 +374,7 @@ if ('IntersectionObserver' in window && revealBlocks.length) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  initNavCurrentState();
   const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
 
   const heroContent = document.querySelector('.hero-content');
@@ -432,7 +473,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  initCookieBanner();
 });
 
 const slider = document.querySelector('.team-slider');
@@ -624,59 +664,6 @@ function renderBlog(){
   }
 }
 renderBlog();
-
-function initCookieBanner(){
-  const bar = document.getElementById('cookiesBar');
-  if(!bar) return;
-  const card = bar.querySelector('.cookies-card');
-  const setBarVisibility = (isVisible)=>{
-    bar.hidden = !isVisible;
-    bar.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
-    bar.style.display = isVisible ? 'grid' : 'none';
-    if(isVisible && card){
-      requestAnimationFrame(()=>{
-        card.classList.add('is-visible');
-      });
-    }else if(card){
-      card.classList.remove('is-visible');
-    }
-  };
-  const buttons = bar.querySelectorAll('[data-action]');
-  if(!buttons.length) return;
-  const feedback = document.getElementById('cookiesFeedback');
-
-  const handleChoice = (choice)=>{
-    if(!choice) return;
-    const persisted = setCookieChoice(choice);
-    if (feedback) {
-      feedback.hidden = false;
-      feedback.textContent = choice === 'accept'
-        ? 'Έκανες αποδοχή των cookies. Μπορείς να αλλάξεις επιλογή από τις ρυθμίσεις του browser.'
-        : 'Απέρριψες τα μη απαραίτητα cookies. Η βασική λειτουργικότητα παραμένει ενεργή.';
-      if(!persisted){
-        feedback.textContent += ' (Δεν ήταν δυνατό να αποθηκεύσουμε την επιλογή σε αυτό το πρόγραμμα.)';
-      }
-    }
-    setBarVisibility(false);
-  };
-
-  setBarVisibility(true);
-
-  const attachHandler = (btn)=>{
-    if(!btn) return;
-    btn.addEventListener('click', (event)=>{
-      event.preventDefault();
-      handleChoice(btn.dataset.action);
-    });
-  };
-
-  forEachNode(buttons, attachHandler);
-
-  window.__mentaliaHandleCookies = (choice)=>{
-    handleChoice(choice);
-    return false;
-  };
-}
 const SERVICE_PAGES = {
   psychiatry: {
     title: "ΨΥΧΙΑΤΡΙΚΗ ΦΡΟΝΤΙΔΑ",

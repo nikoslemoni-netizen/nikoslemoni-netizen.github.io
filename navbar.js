@@ -3,6 +3,60 @@ const nav = document.getElementById('primaryNav');
 const logoLink = document.querySelector('.logo-link');
 const navWrap = document.querySelector('.nav-wrap');
 const articleBackLink = document.querySelector('.article-back');
+
+function initNavCurrentState(){
+  if(!nav) return;
+  const links = Array.from(nav.querySelectorAll('a'));
+  if(!links.length) return;
+
+  const clearCurrent = ()=>{
+    links.forEach((link)=> link.removeAttribute('aria-current'));
+  };
+
+  const setCurrent = (matcher)=>{
+    const match = links.find(matcher);
+    if(!match) return false;
+    clearCurrent();
+    match.setAttribute('aria-current', 'page');
+    return true;
+  };
+
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  const hash = window.location.hash.replace('#', '');
+
+  if(path === 'about.html'){
+    setCurrent((link)=> (link.getAttribute('href') || '') === 'about.html');
+    return;
+  }
+
+  if(
+    path === 'blog.html' ||
+    path === 'blog-library.html' ||
+    path === 'blog-ai-mental-health.html' ||
+    path === 'blog-anxiety-management.html' ||
+    path === 'blog-holistic-care.html'
+  ){
+    setCurrent((link)=> (link.getAttribute('href') || '') === 'blog.html' || (link.getAttribute('href') || '') === 'blog-library.html');
+    return;
+  }
+
+  if(path === 'index.html' || path === ''){
+    if(hash === 'services' || hash === 'team' || hash === 'contact' || hash === 'home'){
+      setCurrent((link)=>{
+        const href = link.getAttribute('href') || '';
+        return href === `#${hash}` || href === `index.html#${hash}`;
+      });
+      return;
+    }
+    setCurrent((link)=>{
+      const href = link.getAttribute('href') || '';
+      return href === '#home' || href === 'index.html#home';
+    });
+  }
+}
+
+initNavCurrentState();
+
 if(navWrap){
   navWrap.classList.add('is-visible');
 }

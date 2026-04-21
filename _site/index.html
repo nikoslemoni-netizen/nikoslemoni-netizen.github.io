@@ -7,6 +7,7 @@
   <title>MENTALIA | Επαγγελματικές Υπηρεσίες Ψυχικής Υγείας & Αυτοβελτίωσης</title>
   <meta name="description" content="Συνδυάζουμε ψυχιατρική, ψυχοθεραπεία και καινοτομία για φροντίδα που κάνει διαφορά. Η φιλοσοφία μιας ζωής που αξίζει να ζεις." />
   <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="MENTALIA | Επαγγελματικές Υπηρεσίες Ψυχικής Υγείας & Αυτοβελτίωσης" />
@@ -22,6 +23,7 @@
   <link rel="stylesheet" href="style.css" />
 
   <script type="module" defer src="main.js"></script>
+  <script defer src="analytics.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Παράκαμψη στο περιεχόμενο</a>
@@ -43,7 +45,7 @@
           </span>
         </button>
         <ul id="primaryNav" class="nav">
-          <li><a href="#home">ΑΡΧΙΚΗ</a></li>
+          <li><a href="#home" aria-current="page">ΑΡΧΙΚΗ</a></li>
           <li><a href="#services">ΥΠΗΡΕΣΙΕΣ</a></li>
           <li><a href="about.html">ΣΧΕΤΙΚΑ ΜΕ ΕΜΑΣ</a></li>
           <li><a href="#team">Η ΟΜΑΔΑ ΜΑΣ</a></li>
@@ -85,6 +87,7 @@
     <!-- Hero -->
     <section id="home" class="hero" aria-label="Κεντρική ενότητα">
       <div class="hero-logo-wrap" aria-hidden="true">
+        <img class="hero-logo-static" src="logo-static.svg" alt="" loading="eager" decoding="async" />
         <svg class="hero-logo" viewBox="0 0 1366 768" role="presentation" focusable="false">
           <g class="logo-circles">
             <circle id="circle-outer" cx="681" cy="384" r="260" />
@@ -315,9 +318,28 @@
   <!-- Footer -->
   <footer class="site-footer" role="contentinfo">
     <div class="container footer-grid">
-      <div>
+      <div class="footer-column footer-column--brand">
         <h3>MENTALIA</h3>
         <p>Ολιστικές, επιστημονικά τεκμηριωμένες υπηρεσίες ψυχικής υγείας.</p>
+      </div>
+      <nav class="footer-column footer-column--nav" aria-label="Footer πλοήγηση">
+        <h3>Πλοήγηση</h3>
+        <ul class="footer-links">
+          <li><a href="#home">ΑΡΧΙΚΗ</a></li>
+          <li><a href="#services">ΥΠΗΡΕΣΙΕΣ</a></li>
+          <li><a href="about.html">ΣΧΕΤΙΚΑ ΜΕ ΕΜΑΣ</a></li>
+          <li><a href="#team">Η ΟΜΑΔΑ ΜΑΣ</a></li>
+          <li><a href="blog.html">BLOG</a></li>
+          <li><a href="#contact">ΕΠΙΚΟΙΝΩΝΙΑ</a></li>
+        </ul>
+      </nav>
+      <div class="footer-column footer-column--contact">
+        <h3>Επικοινωνια</h3>
+        <ul class="footer-links footer-links--contact">
+          <li>Αποστόλου Σούζου 6, Κομοτηνή, 69133</li>
+          <li><a href="mailto:info@mentalia.gr">info@mentalia.gr</a></li>
+          <li><a href="https://www.instagram.com/mentalia.co?igsh=MTdncGN6b3ZjNXV4bw==" target="_blank" rel="noopener">@mentalia.co</a></li>
+        </ul>
       </div>
     </div>
     <div class="container footer-legal">
@@ -325,17 +347,14 @@
     </div>
   </footer>
 
-  <!-- Cookies -->
   <div class="cookies" id="cookiesBar" role="dialog" aria-labelledby="cookiesTitle" aria-modal="true" hidden>
     <div class="cookies-card">
       <h3 id="cookiesTitle">Cookies</h3>
       <p>Χρησιμοποιούμε cookies για βελτίωση εμπειρίας. Επιλέξτε τις προτιμήσεις σας.</p>
       <p class="cookies-feedback" id="cookiesFeedback" role="status" aria-live="polite" hidden></p>
       <div class="cookies-actions">
-        <button class="btn outline" type="button" data-action="reject" id="cookiesReject"
-          onclick="return window.__mentaliaHandleCookies ? window.__mentaliaHandleCookies('reject') : false;">Απόρριψη</button>
-        <button class="btn" type="button" data-action="accept" id="cookiesAccept"
-          onclick="return window.__mentaliaHandleCookies ? window.__mentaliaHandleCookies('accept') : false;">Αποδοχή όλων</button>
+        <button class="btn outline" type="button" data-action="reject" id="cookiesReject">Απόρριψη</button>
+        <button class="btn" type="button" data-action="accept" id="cookiesAccept">Αποδοχή όλων</button>
       </div>
     </div>
   </div>
