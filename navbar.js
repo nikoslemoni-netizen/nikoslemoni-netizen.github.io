@@ -88,31 +88,41 @@ if(articleBackLink){
   }
 }
 if (toggle && nav) {
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;z-index:98;display:none;cursor:pointer';
+  document.body.appendChild(overlay);
+
   const setMenuState = (open)=>{
     nav.classList.toggle('is-open', open);
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Κλείσιμο μενού' : 'Άνοιγμα μενού');
     document.body.classList.toggle('menu-open', open);
+    overlay.style.display = open ? 'block' : 'none';
   };
 
-  toggle.addEventListener('click', () => {
-    const open = nav.classList.contains('is-open');
-    setMenuState(!open);
+  toggle.addEventListener('click', ()=>{
+    setMenuState(!nav.classList.contains('is-open'));
   });
+
+  overlay.addEventListener('click', ()=> setMenuState(false));
+
+  let _tx = 0, _ty = 0;
+  overlay.addEventListener('touchstart', e=>{ _tx = e.touches[0].clientX; _ty = e.touches[0].clientY; }, {passive:true});
+  overlay.addEventListener('touchend', e=>{
+    const dx = Math.abs(e.changedTouches[0].clientX - _tx);
+    const dy = Math.abs(e.changedTouches[0].clientY - _ty);
+    if(dx < 8 && dy < 8) setMenuState(false);
+  }, {passive:true});
 
   nav.querySelectorAll('a').forEach((link)=>{
     link.addEventListener('click', ()=> setMenuState(false));
   });
 
   window.addEventListener('resize', ()=>{
-    if(window.innerWidth > 900){
-      setMenuState(false);
-    }
+    if(window.innerWidth > 900) setMenuState(false);
   });
 
-  document.addEventListener('keydown', (event)=>{
-    if(event.key === 'Escape'){
-      setMenuState(false);
-    }
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') setMenuState(false);
   });
 }

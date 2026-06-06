@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const zlib = require('zlib');
 
 const ROOT_DIR = __dirname;
 const PORT = Number(process.env.PORT || 8080);
@@ -22,21 +23,54 @@ const MIME_TYPES = {
   '.webp': 'image/webp'
 };
 
-const sendFile = (res, filepath, statusCode = 200)=>{
+const COMPRESSIBLE = new Set(['.html', '.htm', '.css', '.js', '.json', '.svg', '.txt']);
+
+const CACHE_TTL = {
+  '.html': 'no-cache',
+  '.htm':  'no-cache',
+  '.css':  'public, max-age=31536000, immutable',
+  '.js':   'public, max-age=31536000, immutable',
+  '.png':  'public, max-age=2592000',
+  '.jpg':  'public, max-age=2592000',
+  '.jpeg': 'public, max-age=2592000',
+  '.webp': 'public, max-age=2592000',
+  '.gif':  'public, max-age=2592000',
+  '.svg':  'public, max-age=2592000',
+  '.mp4':  'public, max-age=2592000',
+  '.pdf':  'public, max-age=2592000',
+};
+
+const sendFile = (req, res, filepath, statusCode = 200) => {
   const ext = path.extname(filepath).toLowerCase();
   const type = MIME_TYPES[ext] || 'application/octet-stream';
+  const cache = CACHE_TTL[ext] || 'public, max-age=86400';
+
+  const acceptEncoding = req.headers['accept-encoding'] || '';
+  const useGzip = COMPRESSIBLE.has(ext) && /gzip/.test(acceptEncoding);
+
+  const headers = {
+    'Content-Type': type,
+    'Cache-Control': cache,
+    'Vary': 'Accept-Encoding',
+  };
+  if (useGzip) headers['Content-Encoding'] = 'gzip';
+
   const stream = fs.createReadStream(filepath);
-  stream.on('open', ()=>{
-    res.writeHead(statusCode, {'Content-Type': type});
-    stream.pipe(res);
+  stream.on('open', () => {
+    res.writeHead(statusCode, headers);
+    if (useGzip) {
+      stream.pipe(zlib.createGzip()).pipe(res);
+    } else {
+      stream.pipe(res);
+    }
   });
-  stream.on('error', ()=>{
+  stream.on('error', () => {
     res.writeHead(500, {'Content-Type': 'text/plain; charset=utf-8'});
     res.end('Internal Server Error');
   });
 };
 
-const server = http.createServer(async (req, res)=>{
+const server = http.createServer((req, res) => {
   const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
 
   if (req.method !== 'GET' && req.method !== 'HEAD') {
@@ -60,17 +94,17 @@ const server = http.createServer(async (req, res)=>{
     if (stat.isDirectory()) {
       const indexPath = path.join(filePath, 'index.html');
       if (fs.existsSync(indexPath)) {
-        sendFile(res, indexPath);
+        sendFile(req, res, indexPath);
         return;
       }
     } else {
-      sendFile(res, filePath);
+      sendFile(req, res, filePath);
       return;
     }
   } catch (error) {
     const notFoundPath = path.join(ROOT_DIR, '404.html');
     if (fs.existsSync(notFoundPath)) {
-      sendFile(res, notFoundPath, 404);
+      sendFile(req, res, notFoundPath, 404);
       return;
     }
     res.writeHead(404, {'Content-Type': 'text/plain; charset=utf-8'});
@@ -78,6 +112,6 @@ const server = http.createServer(async (req, res)=>{
   }
 });
 
-server.listen(PORT, ()=>{
+server.listen(PORT, () => {
   console.log(`MENTALIA server listening on http://localhost:${PORT}`);
 });

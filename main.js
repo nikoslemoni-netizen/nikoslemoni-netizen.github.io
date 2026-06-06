@@ -2,6 +2,15 @@ const CONFIG = {
   SIMPLYBOOK_CLIENT: "YOUR_CLIENT"
 };
 
+if(window.location.hash){
+  const target = document.querySelector(window.location.hash);
+  if(target){
+    document.documentElement.style.scrollBehavior = 'auto';
+    target.scrollIntoView();
+    setTimeout(()=>{ document.documentElement.style.scrollBehavior = ''; }, 50);
+  }
+}
+
 const forEachNode = (nodes, callback)=>{
   if(!nodes || typeof callback !== 'function') return;
   for(let i = 0; i < nodes.length; i += 1){
@@ -307,17 +316,28 @@ if (heroVideoNodes.length) {
 const toggle = document.querySelector('.menu-toggle');
 const nav = document.getElementById('primaryNav');
 if (toggle && nav) {
+  const menuOverlay = document.createElement('div');
+  menuOverlay.style.cssText = 'position:fixed;inset:0;z-index:98;display:none;cursor:pointer';
+  document.body.appendChild(menuOverlay);
+
   const setMenuState = (open)=>{
     nav.classList.toggle('is-open', open);
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Κλείσιμο μενού' : 'Άνοιγμα μενού');
     document.body.classList.toggle('menu-open', open);
+    menuOverlay.style.display = open ? 'block' : 'none';
   };
 
   toggle.addEventListener('click', () => {
-    const open = nav.classList.contains('is-open');
-    setMenuState(!open);
+    setMenuState(!nav.classList.contains('is-open'));
   });
+
+  menuOverlay.addEventListener('click', ()=> setMenuState(false));
+  let _mx = 0, _my = 0;
+  menuOverlay.addEventListener('touchstart', e=>{ _mx = e.touches[0].clientX; _my = e.touches[0].clientY; }, {passive:true});
+  menuOverlay.addEventListener('touchend', e=>{
+    if(Math.abs(e.changedTouches[0].clientX - _mx) < 8 && Math.abs(e.changedTouches[0].clientY - _my) < 8) setMenuState(false);
+  }, {passive:true});
 
   nav.querySelectorAll('a').forEach((link)=>{
     link.addEventListener('click', ()=> setMenuState(false));
@@ -336,7 +356,7 @@ if (toggle && nav) {
   });
 }
 
-const revealBlocks = document.querySelectorAll('.reveal');
+const revealBlocks = document.querySelectorAll('.reveal:not([data-reveal-late])');
 if ('IntersectionObserver' in window && revealBlocks.length) {
   const io = new IntersectionObserver((entries)=>{
     entries
@@ -353,15 +373,17 @@ if ('IntersectionObserver' in window && revealBlocks.length) {
         const totalDelay = baseDelay + idx * stagger;
         target.style.setProperty('--reveal-delay', `${totalDelay}ms`);
         const svc = target.dataset.service;
-        const isLeft = svc === 'psychiatry' || svc === 'coaching';
-        const isRight = svc === 'psychotherapy' || svc === 'education';
-        if (isLeft || isRight){
-          const delay = (svc === 'coaching' || svc === 'education') ? '1s' : '0s';
-          target.style.setProperty('--slide-delay', delay);
-          target.classList.add(isLeft ? 'slide-left' : 'slide-right');
-          const icon = target.querySelector('.service-icon-link');
-          if (icon){
-            icon.classList.add(svc === 'psychiatry' || svc === 'psychotherapy' ? 'icon-slide-down' : 'icon-slide-up');
+        if (svc && !target.closest('.services-grid')) {
+          const isLeft = svc === 'psychiatry' || svc === 'coaching';
+          const isRight = svc === 'psychotherapy' || svc === 'education';
+          if (isLeft || isRight){
+            const delay = (svc === 'coaching' || svc === 'education') ? '1s' : '0s';
+            target.style.setProperty('--slide-delay', delay);
+            target.classList.add(isLeft ? 'slide-left' : 'slide-right');
+            const icon = target.querySelector('.service-icon-link');
+            if (icon){
+              icon.classList.add(svc === 'psychiatry' || svc === 'psychotherapy' ? 'icon-slide-down' : 'icon-slide-up');
+            }
           }
         }
         requestAnimationFrame(()=>target.classList.add('visible'));
@@ -369,8 +391,21 @@ if ('IntersectionObserver' in window && revealBlocks.length) {
       });
   },{threshold:0.15});
   forEachNode(revealBlocks, el=>io.observe(el));
+
+  const lateBlocks = document.querySelectorAll('.reveal[data-reveal-late]');
+  if (lateBlocks.length) {
+    const ioLate = new IntersectionObserver((entries)=>{
+      entries.filter(e=>e.isIntersecting).forEach((entry, idx)=>{
+        const target = entry.target;
+        target.style.setProperty('--reveal-delay', `${idx * 120}ms`);
+        requestAnimationFrame(()=>target.classList.add('visible'));
+        ioLate.unobserve(target);
+      });
+    },{threshold:0.45});
+    forEachNode(lateBlocks, el=>ioLate.observe(el));
+  }
 } else {
-  forEachNode(revealBlocks, el=>el.classList.add('visible'));
+  forEachNode(document.querySelectorAll('.reveal'), el=>el.classList.add('visible'));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -465,12 +500,67 @@ document.addEventListener('DOMContentLoaded', () => {
     detailCards.forEach(details=>{
       const card = details.closest('.service-post');
       if(!card) return;
-      const syncCardState = ()=>{
-        card.classList.toggle('is-expanded', details.open);
-      };
-      syncCardState();
-      details.addEventListener('toggle', syncCardState);
+      const summary = details.querySelector('summary');
+      if(!summary) return;
+
+      summary.addEventListener('click', e=>{
+        e.preventDefault();
+        if(details.open){
+          // Curtain starts first, section follows after curtain completes
+          card.classList.add('is-closing');
+          setTimeout(()=>{
+            card.classList.remove('is-expanded');
+            card.classList.remove('is-closing');
+            details.open = false;
+            window._servicesFitClosed?.();
+          }, 620);
+        } else {
+          // Open: set section height to fit panel, then animate in
+          details.open = true;
+          requestAnimationFrame(()=>requestAnimationFrame(()=>{
+            card.classList.add('is-expanded');
+            window._servicesFitOpen?.(card);
+          }));
+        }
+      });
+
+      // Initial sync
+      card.classList.toggle('is-expanded', details.open);
     });
+
+    const cardOverlay = document.createElement('div');
+    cardOverlay.style.cssText = 'position:fixed;inset:0;z-index:8;display:none;cursor:pointer';
+    document.body.appendChild(cardOverlay);
+
+    const closeOpenCard = ()=>{
+      const openCard = document.querySelector('.service-post.is-expanded');
+      if(!openCard) return;
+      const openDetails = openCard.querySelector('.service-details');
+      if(!openDetails) return;
+      openCard.classList.add('is-closing');
+      setTimeout(()=>{
+        openCard.classList.remove('is-expanded');
+        openCard.classList.remove('is-closing');
+        openDetails.open = false;
+        window._servicesFitClosed?.();
+      }, 620);
+    };
+
+    cardOverlay.addEventListener('click', closeOpenCard);
+
+    let _cx = 0, _cy = 0;
+    cardOverlay.addEventListener('touchstart', e=>{ _cx = e.touches[0].clientX; _cy = e.touches[0].clientY; }, {passive:true});
+    cardOverlay.addEventListener('touchend', e=>{
+      const dx = Math.abs(e.changedTouches[0].clientX - _cx);
+      const dy = Math.abs(e.changedTouches[0].clientY - _cy);
+      if(dx < 8 && dy < 8) closeOpenCard();
+    }, {passive:true});
+
+    const cardObserver = new MutationObserver(()=>{
+      const hasOpen = !!document.querySelector('.service-post.is-expanded');
+      cardOverlay.style.display = hasOpen ? 'block' : 'none';
+    });
+    servicePosts.forEach(post=> cardObserver.observe(post, {attributes:true, attributeFilter:['class']}));
   }
 
 });
@@ -576,6 +666,100 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }
 });
 
+// Size services section — expands when a panel is open
+(function() {
+  const services = document.getElementById('services');
+  const getGrid = ()=> services?.querySelector('.services-grid');
+
+  function baseHeight() {
+    const grid = getGrid();
+    if (!services || !grid) return 0;
+    const top = services.getBoundingClientRect().top + window.scrollY;
+    return grid.getBoundingClientRect().bottom + window.scrollY - top + 96;
+  }
+
+  function setHeight(px) {
+    if (services) services.style.minHeight = px + 'px';
+  }
+
+  function fitClosed() {
+    setHeight(baseHeight());
+  }
+
+  function fitOpen(card) {
+    const grid = getGrid();
+    if (!services || !grid) return;
+    const top = services.getBoundingClientRect().top + window.scrollY;
+    const panel = card.querySelector('.service-panel');
+    const panelH = Math.min(panel ? panel.scrollHeight + 32 : 0, window.innerHeight * 0.72);
+    const cardBottom = card.getBoundingClientRect().bottom + window.scrollY;
+    const needed = Math.max(
+      grid.getBoundingClientRect().bottom + window.scrollY - top + 96,
+      cardBottom - top + panelH + 80
+    );
+    setHeight(needed);
+  }
+
+  function enableTransition()  { if (services) services.style.transition = 'min-height .65s cubic-bezier(.16,1,.3,1)'; }
+  function disableTransition() { if (services) services.style.transition = 'none'; }
+
+  window.addEventListener('load', () => fitClosed());
+  window.addEventListener('resize', () => requestAnimationFrame(() => {
+    disableTransition();
+    const openCard = services?.querySelector('.service-post.is-expanded');
+    openCard ? fitOpen(openCard) : fitClosed();
+  }));
+  fitClosed();
+
+  // Expose for click handlers
+  window._servicesFitOpen   = (card) => { enableTransition(); fitOpen(card); };
+  window._servicesFitClosed = ()     => { enableTransition(); fitClosed(); };
+})();
+
+// Size hero to end exactly where hero-page3 ends
+(function() {
+  function fitHeroToContent() {
+    const hero = document.getElementById('home');
+    const page3 = hero?.querySelector('.hero-page3');
+    if (!hero || !page3) return;
+    hero.style.minHeight = (page3.offsetTop + page3.offsetHeight + 64) + 'px';
+  }
+  window.addEventListener('load', fitHeroToContent);
+  window.addEventListener('resize', function() { requestAnimationFrame(fitHeroToContent); });
+  fitHeroToContent();
+})();
+
+// Sticky hero logo — stays fixed while scrolling through hero section
+(function() {
+  if (!heroSection) return;
+  const logoWrap = heroSection.querySelector('.hero-logo-wrap');
+  if (!logoWrap) return;
+  let rafId = null;
+
+  function updateLogoSticky() {
+    rafId = null;
+    const rect = heroSection.getBoundingClientRect();
+    const vh = window.innerHeight;
+    if (rect.top >= 0) {
+      logoWrap.style.position = 'absolute';
+      logoWrap.style.top = '0';
+    } else if (rect.bottom > vh) {
+      logoWrap.style.position = 'fixed';
+      logoWrap.style.top = '0';
+    } else {
+      logoWrap.style.position = 'absolute';
+      logoWrap.style.top = (heroSection.offsetHeight - vh) + 'px';
+    }
+  }
+
+  window.addEventListener('scroll', function() {
+    if (rafId) return;
+    rafId = requestAnimationFrame(updateLogoSticky);
+  }, { passive: true });
+  window.addEventListener('resize', updateLogoSticky);
+  updateLogoSticky();
+})();
+
 // Parallax background + panels
 (() => {
   const parallaxSections = Array.from(document.querySelectorAll('.parallax-section'));
@@ -674,7 +858,7 @@ const SERVICE_PAGES = {
       "Διαχείριση αγχωδών, καταθλιπτικών, ψυχωτικών & διπολικών διαταραχών",
       "Follow-up συνεδρίες και συνεχής υποστήριξη"
     ],
-    cta: "Κλείσε ραντεβού στο info@mentalia.gr"
+    cta: "Κλείσε ραντεβού στο mentalia.info@gmail.com"
   },
   psychotherapy: {
     title: "ΨΥΧΟΘΕΡΑΠΕΙΑ",
@@ -685,7 +869,7 @@ const SERVICE_PAGES = {
       "Ομαδικά προγράμματα και ψυχοεκπαίδευση",
       "Συμβουλευτική για ύπνο, στρες & ψυχοσωματικά"
     ],
-    cta: "Έναρξη συνεδρίας στο info@mentalia.gr"
+    cta: "Έναρξη συνεδρίας στο mentalia.info@gmail.com"
   },
   coaching: {
     title: "COACHING & ΑΝΑΠΤΥΞΗ",
@@ -696,7 +880,7 @@ const SERVICE_PAGES = {
       "Προγράμματα διαχείρισης άγχους και burnout",
       "Υποστήριξη φροντιστών & επαγγελματιών υγείας"
     ],
-    cta: "Ζήτησε ενημέρωση στο info@mentalia.gr"
+    cta: "Ζήτησε ενημέρωση στο mentalia.info@gmail.com"
   },
   education: {
     title: "ΕΚΠΑΙΔΕΥΣΗ & ΣΕΜΙΝΑΡΙΑ",
@@ -707,7 +891,7 @@ const SERVICE_PAGES = {
       "Ιατρικές γνωματεύσεις & επίσημες βεβαιώσεις",
       "Παρεμβάσεις στο εργασιακό περιβάλλον"
     ],
-    cta: "Ζήτησε προσφορά στο info@mentalia.gr"
+    cta: "Ζήτησε προσφορά στο mentalia.info@gmail.com"
   }
 };
 
@@ -738,7 +922,7 @@ const buildServicePage = (data, currentUrl)=>{
           <ul>
             ${data.bullets.map(item=>`<li>${item}</li>`).join('')}
           </ul>
-          <p class="center"><a class="btn" href="mailto:info@mentalia.gr">${data.cta}</a></p>
+          <p class="center"><a class="btn" href="mailto:mentalia.info@gmail.com">${data.cta}</a></p>
           <p class="center"><a class="btn outline" href="${currentUrl}" target="_self">Επιστροφή στην αρχική</a></p>
         </div>
       </main>
