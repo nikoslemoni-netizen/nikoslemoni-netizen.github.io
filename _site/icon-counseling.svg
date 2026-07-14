@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <!-- Left person: filled head + filled body arch -->
+  <circle cx="16" cy="19" r="9" fill="#122B1D"/>
+  <path d="M4 58 C4 24 28 24 28 58 Z" fill="#122B1D"/>
+
+  <!-- Right person: filled head + filled body arch -->
+  <circle cx="64" cy="19" r="9" fill="#122B1D"/>
+  <path d="M52 58 C52 24 76 24 76 58 Z" fill="#122B1D"/>
+
+  <!-- Heart centered between the two figures -->
+  <path d="M32 33 C32 27 36 25 40 28.5 C44 25 48 27 48 33 C48 39.5 40 46 40 46 C40 46 32 39.5 32 33 Z" fill="#122B1D"/>
+</svg>

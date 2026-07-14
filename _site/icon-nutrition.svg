@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none" stroke="#122B1D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Fork (left) -->
+  <line x1="22" y1="14" x2="22" y2="66"/>
+  <line x1="16" y1="14" x2="16" y2="32"/>
+  <line x1="22" y1="14" x2="22" y2="32"/>
+  <line x1="28" y1="14" x2="28" y2="32"/>
+  <path d="M16 32 C16 38 28 38 28 32"/>
+  <!-- Leaf/plant (right) -->
+  <path d="M52 62 C52 62 52 44 52 38 C52 28 60 20 68 18 C68 28 64 38 52 38"/>
+  <path d="M52 38 C52 38 44 32 40 24 C46 20 56 24 52 38"/>
+  <!-- Stem line -->
+  <line x1="52" y1="38" x2="52" y2="66"/>
+</svg>

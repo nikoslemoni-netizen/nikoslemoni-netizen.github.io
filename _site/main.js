@@ -18,6 +18,21 @@ const forEachNode = (nodes, callback)=>{
   }
 };
 
+// Mobile browsers fire 'resize' when the URL bar shows/hides mid-scroll, even
+// though the layout width hasn't changed. Recalculating scroll-dependent
+// geometry (hero height, section triggers, etc.) on those spurious events
+// shifts the page under the user's finger and breaks scroll-timed animations
+// on mobile. Only re-run on a real width change.
+let _lastViewportWidth = window.innerWidth;
+const onWidthChange = (callback)=>{
+  window.addEventListener('resize', ()=>{
+    if (window.innerWidth !== _lastViewportWidth){
+      _lastViewportWidth = window.innerWidth;
+      callback();
+    }
+  });
+};
+
 function initNavCurrentState(){
   const navRoot = document.getElementById('primaryNav');
   if(!navRoot) return;
@@ -349,6 +364,22 @@ if (toggle && nav) {
     }
   });
 
+  // Mobile Safari can restore the page from the back/forward cache (on
+  // refresh or when navigating back) with the menu's classes still marked
+  // "open" from before — it briefly paints that stale open state, then our
+  // own reset below animates it shut, which looks like the menu opening and
+  // immediately closing. Force a clean, transition-less closed state whenever
+  // the page is (re)shown.
+  window.addEventListener('pageshow', ()=>{
+    nav.style.transition = 'none';
+    menuOverlay.style.transition = 'none';
+    setMenuState(false);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      nav.style.transition = '';
+      menuOverlay.style.transition = '';
+    }));
+  });
+
   document.addEventListener('keydown', (event)=>{
     if(event.key === 'Escape'){
       setMenuState(false);
@@ -389,7 +420,7 @@ if ('IntersectionObserver' in window && revealBlocks.length) {
         requestAnimationFrame(()=>target.classList.add('visible'));
         io.unobserve(target);
       });
-  },{threshold:0.15});
+  },{threshold:0, rootMargin:'0px 0px -12% 0px'});
   forEachNode(revealBlocks, el=>io.observe(el));
 
   const lateBlocks = document.querySelectorAll('.reveal[data-reveal-late]');
@@ -401,12 +432,53 @@ if ('IntersectionObserver' in window && revealBlocks.length) {
         requestAnimationFrame(()=>target.classList.add('visible'));
         ioLate.unobserve(target);
       });
-    },{threshold:0.45});
+    },{threshold:0, rootMargin:'0px 0px -30% 0px'});
     forEachNode(lateBlocks, el=>ioLate.observe(el));
   }
 } else {
   forEachNode(document.querySelectorAll('.reveal'), el=>el.classList.add('visible'));
 }
+
+// Sync the hero tagline's reveal to a different moment depending on device:
+// on touch/mobile, once both hero CTA buttons are fully on screen; on
+// desktop, at the exact same scroll moment the "hero-second-title" reveals.
+(function syncHeroTagline(){
+  const tagline = document.querySelector('.hero-tagline');
+  if (!tagline) return;
+
+  const showTagline = ()=> tagline.classList.add('tagline-visible');
+
+  if (!('IntersectionObserver' in window)) {
+    showTagline();
+    return;
+  }
+
+  if (isTouchViewport()) {
+    const ctas = document.querySelector('.hero-ctas');
+    if (!ctas) { showTagline(); return; }
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.999) {
+          showTagline();
+          io.disconnect();
+        }
+      });
+    }, {threshold:1});
+    io.observe(ctas);
+  } else {
+    const secondTitle = document.querySelector('.hero-second-title');
+    if (!secondTitle) { showTagline(); return; }
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if (entry.isIntersecting) {
+          showTagline();
+          io.disconnect();
+        }
+      });
+    }, {threshold:0, rootMargin:'0px 0px -12% 0px'});
+    io.observe(secondTitle);
+  }
+})();
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavCurrentState();
@@ -630,7 +702,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
       return rect.top < viewHeight * 0.85 && rect.bottom > viewHeight * 0.1;
     };
     let observer = null;
+    let teamTriggered = false;
     const runAndCleanup = ()=>{
+      if (teamTriggered) return;
+      teamTriggered = true;
       triggerTeamAnim();
       if (observer){
         observer.disconnect();
@@ -704,7 +779,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   function disableTransition() { if (services) services.style.transition = 'none'; }
 
   window.addEventListener('load', () => fitClosed());
-  window.addEventListener('resize', () => requestAnimationFrame(() => {
+  onWidthChange(() => requestAnimationFrame(() => {
     disableTransition();
     const openCard = services?.querySelector('.service-post.is-expanded');
     openCard ? fitOpen(openCard) : fitClosed();
@@ -725,7 +800,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     hero.style.minHeight = (page3.offsetTop + page3.offsetHeight + 64) + 'px';
   }
   window.addEventListener('load', fitHeroToContent);
-  window.addEventListener('resize', function() { requestAnimationFrame(fitHeroToContent); });
+  onWidthChange(() => requestAnimationFrame(fitHeroToContent));
   fitHeroToContent();
 })();
 
@@ -756,7 +831,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     if (rafId) return;
     rafId = requestAnimationFrame(updateLogoSticky);
   }, { passive: true });
-  window.addEventListener('resize', updateLogoSticky);
+  onWidthChange(updateLogoSticky);
   updateLogoSticky();
 })();
 
@@ -786,7 +861,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   };
 
   window.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', onScroll);
+  onWidthChange(onScroll);
   updateParallax();
 })();
 
@@ -929,3 +1004,137 @@ const buildServicePage = (data, currentUrl)=>{
     </body>
   </html>`;
 };
+
+(function initMemberSlider() {
+  const track = document.getElementById('msliderTrack');
+  if (!track) return;
+
+  const viewport = track.parentElement;
+  const prevBtn = document.getElementById('msliderPrev');
+  const nextBtn = document.getElementById('msliderNext');
+  const dotsContainer = document.getElementById('msliderDots');
+  const cards = Array.from(track.children);
+  let current = 0;
+  let dots = [];
+
+  function isMobile() { return window.innerWidth < 900; }
+  function getMax() { return Math.max(0, cards.length - (isMobile() ? 1 : 3)); }
+
+  function updateDots(index) {
+    current = index;
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
+    if (!isMobile()) {
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current >= getMax();
+    }
+  }
+
+  function slide(index) {
+    current = Math.max(0, Math.min(index, getMax()));
+    if (isMobile()) {
+      const cardRect = cards[current].getBoundingClientRect();
+      const vpRect = viewport.getBoundingClientRect();
+      viewport.scrollTo({
+        left: viewport.scrollLeft + cardRect.left - vpRect.left - (vpRect.width - cardRect.width) / 2,
+        behavior: 'smooth'
+      });
+    } else {
+      track.style.transform = `translateX(${-cards[current].offsetLeft}px)`;
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current >= getMax();
+    }
+    updateDots(current);
+  }
+
+  // Desktop shows 3 cards at once, so only getMax()+1 positions are ever
+  // reachable — one dot per card (like mobile) would leave trailing dots
+  // that just clamp back to the last real position instead of doing anything.
+  function dotCount() { return isMobile() ? cards.length : getMax() + 1; }
+
+  function buildDots() {
+    dotsContainer.innerHTML = '';
+    dots = [];
+    const count = dotCount();
+    for (let i = 0; i < count; i += 1) {
+      const btn = document.createElement('button');
+      btn.className = 'mslider-dot';
+      btn.setAttribute('aria-label', `Μέλος ${i + 1}`);
+      btn.addEventListener('click', () => slide(i));
+      dotsContainer.appendChild(btn);
+      dots.push(btn);
+    }
+  }
+  buildDots();
+
+  prevBtn.addEventListener('click', () => slide(current - 1));
+  nextBtn.addEventListener('click', () => slide(current + 1));
+
+  // Mobile: ενημέρωση dots σε real-time
+  const syncDots = () => {
+    if (!isMobile()) return;
+    const vpRect = viewport.getBoundingClientRect();
+    const vpCenter = vpRect.left + vpRect.width / 2;
+    let closest = 0, closestDist = Infinity;
+    cards.forEach((card, i) => {
+      const rect = card.getBoundingClientRect();
+      const dist = Math.abs(rect.left + rect.width / 2 - vpCenter);
+      if (dist < closestDist) { closestDist = dist; closest = i; }
+    });
+    updateDots(closest);
+  };
+
+  viewport.addEventListener('scroll', syncDots, { passive: true });
+  viewport.addEventListener('scrollend', syncDots, { passive: true });
+
+  let resizeTimer;
+  let wasMobile = isMobile();
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (isMobile() !== wasMobile) {
+        wasMobile = isMobile();
+        buildDots();
+      }
+      slide(Math.min(current, getMax()));
+    }, 100);
+  });
+
+  updateDots(0);
+  if (!isMobile()) slide(0);
+})();
+
+(function initBioModals() {
+  const triggers = document.querySelectorAll('[data-modal-open]');
+  if (!triggers.length) return;
+
+  let activeModal = null;
+
+  const closeModal = () => {
+    if (!activeModal) return;
+    activeModal.classList.remove('is-open');
+    activeModal.setAttribute('aria-hidden', 'true');
+    activeModal = null;
+  };
+
+  const openModal = (modal) => {
+    activeModal = modal;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+  };
+
+  triggers.forEach((trigger) => {
+    const modal = document.getElementById(trigger.dataset.modalOpen);
+    if (!modal) return;
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      openModal(modal);
+    });
+    modal.querySelectorAll('[data-modal-close]').forEach((el) => {
+      el.addEventListener('click', closeModal);
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeModal();
+  });
+})();

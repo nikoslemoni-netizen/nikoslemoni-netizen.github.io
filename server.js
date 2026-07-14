@@ -28,8 +28,8 @@ const COMPRESSIBLE = new Set(['.html', '.htm', '.css', '.js', '.json', '.svg', '
 const CACHE_TTL = {
   '.html': 'no-cache',
   '.htm':  'no-cache',
-  '.css':  'public, max-age=31536000, immutable',
-  '.js':   'public, max-age=31536000, immutable',
+  '.css':  'no-cache',
+  '.js':   'no-cache',
   '.png':  'public, max-age=2592000',
   '.jpg':  'public, max-age=2592000',
   '.jpeg': 'public, max-age=2592000',

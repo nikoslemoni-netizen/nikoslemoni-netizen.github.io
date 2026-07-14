@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>MENTALIA | Επαγγελματικές Υπηρεσίες Ψυχικής Υγείας & Αυτοβελτίωσης</title>
-  <meta name="description" content="Συνδυάζουμε ψυχιατρική, ψυχοθεραπεία και καινοτομία για φροντίδα που κάνει διαφορά. Η φιλοσοφία μιας ζωής που αξίζει να ζεις." />
+  <title>MENTALIA (Μενταλία) | Επαγγελματικές Υπηρεσίες Ψυχικής Υγείας & Αυτοβελτίωσης</title>
+  <meta name="description" content="MENTALIA (Μενταλία) — Συνδυάζουμε ψυχιατρική, ψυχοθεραπεία και καινοτομία για φροντίδα που κάνει διαφορά. Η φιλοσοφία μιας ζωής που αξίζει να ζεις." />
   <meta name="robots" content="index, follow" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=4" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=4" />
@@ -14,19 +14,52 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=4" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="MENTALIA | Επαγγελματικές Υπηρεσίες Ψυχικής Υγείας & Αυτοβελτίωσης" />
+  <meta property="og:title" content="MENTALIA (Μενταλία) | Επαγγελματικές Υπηρεσίες Ψυχικής Υγείας & Αυτοβελτίωσης" />
   <meta property="og:description" content="Ολιστικές, επιστημονικά τεκμηριωμένες υπηρεσίες ψυχικής υγείας — με ανθρώπινη φροντίδα και τεχνολογική καινοτομία." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="el_GR" />
   <meta property="og:image" content="https://mentalia.gr/12.jpg" />
 
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "MENTALIA",
+    "alternateName": "Μενταλία",
+    "url": "https://mentalia.gr/",
+    "image": "https://mentalia.gr/12.jpg",
+    "logo": "https://mentalia.gr/logo.png",
+    "telephone": "+302531036007",
+    "email": "mentalia.info@gmail.com",
+    "priceRange": "€€",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Αποστόλου Σούζου 6",
+      "addressLocality": "Κομοτηνή",
+      "postalCode": "69133",
+      "addressCountry": "GR"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Κωνσταντίνος Γκοτοσίδης"
+    },
+    "sameAs": [
+      "https://www.instagram.com/mentalia.co",
+      "https://www.facebook.com/profile.php?id=61583363356599"
+    ]
+  }
+  </script>
+
   <!-- Fonts & CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=22" />
+  <link rel="preload" as="image" href="teliko2.webp" fetchpriority="high" media="(max-width: 600px)" />
+  <link rel="preload" as="image" href="teliko1.webp" fetchpriority="high" media="(min-width: 601px)" />
 
-  <script type="module" defer src="main.js"></script>
+  <script type="module" defer src="main.js?v=12"></script>
   <script defer src="analytics.js"></script>
 </head>
 <body>
@@ -94,14 +127,25 @@
       </div>
       <div class="hero-content container">
         <h1 class="hero-title">MENTALIA</h1>
-        <p class="hero-founder">Dr. Konstantinos Gotosidis</p>
+        <div class="hero-services">
+          <p class="hero-services-intro">Οργανωμένο ιδιωτικό κέντρο ψυχικής υγείας που προσφέρει υπηρεσίες:</p>
+          <ul class="hero-services-list">
+            <li>Ψυχοθεραπείας</li>
+            <li>Παιδοψυχολογίας</li>
+            <li>Συμβουλευτικής</li>
+            <li>Διαταραχών μνήμης</li>
+            <li>Διατροφικών διαταραχών</li>
+            <li>Σεμινάρια - Workshops</li>
+          </ul>
+        </div>
+        <p class="hero-founder">By Dr. Konstantinos Gotosidis</p>
         <div class="hero-ctas">
           <a href="#services" class="btn primary">Μάθετε περισσότερα</a>
-          <a href="#contact" class="btn">Επικοινωνία</a>
+          <a href="#contact" class="btn">Κλείστε Ραντεβού</a>
         </div>
-        <p class="hero-tagline">The mentality of a life worth living</p>
       </div>
       <div class="hero-page2">
+        <p class="hero-tagline">The mentality of a life worth living</p>
         <div class="hero-second-title reveal">
           Οργανωμένη ψυχική φροντίδα με επιστημονική<br>εγκυρότητα και ανθρωποκεντρική προσέγγιση
         </div>
@@ -141,32 +185,32 @@
         <div class="hero-axis-cards">
           <div class="hero-axis-card reveal">
             <span class="axis-num">01</span>
-            <h4>Η φιλοσοφία μας</h4>
+            <h3>Η φιλοσοφία μας</h3>
             <p>Η αποστολή της Mentalia είναι να προσφέρει έγκυρη, επιστημονικά τεκμηριωμένη ψυχική φροντίδα και να βοηθά τον άνθρωπο να κατανοεί τον εαυτό του, να εξελίσσει τη σκέψη του και να αναπτύσσει τα κατάλληλα εργαλεία για μια ζωή με νόημα, πληρότητα και αξία σε έναν κόσμο ολοένα πιο σύνθετο και πιο χαοτικό.</p>
           </div>
           <div class="hero-axis-card reveal">
             <span class="axis-num">02</span>
-            <h4>Επιστημονική εγκυρότητα</h4>
+            <h3>Επιστημονική εγκυρότητα</h3>
             <p>Η Mentalia στελεχώνεται από επιστήμονες ψυχικής υγείας με αξιόλογη επιστημονική και επαγγελματική διαδρομή, κλινική εμπειρία και επιστημονική τεκμηρίωση.</p>
           </div>
           <div class="hero-axis-card reveal">
             <span class="axis-num">03</span>
-            <h4>Σφαιρική φροντίδα</h4>
+            <h3>Σφαιρική φροντίδα</h3>
             <p>Η φιλοσοφία της Mentalia προσεγγίζει τον άνθρωπο σφαιρικά, συνδέοντας την ψυχική υγεία με το σώμα, το αξιακό του σύστημα, τις σχέσεις, τον ύπνο, τη διατροφή, την άσκηση, τις συνήθειες, την εργασία, την οικογένεια και τον συνολικό τρόπο ζωής.</p>
           </div>
           <div class="hero-axis-card reveal">
             <span class="axis-num">04</span>
-            <h4>Δομημένη ομάδα</h4>
+            <h3>Δομημένη ομάδα</h3>
             <p>Η Mentalia δεν λειτουργεί ως άθροισμα μεμονωμένων επαγγελματιών, αλλά ως οργανωμένη ομάδα επιστημόνων ψυχικής υγείας και συναφών ειδικοτήτων. Η θεραπευτική, διοικητική και λειτουργική οργάνωση διασφαλίζει συντονισμό, συνέπεια και υψηλό επίπεδο ευθύνης, με επιμέρους τομείς εξειδίκευσης.</p>
           </div>
           <div class="hero-axis-card reveal">
             <span class="axis-num">05</span>
-            <h4>Εκπαίδευση και εποπτεία</h4>
+            <h3>Εκπαίδευση και εποπτεία</h3>
             <p>Η Mentalia λειτουργεί ως γόνιμο πλαίσιο θεραπευτικής, επιστημονικής και επαγγελματικής εξέλιξης. Η κλινική καθοδήγηση, η εσωτερική εποπτεία, η συζήτηση περιστατικών και η δομημένη εκπαίδευση αποτελούν βασικό άξονα ποιότητας και βάση για μελλοντικές εκπαιδευτικές δράσεις.</p>
           </div>
           <div class="hero-axis-card reveal">
             <span class="axis-num">06</span>
-            <h4>Κόμβος συνεργασίας</h4>
+            <h3>Κόμβος συνεργασίας</h3>
             <p>Η Mentalia αναπτύσσεται ως ζωντανός επιστημονικός κόμβος συνεργασίας, εκπαίδευσης, ανταλλαγής γνώσης και αμοιβαίας εξέλιξης για επαγγελματίες ψυχικής υγείας που μοιράζονται κοινές αξίες ποιότητας και υπευθυνότητας, καλλιεργώντας ένα πλαίσιο διαλόγου και εμπιστοσύνης.</p>
           </div>
         </div>
@@ -179,10 +223,14 @@
         <div class="services-header">
           <h2>ΥΠΗΡΕΣΙΕΣ</h2>
           <p class="subtitle">Στη Mentalia προσφέρουμε υπηρεσίες ψυχικής υγείας με έμφαση στην κλινική κατανόηση, τη θεραπευτική σχέση, την επιστημονική εγκυρότητα και τον εξατομικευμένο σχεδιασμό.<br><br>Κάθε άνθρωπος, παιδί, γονέας, ζευγάρι ή οικογένεια προσεγγίζεται με σεβασμό, διακριτικότητα και υπευθυνότητα. Στόχος μας είναι η ουσιαστική κατανόηση της δυσκολίας και η διαμόρφωση ενός εξατομικευμένου δομημένου θεραπευτικού πλάνου με την υποστήριξη μιας πλήρους διεπιστημονικής ομάδας.<br><br>Όλες οι υπηρεσίες προσφέρονται και διαδικτυακά.</p>
+          <div class="hero-ctas">
+            <a href="about.html" class="btn primary">Μάθε περισσότερα</a>
+            <a href="#contact" class="btn">Κλείστε Ραντεβού</a>
+          </div>
         </div>
         <div class="posts-grid services-grid" role="list">
           <article class="post service-post service-post--with-icon reveal" data-service="psychotherapy" data-reveal-order="1" data-reveal-stagger="200" role="listitem">
-            <span class="service-icon-link" aria-label="Εικονίδιο Ψυχοθεραπείας">
+            <span class="service-icon-link">
               <img src="icon-psychotherapy.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
             </span>
             <div class="service-copy">
@@ -207,7 +255,7 @@
             </details>
           </article>
           <article class="post service-post service-post--with-icon reveal" data-service="clinical" data-reveal-order="2" data-reveal-stagger="200" role="listitem">
-            <span class="service-icon-link" aria-label="Εικονίδιο Κλινικής Αξιολόγησης">
+            <span class="service-icon-link">
               <img src="icon-clinical.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
             </span>
             <div class="service-copy">
@@ -231,7 +279,7 @@
             </details>
           </article>
           <article class="post service-post service-post--with-icon reveal" data-service="childpsychology" data-reveal-order="3" data-reveal-stagger="200" role="listitem">
-            <span class="service-icon-link" aria-label="Εικονίδιο Παιδοψυχολογίας">
+            <span class="service-icon-link">
               <img src="icon-child.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
             </span>
             <div class="service-copy">
@@ -255,7 +303,7 @@
             </details>
           </article>
           <article class="post service-post service-post--with-icon reveal" data-service="counseling" data-reveal-order="4" data-reveal-stagger="200" role="listitem">
-            <span class="service-icon-link" aria-label="Εικονίδιο Συμβουλευτικής">
+            <span class="service-icon-link">
               <img src="icon-counseling.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
             </span>
             <div class="service-copy">
@@ -280,7 +328,7 @@
             </details>
           </article>
           <article class="post service-post service-post--with-icon reveal" data-service="memory" data-reveal-order="5" data-reveal-stagger="200" role="listitem">
-            <span class="service-icon-link" aria-label="Εικονίδιο Διαταραχών Μνήμης">
+            <span class="service-icon-link">
               <img src="icon-memory.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
             </span>
             <div class="service-copy">
@@ -303,7 +351,7 @@
             </details>
           </article>
           <article class="post service-post service-post--with-icon reveal" data-service="nutrition" data-reveal-order="6" data-reveal-stagger="200" role="listitem">
-            <span class="service-icon-link" aria-label="Εικονίδιο Διατροφικών Διαταραχών">
+            <span class="service-icon-link">
               <img src="icon-nutrition.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
             </span>
             <div class="service-copy">
@@ -327,7 +375,7 @@
             </details>
           </article>
           <article class="post service-post service-post--with-icon reveal" data-service="seminars" data-reveal-order="7" data-reveal-stagger="200" role="listitem">
-            <span class="service-icon-link" aria-label="Εικονίδιο Σεμιναρίων">
+            <span class="service-icon-link">
               <img src="icon-seminars.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
             </span>
             <div class="service-copy">
@@ -357,31 +405,68 @@
     <section id="team" class="fullpage-section tone-navy parallax-section" style="background:#F1EADC;">
       <div class="container reveal">
         <h2>Η ΟΜΑΔΑ ΜΑΣ</h2>
-        <div class="team-copy">
-          <div class="team-copy-grid">
-            <article class="team-copy-card reveal" data-reveal-late>
-              <div>
-                <p>Στον επιστημονικό πυρήνα της Mentalia συμμετέχουν:</p>
-                <ul>
-                  <li>Ψυχίατροι</li>
-                  <li>Ψυχολόγοι</li>
-                  <li>Συνεργάτες συναφών ειδικοτήτων</li>
-                </ul>
-                <p>Η ομάδα εργάζεται μέσα σε κοινό πλαίσιο θεραπευτικής φιλοσοφίας, εποπτείας και εκπαίδευσης.</p>
-              </div>
-            </article>
-            <article class="team-copy-card reveal" data-reveal-late>
-              <p>Ο στόχος δεν είναι η απλή συνύπαρξη διαφορετικών ειδικών, αλλά η σύσταση μιας ομάδας με εσωτερική συνοχή, συντονισμό και κοινή ευθύνη απέναντι στον άνθρωπο που ζητά υποστήριξη.</p>
-            </article>
-            <article class="team-copy-card reveal" data-reveal-late>
-              <p>Επιπρόσθετα η Mentalia αναπτύσσει σταδιακά ένα δίκτυο επιλεγμένων επιστημονικών συνεργατών, με στόχο την καλύτερη διασύνδεση ειδικών ψυχικής υγείας και συναφών επιστημονικών πεδίων στην περιοχή.</p>
-            </article>
+        <div class="mslider-wrap">
+          <button class="mslider-btn" id="msliderPrev" aria-label="Προηγούμενο μέλος">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="mslider-viewport">
+            <div class="mslider-track" id="msliderTrack">
+
+              <a href="bio-gotosidis.html" class="mslider-card" id="gotosidisCardTrigger" data-modal-open="gotosidisModal">
+                <div class="mslider-photo"><img src="team-gotosidis.webp" alt="Κωνσταντίνος Γκοτοσίδης" loading="lazy"></div>
+                <div class="mslider-info">
+                  <h3 class="mslider-name">Κωνσταντίνος Γκοτοσίδης</h3>
+                  <p class="mslider-role">Στρατιωτικός ψυχίατρος-ψυχοθεραπευτής &amp; εμπνευστής της MENTALIA</p>
+                </div>
+              </a>
+
+              <a href="bio-stratos.html" class="mslider-card">
+                <div class="mslider-photo"><img src="team-stratos.webp" alt="Στράτος Βραχιώλιας" loading="lazy"></div>
+                <div class="mslider-info">
+                  <h3 class="mslider-name">Στράτος Βραχιώλιας</h3>
+                  <p class="mslider-role">Ψυχολόγος – Κοινωνική Ψυχιατρική &amp; Πρόληψη Εξαρτήσεων</p>
+                </div>
+              </a>
+
+              <a href="bio-soultana.html" class="mslider-card">
+                <div class="mslider-photo"><img src="team-soultana.webp" alt="Σουλτάνα Γεωργιάδου" loading="lazy"></div>
+                <div class="mslider-info">
+                  <h3 class="mslider-name">Σουλτάνα Γεωργιάδου</h3>
+                  <p class="mslider-role">Ψυχολόγος – Παιδοψυχολογία &amp; Νευροψυχολογικός Έλεγχος</p>
+                </div>
+              </a>
+
+              <a href="bio-christos.html" class="mslider-card">
+                <div class="mslider-photo"><img src="team-christos.webp" alt="Χρήστος Πανούσης" loading="lazy"></div>
+                <div class="mslider-info">
+                  <h3 class="mslider-name">Χρήστος Πανούσης</h3>
+                  <p class="mslider-role">Ψυχολόγος – Κοινωνική Ψυχολογία &amp; Συνθετική Ψυχοθεραπεία</p>
+                </div>
+              </a>
+
+              <a href="bio-chariklia.html" class="mslider-card">
+                <div class="mslider-photo"><img src="team-chariklia.webp" alt="Χαρίκλεια Φύγκα" loading="lazy"></div>
+                <div class="mslider-info">
+                  <h3 class="mslider-name">Χαρίκλεια Φύγκα</h3>
+                  <p class="mslider-role">Διαιτολόγος - Διατροφολόγος</p>
+                </div>
+              </a>
+
+              <a href="bio-patroklos.html" class="mslider-card">
+                <div class="mslider-photo"><img src="team-patroklos.webp" alt="Πάτροκλος Θεοχάρης" loading="lazy"></div>
+                <div class="mslider-info">
+                  <h3 class="mslider-name">Πάτροκλος Θεοχάρης</h3>
+                  <p class="mslider-role">Ψυχίατρος – Ψυχοφαρμακολογία &amp; Γνωστική Αναλυτική Ψυχοθεραπεία</p>
+                </div>
+              </a>
+
+            </div>
           </div>
-          <p class="team-copy-note reveal">
-            <span class="note-line">Η αναλυτική παρουσίαση των συνεργατών της Mentalia</span>
-            <span class="note-line">θα προστεθεί με την έναρξη λειτουργίας του κέντρου.</span>
-          </p></p>
+          <button class="mslider-btn" id="msliderNext" aria-label="Επόμενο μέλος">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
         </div>
+        <div class="mslider-dots" id="msliderDots"></div>
       </div>
     </section>
 
@@ -393,7 +478,7 @@
         <h2>ΕΠΙΚΟΙΝΩΝΙΑ</h2>
         <div class="contact-grid">
           <div class="contact-panel">
-            <p class="contact-intro">Είμαστε διαθέσιμοι για πληροφορίες, ραντεβού και άμεση επικοινωνία με την ομάδα της MENTALIA <strong class="contact-intro-emphasis">μετά την έναρξη λειτουργίας του κέντρου η οποία θα ανακοινωθεί σύντομα.</strong></p>
+            <p class="contact-intro">Είμαστε διαθέσιμοι για πληροφορίες, ραντεβού και άμεση επικοινωνία με την ομάδα της MENTALIA.</p>
             <h3>ΣΤΟΙΧΕΙΑ ΕΠΙΚΟΙΝΩΝΙΑΣ</h3>
             <ul class="contact-list">
               <li>Διεύθυνση: Αποστόλου Σούζου 6, Κομοτηνή, 69133</li>
@@ -451,6 +536,19 @@
       <small>© <span id="year"></span> MENTALIA. Όλα τα δικαιώματα διατηρούνται.</small>
     </div>
   </footer>
+
+  <div class="bio-modal" id="gotosidisModal" role="dialog" aria-modal="true" aria-labelledby="gotosidisModalTitle" aria-hidden="true">
+    <div class="bio-modal__backdrop" data-modal-close></div>
+    <div class="bio-modal__card">
+      <div class="bio-modal__header">
+        <h3 id="gotosidisModalTitle">Κωνσταντίνος Γκοτοσίδης</h3>
+        <button type="button" class="bio-modal__close" data-modal-close aria-label="Κλείσιμο">&times;</button>
+      </div>
+      <div class="bio-modal__body">
+        <p>Το βιογραφικό του Ψυχιάτρου - CEO θα ανακοινωθεί σύντομα</p>
+      </div>
+    </div>
+  </div>
 
   <div class="cookies" id="cookiesBar" role="dialog" aria-labelledby="cookiesTitle" aria-modal="true" hidden>
     <div class="cookies-card">
