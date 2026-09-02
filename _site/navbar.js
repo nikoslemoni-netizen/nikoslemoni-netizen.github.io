@@ -31,10 +31,7 @@ function initNavCurrentState(){
 
   if(
     path === 'blog.html' ||
-    path === 'blog-library.html' ||
-    path === 'blog-ai-mental-health.html' ||
-    path === 'blog-anxiety-management.html' ||
-    path === 'blog-holistic-care.html'
+    path === 'blog-library.html'
   ){
     setCurrent((link)=> (link.getAttribute('href') || '') === 'blog.html' || (link.getAttribute('href') || '') === 'blog-library.html');
     return;

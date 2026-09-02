@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Blog | MENTALIA</title>
   <meta name="description" content="Άρθρα και insights της MENTALIA για την ψυχική υγεία, την αυτοφροντίδα και τη σχέση τεχνολογίας και θεραπείας." />
-  <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=4" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=4" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?v=4" />
@@ -14,10 +13,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=89" />
   <script defer src="analytics.js"></script>
 </head>
 <body class="blog-page">
+  <div class="blog-bottom-texture" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Παράκαμψη στο περιεχόμενο</a>
   <header id="siteHeader" class="site-header" role="banner">
     <div class="container nav-wrap">
@@ -38,8 +38,8 @@
         <ul id="primaryNav" class="nav">
           <li><a href="index.html#home">ΑΡΧΙΚΗ</a></li>
           <li><a href="index.html#services">ΥΠΗΡΕΣΙΕΣ</a></li>
-          <li><a href="index.html#team">Η ΟΜΑΔΑ ΜΑΣ</a></li>
           <li><a href="about.html">Η ΦΙΛΟΣΟΦΙΑ ΜΑΣ</a></li>
+          <li><a href="index.html#team">Η ΟΜΑΔΑ ΜΑΣ</a></li>
           <li><a href="blog.html" aria-current="page">BLOG</a></li>
           <li><a href="index.html#contact">ΕΠΙΚΟΙΝΩΝΙΑ</a></li>
         </ul>
@@ -50,19 +50,15 @@
     <section class="about-quarter about-hero blog-hero">
       <div class="about-hero__overlay"></div>
       <div class="about-hero__copy">
-        <p class="eyebrow upper">MENTALIA Journal</p>
         <h1>BLOG</h1>
-        <p class="blog-hero__lead">Σύντομα, χρήσιμα και καθαρά άρθρα για την ψυχική υγεία, την αυτορρύθμιση και την τεχνολογία στη φροντίδα.</p>
+        <p class="blog-hero__lead">Η επιστήμη της Ψυχικής υγείας, με τρόπο κατανοητό και ουσιαστικό</p>
       </div>
     </section>
 
     <section class="about-quarter tone-teal blog-library">
       <div class="container blog-intro">
-        <p class="center narrow blog-subtitle">Κάθε νέο άρθρο προστίθεται και στη βιβλιοθήκη, όπου ο επισκέπτης μπορεί να δει όλο το διαθέσιμο αρχείο.</p>
+        <h2 class="center narrow blog-subtitle"><span class="subtitle-line">Εδώ μπορείτε να βρείτε τα</span><span class="subtitle-line">νεότερα άρθρα μας</span></h2>
         <div id="blogRecent" class="posts-grid"></div>
-        <div class="blog-library-cta">
-          <a class="btn primary" href="blog-library.html">Μεταβειται σε περισσοτερα</a>
-        </div>
       </div>
     </section>
 
@@ -77,6 +73,6 @@
       </div>
     </section>
   </main>
-  <script type="module" defer src="main.js"></script>
+  <script type="module" defer src="main.js?v=7"></script>
 </body>
 </html>

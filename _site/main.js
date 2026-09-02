@@ -569,28 +569,54 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', setServiceLayers);
 
   if(detailCards.length){
+    // Below 900px the panel becomes a fixed, centered "card in front of the
+    // screen". #services carries a parallax transform, which (like any
+    // transform/filter ancestor) turns position:fixed into "fixed relative to
+    // that ancestor" instead of the real viewport — so on mobile we move the
+    // panel out to <body> while it's open, and bring it back home on close.
+    const isMobileModal = () => !window.matchMedia('(min-width: 900px)').matches;
+
     detailCards.forEach(details=>{
       const card = details.closest('.service-post');
       if(!card) return;
       const summary = details.querySelector('summary');
       if(!summary) return;
+      const panel = details.querySelector('.service-panel');
+
+      // Give the panel its own copy of the card's title — on mobile it
+      // becomes a standalone floating card, so the original title (still
+      // attached to the card underneath) is no longer visible next to it.
+      const titleEl = card.querySelector('.service-copy h3');
+      if(panel && titleEl && !panel.querySelector('.service-panel-title')){
+        const heading = document.createElement('h4');
+        heading.className = 'service-panel-title';
+        heading.textContent = titleEl.textContent;
+        panel.prepend(heading);
+      }
+
+      const closeCard = ()=>{
+        // Animate the panel closed first, then drop the native <details> state
+        // once the transition has visually finished.
+        card.classList.remove('is-expanded');
+        panel?.classList.remove('is-expanded');
+        setTimeout(()=>{
+          details.open = false;
+          window._servicesFitClosed?.();
+          if(panel && panel.parentElement !== details) details.appendChild(panel);
+        }, 700);
+      };
 
       summary.addEventListener('click', e=>{
         e.preventDefault();
         if(details.open){
-          // Curtain starts first, section follows after curtain completes
-          card.classList.add('is-closing');
-          setTimeout(()=>{
-            card.classList.remove('is-expanded');
-            card.classList.remove('is-closing');
-            details.open = false;
-            window._servicesFitClosed?.();
-          }, 620);
+          closeCard();
         } else {
           // Open: set section height to fit panel, then animate in
+          if(panel && isMobileModal()) document.body.appendChild(panel);
           details.open = true;
           requestAnimationFrame(()=>requestAnimationFrame(()=>{
             card.classList.add('is-expanded');
+            panel?.classList.add('is-expanded');
             window._servicesFitOpen?.(card);
           }));
         }
@@ -598,24 +624,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Initial sync
       card.classList.toggle('is-expanded', details.open);
+      panel?.classList.toggle('is-expanded', details.open);
+      card._serviceClose = closeCard;
     });
 
     const cardOverlay = document.createElement('div');
+    cardOverlay.className = 'service-card-overlay';
     cardOverlay.style.cssText = 'position:fixed;inset:0;z-index:8;display:none;cursor:pointer';
     document.body.appendChild(cardOverlay);
 
     const closeOpenCard = ()=>{
       const openCard = document.querySelector('.service-post.is-expanded');
-      if(!openCard) return;
-      const openDetails = openCard.querySelector('.service-details');
-      if(!openDetails) return;
-      openCard.classList.add('is-closing');
-      setTimeout(()=>{
-        openCard.classList.remove('is-expanded');
-        openCard.classList.remove('is-closing');
-        openDetails.open = false;
-        window._servicesFitClosed?.();
-      }, 620);
+      openCard?._serviceClose?.();
     };
 
     cardOverlay.addEventListener('click', closeOpenCard);
@@ -762,6 +782,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }
 
   function fitOpen(card) {
+    // On mobile the panel is a fixed, centered card floating over the
+    // screen (not a sheet pushing the section taller), so no resize needed.
+    if (!window.matchMedia('(min-width: 900px)').matches) return;
     const grid = getGrid();
     if (!services || !grid) return;
     const top = services.getBoundingClientRect().top + window.scrollY;
@@ -835,6 +858,98 @@ document.addEventListener('DOMContentLoaded', ()=>{
   updateLogoSticky();
 })();
 
+// Blog bottom texture — pinned to the bottom of the screen while scrolled
+// down; releases and rests just below the title once scrolled back up
+// near the top, from that same point either direction.
+(function() {
+  const texture = document.querySelector('.blog-bottom-texture');
+  const title = document.querySelector('.blog-subtitle');
+  if (!texture || !title) return;
+  const RELEASE_GAP = 40;
+  let rafId = null;
+
+  function updateBlogTexture() {
+    rafId = null;
+    const titleRect = title.getBoundingClientRect();
+    const naturalTop = titleRect.bottom + RELEASE_GAP;
+    const vh = window.innerHeight;
+    const fixedTop = vh - texture.offsetHeight;
+    if (naturalTop >= fixedTop) {
+      texture.style.bottom = '';
+      texture.style.top = naturalTop + 'px';
+    } else {
+      texture.style.top = '';
+      texture.style.bottom = '0';
+    }
+  }
+
+  window.addEventListener('scroll', function() {
+    if (rafId) return;
+    rafId = requestAnimationFrame(updateBlogTexture);
+  }, { passive: true });
+  onWidthChange(updateBlogTexture);
+  updateBlogTexture();
+})();
+
+// Blog hero freeze — the hero photo should stop scrolling exactly when the
+// "BLOG" title pill reaches the navbar's bottom edge, then stay put while the
+// section below rises over it. Deliberately NOT position:sticky: a sticky
+// element with a computed negative `top` gets re-clamped to that offset the
+// instant the value is set (even at scrollY 0, before the user has scrolled),
+// which made the hero visibly jump on load and leave a gap above the rising
+// card. Tracking scroll manually and shifting with `transform` only reacts to
+// real scroll position, so no such jump can happen.
+(function() {
+  const hero = document.querySelector('.blog-hero');
+  const title = hero && hero.querySelector('.about-hero__copy h1');
+  const header = document.querySelector('.site-header');
+  if (!hero || !title || !header) return;
+  function measurePillTopInset() {
+    const cs = getComputedStyle(title, '::before');
+    const v = parseFloat(cs.top);
+    return isNaN(v) ? 0 : -v;
+  }
+
+  let triggerScrollY = 0;
+  let maxShift = 0;
+  let rafId = null;
+
+  function measure() {
+    hero.style.transform = '';
+    const heroTop = hero.getBoundingClientRect().top + window.scrollY;
+    const titleTop = title.getBoundingClientRect().top + window.scrollY;
+    const pillOffset = (titleTop - heroTop) - measurePillTopInset();
+    const headerHeight = header.getBoundingClientRect().height;
+    triggerScrollY = Math.max(0, pillOffset - headerHeight);
+    maxShift = hero.getBoundingClientRect().height;
+    update();
+  }
+
+  function update() {
+    rafId = null;
+    const shift = Math.min(Math.max(0, window.scrollY - triggerScrollY), maxShift);
+    hero.style.transform = shift ? `translateY(${shift}px)` : '';
+  }
+
+  function onScroll() {
+    if (rafId) return;
+    rafId = requestAnimationFrame(update);
+  }
+
+  const fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+  const timeout = new Promise((resolve) => setTimeout(resolve, 500));
+  Promise.race([fontsReady, timeout]).then(() => setTimeout(measure, 50));
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  let lastWidth = window.innerWidth;
+  window.addEventListener('resize', function() {
+    if (window.innerWidth === lastWidth) return;
+    lastWidth = window.innerWidth;
+    measure();
+  });
+})();
+
 // Parallax background + panels
 (() => {
   const parallaxSections = Array.from(document.querySelectorAll('.parallax-section'));
@@ -865,29 +980,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   updateParallax();
 })();
 
-const POSTS = [
-  {
-    slug: "blog-holistic-care.html",
-    title: "Τι είναι η ολιστική φροντίδα ψυχικής υγείας;",
-    date: "2025-10-01",
-    excerpt: "Η ολιστική φροντίδα βλέπει τον άνθρωπο πέρα από τα συμπτώματα: συνδέει ιατρική, ψυχοθεραπεία και τεχνολογία με τρόπο που σέβεται τη μοναδικότητα κάθε ατόμου.",
-    tags: ["Ολιστική φροντίδα", "Mind-body", "Εξατομίκευση"]
-  },
-  {
-    slug: "blog-anxiety-management.html",
-    title: "Άγχος: πρακτικά βήματα διαχείρισης",
-    date: "2025-09-20",
-    excerpt: "Απλές τεχνικές που μειώνουν το φορτίο του άγχους: ρύθμιση αναπνοής, αναδόμηση σκέψεων και μικρά σχέδια δράσης που χτίζουν ανθεκτικότητα.",
-    tags: ["Άγχος", "CBT", "Αυτοφροντίδα"]
-  },
-  {
-    slug: "blog-ai-mental-health.html",
-    title: "Τεχνητή Νοημοσύνη στην ψυχική υγεία",
-    date: "2025-08-10",
-    excerpt: "Η AI λειτουργεί ως βοηθός του κλινικού: οργανώνει δεδομένα, εντοπίζει μοτίβα και υποστηρίζει την παρακολούθηση προόδου, πάντα με ανθρώπινη εποπτεία.",
-    tags: ["Τεχνολογία", "AI", "Καινοτομία"]
-  }
-];
+const POSTS = [];
 
 function buildPostCards(posts){
   return posts.map((p)=>{
@@ -911,18 +1004,41 @@ function buildPostCards(posts){
   }).join('');
 }
 
+const COMING_SOON_CARD = `<div class="blog-coming-soon"><p>Σύντομα θα αναρτήσουμε τα πρώτα μας άρθρα.</p></div>`;
+
 function renderBlog(){
   const posts = [...POSTS].sort((a,b)=> new Date(b.date) - new Date(a.date));
   const recent = document.getElementById('blogRecent');
   const library = document.getElementById('blogLibrary');
   if(recent){
-    recent.innerHTML = buildPostCards(posts.slice(0, 3));
+    recent.innerHTML = posts.length ? buildPostCards(posts.slice(0, 1)) : COMING_SOON_CARD;
   }
   if(library){
-    library.innerHTML = buildPostCards(posts);
+    library.innerHTML = posts.length ? buildPostCards(posts) : COMING_SOON_CARD;
   }
 }
 renderBlog();
+
+// Pop-in animation for post cards — plays once the user actually scrolls to
+// where the card is clearly visible, not immediately on page load.
+(function() {
+  const cards = document.querySelectorAll('.post.post-card');
+  if (!cards.length) return;
+  if (!('IntersectionObserver' in window)) {
+    cards.forEach((card) => card.classList.add('pop-in'));
+    return;
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('pop-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  cards.forEach((card) => observer.observe(card));
+})();
+
 const SERVICE_PAGES = {
   psychiatry: {
     title: "ΨΥΧΙΑΤΡΙΚΗ ΦΡΟΝΤΙΔΑ",
