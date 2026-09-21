@@ -980,7 +980,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
   updateParallax();
 })();
 
-const POSTS = [];
+const POSTS = [
+  {
+    slug: 'article-oi-anthropoi-niothoun.html',
+    title: 'Οι άνθρωποι νιώθουν',
+    date: '2026-09-21',
+    tags: ['Συναισθήματα', 'Επικοινωνία'],
+    excerpt: 'Πίσω από τις λέξεις και τη συμπεριφορά κρύβεται πάντα ένα συναίσθημα που ζητά να ακουστεί.'
+  }
+];
 
 function buildPostCards(posts){
   return posts.map((p)=>{
@@ -1004,17 +1012,15 @@ function buildPostCards(posts){
   }).join('');
 }
 
-const COMING_SOON_CARD = `<div class="blog-coming-soon"><p>Σύντομα θα αναρτήσουμε τα πρώτα μας άρθρα.</p></div>`;
-
 function renderBlog(){
   const posts = [...POSTS].sort((a,b)=> new Date(b.date) - new Date(a.date));
   const recent = document.getElementById('blogRecent');
   const library = document.getElementById('blogLibrary');
   if(recent){
-    recent.innerHTML = posts.length ? buildPostCards(posts.slice(0, 1)) : COMING_SOON_CARD;
+    recent.innerHTML = buildPostCards(posts.slice(0, 1));
   }
   if(library){
-    library.innerHTML = posts.length ? buildPostCards(posts) : COMING_SOON_CARD;
+    library.innerHTML = buildPostCards(posts);
   }
 }
 renderBlog();
