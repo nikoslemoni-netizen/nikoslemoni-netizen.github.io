@@ -3114,3 +3114,7 @@ body.no-scroll{
   font-style:italic;
   opacity:.8;
 }
+.contact-grid h3.contact-title{
+  margin:0 0 1rem;
+  font-size:1.6rem;
+}
