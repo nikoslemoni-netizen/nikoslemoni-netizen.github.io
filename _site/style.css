@@ -3093,3 +3093,24 @@ body.no-scroll{
   font-size:clamp(1rem, .7vw + .8rem, 1.1rem);
   color:rgba(10,20,15,.96);
 }
+.blog-article__author{
+  margin-top:2.4rem;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  text-align:right;
+  gap:.2rem;
+}
+.blog-article__author-name{
+  font-weight:700;
+  font-size:1rem;
+  color:var(--text);
+  text-decoration:none;
+}
+.blog-article__author-name:hover,
+.blog-article__author-name:focus-visible{text-decoration:underline}
+.blog-article__author-role{
+  font-size:.88rem;
+  font-style:italic;
+  opacity:.8;
+}
