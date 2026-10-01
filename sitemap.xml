@@ -20,4 +20,8 @@
         <loc>https://mentalia.gr/article-oi-anthropoi-niothoun.html</loc>
         <priority>0.6</priority>
     </url>
+    <url>
+        <loc>https://mentalia.gr/article-otan-kapoios-skontaftei.html</loc>
+        <priority>0.6</priority>
+    </url>
 </urlset>

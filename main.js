@@ -982,6 +982,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 const POSTS = [
   {
+    slug: 'article-otan-kapoios-skontaftei.html',
+    title: 'Όταν κάποιος σκοντάφτει',
+    date: '2026-10-01',
+    tags: ['Στήριξη', 'Ανθρώπινες σχέσεις'],
+    excerpt: 'Τι χρειάζεται ένας άνθρωπος όταν σκοντάφτει; Όχι πάντα μια εξήγηση. Ούτε μια αυστηρή υπενθύμιση για το λάθος του.'
+  },
+  {
     slug: 'article-oi-anthropoi-niothoun.html',
     title: 'Οι άνθρωποι νιώθουν',
     date: '2026-09-21',
@@ -1017,7 +1024,7 @@ function renderBlog(){
   const recent = document.getElementById('blogRecent');
   const library = document.getElementById('blogLibrary');
   if(recent){
-    recent.innerHTML = buildPostCards(posts.slice(0, 1));
+    recent.innerHTML = buildPostCards(posts);
   }
   if(library){
     library.innerHTML = buildPostCards(posts);
