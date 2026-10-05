@@ -982,6 +982,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 const POSTS = [
   {
+    slug: 'article-ta-paidia-pou-megalonoun-goneis.html',
+    title: 'Τα παιδιά που μεγαλώνουν γονείς',
+    date: '2026-10-05',
+    tags: ['Παιδί', 'Οικογένεια'],
+    excerpt: 'Τα παιδιά χρειάζονται να μεγαλώνουν με ασφάλεια, φροντίδα και ελευθερία, χωρίς να σηκώνουν τα συναισθηματικά βάρη των μεγάλων.'
+  },
+  {
     slug: 'article-otan-kapoios-skontaftei.html',
     title: 'Όταν κάποιος σκοντάφτει',
     date: '2026-10-01',
