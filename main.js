@@ -1038,7 +1038,7 @@ function renderBlog(){
   const recent = document.getElementById('blogRecent');
   const library = document.getElementById('blogLibrary');
   if(recent){
-    recent.innerHTML = buildPostCards(posts);
+    recent.innerHTML = buildPostCards(posts.slice(0, 3));
   }
   if(library){
     library.innerHTML = buildPostCards(posts);
