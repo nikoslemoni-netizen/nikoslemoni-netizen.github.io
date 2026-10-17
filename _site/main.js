@@ -985,6 +985,7 @@ const POSTS = [
     slug: 'article-prota-na-synantiseis-to-synaisthima.html',
     title: 'Πρώτα, να συναντήσεις το συναίσθημα',
     date: '2026-10-17',
+    newUntil: '2026-10-20T21:29:06+03:00',
     tags: ['Παιδί', 'Συναισθήματα'],
     excerpt: 'Το παιδί χρειάζεται πρώτα να νιώσει πως δεν είναι μόνο μέσα στην καταιγίδα του. Πριν από τη συμβουλή, χρειάζεται κατανόηση και μια ήρεμη παρουσία.'
   },
@@ -1013,6 +1014,8 @@ const POSTS = [
 
 function buildPostCards(posts){
   return posts.map((p)=>{
+    const newBadge = p.newUntil && Date.now() < Date.parse(p.newUntil)
+      ? `<span class="post-new" data-new-until="${p.newUntil}" aria-label="Νέο άρθρο">new</span>` : '';
     const tags = (p.tags || []).map(tag=>`<span class="post-tag">${tag}</span>`).join('');
     const monthLabel = new Date(`${p.date}T00:00:00`).toLocaleDateString('el-GR', { month: 'short' }).replace('.', '');
     const dayLabel = new Date(`${p.date}T00:00:00`).toLocaleDateString('el-GR', { day: '2-digit' });
@@ -1020,6 +1023,7 @@ function buildPostCards(posts){
       <a class="post post-card" href="${p.slug}" aria-label="Διαβάστε το άρθρο: ${p.title}">
         <div class="post-meta">
           <div class="post-tags">${tags}</div>
+          ${newBadge}
         </div>
         <h3>${p.title}</h3>
         <div class="post-card__date" aria-hidden="true">
@@ -1045,6 +1049,12 @@ function renderBlog(){
   }
 }
 renderBlog();
+
+// Remove expired badges even when the page stays open.
+document.querySelectorAll('.post-new[data-new-until]').forEach((badge)=>{
+  const remaining = Date.parse(badge.dataset.newUntil) - Date.now();
+  setTimeout(()=> badge.remove(), Math.max(0, remaining));
+});
 
 // Pop-in animation for post cards — plays once the user actually scrolls to
 // where the card is clearly visible, not immediately on page load.

@@ -1695,6 +1695,19 @@ h2.blog-subtitle .subtitle-line{
   gap:.8rem;
   flex-wrap:wrap;
 }
+.post-new{
+  display:inline-flex;
+  align-items:center;
+  padding:.2rem .55rem;
+  border:1px solid #134340;
+  border-radius:.4rem;
+  background:#134340;
+  color:#fff;
+  font-size:.7rem;
+  font-weight:700;
+  line-height:1.4;
+  letter-spacing:.04em;
+}
 .post-tags{
   display:flex;
   gap:.4rem;
