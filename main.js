@@ -982,6 +982,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 const POSTS = [
   {
+    slug: 'article-prota-na-synantiseis-to-synaisthima.html',
+    title: 'Πρώτα, να συναντήσεις το συναίσθημα',
+    date: '2026-10-17',
+    tags: ['Παιδί', 'Συναισθήματα'],
+    excerpt: 'Το παιδί χρειάζεται πρώτα να νιώσει πως δεν είναι μόνο μέσα στην καταιγίδα του. Πριν από τη συμβουλή, χρειάζεται κατανόηση και μια ήρεμη παρουσία.'
+  },
+  {
     slug: 'article-ta-paidia-pou-megalonoun-goneis.html',
     title: 'Τα παιδιά που μεγαλώνουν γονείς',
     date: '2026-10-05',

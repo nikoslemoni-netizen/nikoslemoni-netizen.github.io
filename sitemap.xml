@@ -28,4 +28,8 @@
         <loc>https://mentalia.gr/article-ta-paidia-pou-megalonoun-goneis.html</loc>
         <priority>0.6</priority>
     </url>
+    <url>
+        <loc>https://mentalia.gr/article-prota-na-synantiseis-to-synaisthima.html</loc>
+        <priority>0.6</priority>
+    </url>
 </urlset>
