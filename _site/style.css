@@ -845,8 +845,15 @@ h2.blog-subtitle .subtitle-line{
   display:flex;
   justify-content:center;
 }
+.blog-archive-page{
+  display:block;
+}
+.blog-archive-page .blog-library{
+  padding-top:calc(6rem + clamp(1.5rem, 3vw, 3rem));
+  padding-bottom:clamp(2.5rem, 5vw, 4rem);
+}
 .blog-archive-page .blog-intro{
-  padding-top:2.5rem;
+  padding-top:0;
 }
 .blog-library-head{
   position:relative;
@@ -3017,7 +3024,7 @@ body.no-scroll{
   border:none;
   border-radius:0;
   box-shadow:none;
-  padding:calc(3.5rem + clamp(1.75rem, 4vw, 3.25rem)) max(1.25rem, calc((100% - 820px) / 2)) clamp(1.75rem, 4vw, 3.25rem);
+  padding:calc(6rem + clamp(1.5rem, 3vw, 2.5rem)) max(1.25rem, calc((100% - 820px) / 2)) clamp(1.75rem, 4vw, 3.25rem);
   text-align:left;
 }
 .blog-article__back{
