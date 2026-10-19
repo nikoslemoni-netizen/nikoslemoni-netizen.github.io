@@ -629,7 +629,7 @@ body.menu-open{overflow:hidden}
   z-index:-1;
 }
 .blog-hero{
-  background:#e7e0cf url('βιβλιο.png') center/cover no-repeat;
+  background:#e7e0cf url('blog-hero-mobile.webp') center/cover no-repeat;
   color:var(--tone-1);
   position:relative;
   z-index:1;
@@ -642,7 +642,7 @@ body.menu-open{overflow:hidden}
 }
 @media (min-width: 900px){
   .blog-hero{
-    background:url('biblio 2.png') center/cover no-repeat;
+    background:url('blog-hero-desktop.webp') center/cover no-repeat;
     width:calc(100% - 3rem);
     min-height:calc(62vh);
     height:calc(62vh);
@@ -836,7 +836,7 @@ h2.blog-subtitle .subtitle-line{
   bottom:0;
   width:100%;
   height:clamp(200px, 32vw, 420px);
-  background:url('blog-texture.png') center bottom/cover no-repeat;
+  background:url('blog-texture.webp') center bottom/cover no-repeat;
   opacity:.5;
   z-index:5;
   pointer-events:none;
@@ -863,6 +863,8 @@ h2.blog-subtitle .subtitle-line{
   min-height:2.75rem;
 }
 .blog-library-title{
+  font-size:1rem;
+  font-weight:400;
   position:absolute;
   left:50%;
   transform:translateX(-50%);

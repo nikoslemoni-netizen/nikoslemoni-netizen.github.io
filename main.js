@@ -1041,19 +1041,35 @@ function renderBlog(){
   const posts = [...POSTS].sort((a,b)=> new Date(b.date) - new Date(a.date));
   const recent = document.getElementById('blogRecent');
   const library = document.getElementById('blogLibrary');
-  if(recent){
+  if(recent && !recent.querySelector('.post-card')){
     recent.innerHTML = buildPostCards(posts.slice(0, 3));
   }
-  if(library){
+  if(library && !library.querySelector('.post-card')){
     library.innerHTML = buildPostCards(posts);
   }
 }
 renderBlog();
 
-// Remove expired badges even when the page stays open.
-document.querySelectorAll('.post-new[data-new-until]').forEach((badge)=>{
-  const remaining = Date.parse(badge.dataset.newUntil) - Date.now();
-  setTimeout(()=> badge.remove(), Math.max(0, remaining));
+// Add temporary badges to the static cards, then remove them at their deadline.
+document.querySelectorAll('.post.post-card').forEach((card)=>{
+  const post = POSTS.find((p)=>p.slug === card.getAttribute('href'));
+  if(!post || !post.newUntil) return;
+  const remaining = Date.parse(post.newUntil) - Date.now();
+  if(!Number.isFinite(remaining) || remaining <= 0) return;
+  let badge = card.querySelector('.post-new');
+  if(!badge){
+    badge = document.createElement('span');
+    badge.className = 'post-new';
+    badge.textContent = 'new';
+    badge.setAttribute('aria-label', 'Νέο άρθρο');
+    card.querySelector('.post-meta').appendChild(badge);
+  }
+  const expire = ()=>{
+    const delay = Date.parse(post.newUntil) - Date.now();
+    if(delay <= 0){ badge.remove(); return; }
+    setTimeout(expire, Math.min(delay, 2147483647));
+  };
+  expire();
 });
 
 // Pop-in animation for post cards — plays once the user actually scrolls to
