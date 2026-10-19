@@ -20,6 +20,7 @@ const MIME_TYPES = {
   '.png': 'image/png',
   '.svg': 'image/svg+xml',
   '.txt': 'text/plain; charset=utf-8',
+  '.woff2': 'font/woff2',
   '.webp': 'image/webp'
 };
 
@@ -37,6 +38,7 @@ const CACHE_TTL = {
   '.gif':  'public, max-age=2592000',
   '.svg':  'public, max-age=2592000',
   '.mp4':  'public, max-age=2592000',
+  '.woff2': 'public, max-age=31536000, immutable',
   '.pdf':  'public, max-age=2592000',
 };
 

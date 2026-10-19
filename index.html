@@ -49,10 +49,10 @@
   </script>
 
   <!-- Fonts & CSS -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=102" />
+    <link rel="preload" href="fonts/comfortaa-greek.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/comfortaa-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="fonts.css?v=1" />
+  <link rel="stylesheet" href="style.css?v=103" />
   <link rel="preload" as="image" href="teliko2.webp" fetchpriority="high" media="(max-width: 600px)" />
   <link rel="preload" as="image" href="teliko1.webp" fetchpriority="high" media="(min-width: 601px)" />
 
@@ -96,6 +96,7 @@
       .menu-toggle{display:none}
     }
   </style></noscript>
+  <link rel="preload" href="logo-static.svg" as="image" fetchpriority="high" media="(max-width:1024px), (pointer:coarse)" />
 </head>
 <body>
   <a class="skip-link" href="#main">Παράκαμψη στο περιεχόμενο</a>
@@ -152,7 +153,7 @@
     <!-- Hero -->
     <section id="home" class="hero" aria-label="Κεντρική ενότητα">
       <div class="hero-logo-wrap" aria-hidden="true">
-        <img class="hero-logo-static" src="logo-static.svg" alt="" loading="eager" decoding="async" />
+        <img class="hero-logo-static" src="logo-static.svg" alt="" width="520" height="520" fetchpriority="high" loading="eager" decoding="async" />
         <svg class="hero-logo" viewBox="0 0 1366 768" role="presentation" focusable="false">
           <g class="logo-circles">
             <circle id="circle-outer" cx="681" cy="384" r="260" />
@@ -260,17 +261,17 @@
           <h2>ΥΠΗΡΕΣΙΕΣ</h2>
           <p class="subtitle">Στη Mentalia προσφέρουμε υπηρεσίες ψυχικής υγείας με έμφαση στην κλινική κατανόηση, τη θεραπευτική σχέση, την επιστημονική εγκυρότητα και τον εξατομικευμένο σχεδιασμό.<br><br>Κάθε άνθρωπος, παιδί, γονέας, ζευγάρι ή οικογένεια προσεγγίζεται με σεβασμό, διακριτικότητα και υπευθυνότητα. Στόχος μας είναι η ουσιαστική κατανόηση της δυσκολίας και η διαμόρφωση ενός εξατομικευμένου δομημένου θεραπευτικού πλάνου με την υποστήριξη μιας πλήρους διεπιστημονικής ομάδας.<br><br>Όλες οι υπηρεσίες προσφέρονται και διαδικτυακά.</p>
           <div class="hero-ctas">
-            <a href="about.html" class="btn primary">Μάθε περισσότερα</a>
+            <a href="services.html" class="btn primary">Μάθε περισσότερα</a>
             <a href="#contact" class="btn">Κλείστε Ραντεβού</a>
           </div>
         </div>
-        <div class="posts-grid services-grid" role="list">
-          <article class="post service-post service-post--with-icon reveal" data-service="psychotherapy" data-reveal-order="1" data-reveal-stagger="200" role="listitem">
+        <ul class="posts-grid services-grid">
+          <li class="post service-post service-post--with-icon reveal" data-service="psychotherapy" data-reveal-order="1" data-reveal-stagger="200">
             <span class="service-icon-link">
               <img src="icon-psychotherapy.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
             </span>
             <div class="service-copy">
-              <h3>ΨΥΧΟΘΕΡΑΠΕΙΑ ΕΝΗΛΙΚΩΝ</h3>
+              <h3><a class="service-page-link" href="psychotherapeia-komotini.html">ΨΥΧΟΘΕΡΑΠΕΙΑ ΕΝΗΛΙΚΩΝ</a></h3>
               <p>Απευθύνεται σε όλο το φάσμα των ζητημάτων ψυχικής σφαίρας — άγχος, κατάθλιψη, δυσκολίες σχέσεων, κρίσεις ζωής, burnout ή ανάγκη βαθύτερης αυτογνωσίας.</p>
             </div>
             <details class="service-details">
@@ -289,13 +290,13 @@
                 </ul>
               </div>
             </details>
-          </article>
-          <article class="post service-post service-post--with-icon reveal" data-service="clinical" data-reveal-order="2" data-reveal-stagger="200" role="listitem">
+          </li>
+          <li class="post service-post service-post--with-icon reveal" data-service="clinical" data-reveal-order="2" data-reveal-stagger="200">
             <span class="service-icon-link">
               <img src="icon-clinical.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
             </span>
             <div class="service-copy">
-              <h3>ΚΛΙΝΙΚΗ ΑΞΙΟΛΟΓΗΣΗ & ΘΕΡΑΠΕΥΤΙΚΟΣ ΣΧΕΔΙΑΣΜΟΣ</h3>
+              <h3><a class="service-page-link" href="kliniki-axiologisi-komotini.html">ΚΛΙΝΙΚΗ ΑΞΙΟΛΟΓΗΣΗ & ΘΕΡΑΠΕΥΤΙΚΟΣ ΣΧΕΔΙΑΣΜΟΣ</a></h3>
               <p>Ξεκινά από την πρώτη συνάντηση και περιλαμβάνει λήψη ιστορικού, κατανόηση συμπτωμάτων και συνολική εκτίμηση της κατάστασης.</p>
             </div>
             <details class="service-details">
@@ -313,13 +314,13 @@
                 </ul>
               </div>
             </details>
-          </article>
-          <article class="post service-post service-post--with-icon reveal" data-service="childpsychology" data-reveal-order="3" data-reveal-stagger="200" role="listitem">
+          </li>
+          <li class="post service-post service-post--with-icon reveal" data-service="childpsychology" data-reveal-order="3" data-reveal-stagger="200">
             <span class="service-icon-link">
               <img src="icon-child.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
             </span>
             <div class="service-copy">
-              <h3>ΠΑΙΔΟΨΥΧΟΛΟΓΙΚΗ ΥΠΟΣΤΗΡΙΞΗ</h3>
+              <h3><a class="service-page-link" href="paidopsychologiki-ypostirixi-komotini.html">ΠΑΙΔΟΨΥΧΟΛΟΓΙΚΗ ΥΠΟΣΤΗΡΙΞΗ</a></h3>
               <p>Απευθύνεται σε παιδιά και γονείς που αντιμετωπίζουν δυσκολίες στη συμπεριφορά, το συναίσθημα, τη σχολική προσαρμογή ή την καθημερινή οικογενειακή λειτουργία.</p>
             </div>
             <details class="service-details">
@@ -337,13 +338,13 @@
                 </ul>
               </div>
             </details>
-          </article>
-          <article class="post service-post service-post--with-icon reveal" data-service="counseling" data-reveal-order="4" data-reveal-stagger="200" role="listitem">
+          </li>
+          <li class="post service-post service-post--with-icon reveal" data-service="counseling" data-reveal-order="4" data-reveal-stagger="200">
             <span class="service-icon-link">
               <img src="icon-counseling.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
             </span>
             <div class="service-copy">
-              <h3>ΣΥΜΒΟΥΛΕΥΤΙΚΗ ΓΟΝΕΩΝ, ΟΙΚΟΓΕΝΕΙΑΣ & ΖΕΥΓΟΥΣ</h3>
+              <h3><a class="service-page-link" href="symvouleftiki-goneon-zevgous-komotini.html">ΣΥΜΒΟΥΛΕΥΤΙΚΗ ΓΟΝΕΩΝ, ΟΙΚΟΓΕΝΕΙΑΣ & ΖΕΥΓΟΥΣ</a></h3>
               <p>Βοηθά τους ανθρώπους να κατανοήσουν καλύτερα τις δυσκολίες που εμφανίζονται μέσα στις σημαντικές σχέσεις της ζωής τους.</p>
             </div>
             <details class="service-details">
@@ -362,13 +363,13 @@
                 </ul>
               </div>
             </details>
-          </article>
-          <article class="post service-post service-post--with-icon reveal" data-service="memory" data-reveal-order="5" data-reveal-stagger="200" role="listitem">
+          </li>
+          <li class="post service-post service-post--with-icon reveal" data-service="memory" data-reveal-order="5" data-reveal-stagger="200">
             <span class="service-icon-link">
               <img src="icon-memory.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
             </span>
             <div class="service-copy">
-              <h3>ΔΙΑΤΑΡΑΧΕΣ ΜΝΗΜΗΣ & ΝΕΥΡΟΨΥΧΟΛΟΓΙΚΟΣ ΕΛΕΓΧΟΣ</h3>
+              <h3><a class="service-page-link" href="nevropsychologikos-elegchos-komotini.html">ΔΙΑΤΑΡΑΧΕΣ ΜΝΗΜΗΣ & ΝΕΥΡΟΨΥΧΟΛΟΓΙΚΟΣ ΕΛΕΓΧΟΣ</a></h3>
               <p>Στη Mentalia λειτουργεί τμήμα διαταραχών μνήμης με νευροψυχολογική αξιολόγηση για δυσκολίες μνήμης, προσοχής και συνολικής γνωστικής λειτουργίας.</p>
             </div>
             <details class="service-details">
@@ -385,13 +386,13 @@
                 </ul>
               </div>
             </details>
-          </article>
-          <article class="post service-post service-post--with-icon reveal" data-service="nutrition" data-reveal-order="6" data-reveal-stagger="200" role="listitem">
+          </li>
+          <li class="post service-post service-post--with-icon reveal" data-service="nutrition" data-reveal-order="6" data-reveal-stagger="200">
             <span class="service-icon-link">
               <img src="icon-nutrition.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
             </span>
             <div class="service-copy">
-              <h3>ΔΙΑΤΡΟΦΙΚΕΣ ΔΥΣΚΟΛΙΕΣ & ΔΙΑΤΑΡΑΧΕΣ</h3>
+              <h3><a class="service-page-link" href="diatrofikes-diataraches-komotini.html">ΔΙΑΤΡΟΦΙΚΕΣ ΔΥΣΚΟΛΙΕΣ & ΔΙΑΤΑΡΑΧΕΣ</a></h3>
               <p>Εξειδικευμένη υποστήριξη για δυσκολίες που αφορούν τη σχέση με το φαγητό, το σώμα, την εικόνα εαυτού και τη συναισθηματική ρύθμιση.</p>
             </div>
             <details class="service-details">
@@ -409,13 +410,13 @@
                 </ul>
               </div>
             </details>
-          </article>
-          <article class="post service-post service-post--with-icon reveal" data-service="seminars" data-reveal-order="7" data-reveal-stagger="200" role="listitem">
+          </li>
+          <li class="post service-post service-post--with-icon reveal" data-service="seminars" data-reveal-order="7" data-reveal-stagger="200">
             <span class="service-icon-link">
               <img src="icon-seminars.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
             </span>
             <div class="service-copy">
-              <h3>ΣΕΜΙΝΑΡΙΑ, WORKSHOPS & ΕΚΠΑΙΔΕΥΤΙΚΕΣ ΔΡΑΣΕΙΣ</h3>
+              <h3><a class="service-page-link" href="seminaria-psychikis-ygeias-komotini.html">ΣΕΜΙΝΑΡΙΑ, WORKSHOPS & ΕΚΠΑΙΔΕΥΤΙΚΕΣ ΔΡΑΣΕΙΣ</a></h3>
               <p>Σχεδιασμός σεμιναρίων, ομιλιών, workshops και εκπαιδευτικών δράσεων για γονείς, κοινό, επαγγελματίες ψυχικής υγείας και εταιρείες.</p>
             </div>
             <details class="service-details">
@@ -432,8 +433,8 @@
                 </ul>
               </div>
             </details>
-          </article>
-        </div>
+          </li>
+        </ul>
       </div>
     </section>
 

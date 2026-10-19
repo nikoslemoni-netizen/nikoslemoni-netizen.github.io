@@ -3123,3 +3123,30 @@ body.no-scroll{
   margin:0 0 1rem;
   font-size:1.6rem;
 }
+
+/* Native service-list semantics and links preserve the existing card layout. */
+ul.services-grid{list-style:none;padding:0}
+.service-page-link{display:block;color:inherit;text-decoration:none}
+.service-page-link:hover{text-decoration:underline;text-underline-offset:.2em}
+.service-page-link:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.service-page .blog-article h2{font-size:clamp(1.15rem, 2vw, 1.45rem);margin:1.8rem 0 .8rem;line-height:1.4}
+.service-page .service-location{margin-top:.75rem;color:#355c50;font-size:.9rem}
+.service-points,.service-related ul{padding-left:1.3rem;line-height:1.85}
+.service-related{display:block;justify-self:stretch;margin-block:2rem}
+.service-contact{border-top:1px solid rgba(19,67,64,.16);margin-top:2rem}
+.service-directory-item{margin-block:2rem}
+.service-page a{overflow-wrap:anywhere}
+/* Match the mobile hero before JavaScript runs, avoiding delayed LCP discovery. */
+@media (max-width:1024px), (pointer:coarse){
+  .hero-logo-wrap{opacity:.92}
+  .hero-logo{display:none}
+  .hero-logo-static{display:block;transform:translate(-50%, -50%) rotate(90deg)}
+  .hero-anim{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .reveal,.nav-wrap > *,.hero-content > *,.post.post-card{
+    opacity:1!important;transform:none!important;animation:none!important;transition:none!important;
+  }
+}
+
+.service-page h2 a{display:inline-block}
