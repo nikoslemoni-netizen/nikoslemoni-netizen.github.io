@@ -13,7 +13,11 @@
     <link rel="preload" href="fonts/comfortaa-greek.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="fonts/comfortaa-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="fonts.css?v=1" />
-  <link rel="stylesheet" href="style.css?v=103" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300;400;500;600&family=Didact+Gothic&display=swap" />
+  <link rel="stylesheet" href="site.css?v=7" />
+  <script defer src="site.js?v=3"></script>
   <script defer src="analytics.js"></script>
 
   <link rel="canonical" href="https://mentalia.gr/nevropsychologikos-elegchos-komotini.html" />
@@ -94,51 +98,22 @@
   ]
 }
   </script>
-  <noscript><style>
-    .reveal, .nav-wrap > *, .hero-content > *, .hero-tagline,
-    .post.post-card, .service-post.reveal, .hero-second-title.reveal {
-      opacity:1 !important; transform:none !important; animation:none !important;
-    }
-    @media(max-width:900px){
-      .site-header{position:relative}
-      .nav-wrap{display:flex;flex-wrap:wrap}
-      .nav-wrap > nav{width:100%}
-      #primaryNav.nav{position:static;display:flex;flex-wrap:wrap;gap:.4rem;
-        width:100%;height:auto;max-height:none;opacity:1;visibility:visible;
-        transform:none;pointer-events:auto;padding:.5rem 0;overflow:visible}
-      .menu-toggle{display:none}
-    }
-  </style></noscript>
 </head>
-<body>
-  <a class="skip-link" href="#main">Παράκαμψη στο περιεχόμενο</a>
-  <header class="site-header" role="banner">
-    <div class="container nav-wrap">
-      <div class="brand">
-        <a href="/#home" class="logo-link" aria-label="MENTALIA - Αρχική">
-          <span class="logo-circle" aria-hidden="true"></span>
-          <span class="brand-name">MENTALIA</span>
-        </a>
-      </div>
-      <nav aria-label="Κύρια πλοήγηση">
-        <button class="menu-toggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Άνοιγμα μενού">
-          <span class="visually-hidden">Μενού</span>
-          <span class="menu-toggle__bars" aria-hidden="true">
-            <span class="menu-toggle__bar"></span>
-            <span class="menu-toggle__bar"></span>
-          </span>
-        </button>
-        <ul id="primaryNav" class="nav">
-          <li><a href="/#home">ΑΡΧΙΚΗ</a></li>
-          <li><a href="/#services" aria-current="page">ΥΠΗΡΕΣΙΕΣ</a></li>
-          <li><a href="about.html">Η ΦΙΛΟΣΟΦΙΑ ΜΑΣ</a></li>
-          <li><a href="/#team">Η ΟΜΑΔΑ ΜΑΣ</a></li>
-          <li><a href="blog.html">BLOG</a></li>
-          <li><a href="/#contact">ΕΠΙΚΟΙΝΩΝΙΑ</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<body class="inner">
+  <a class="skip" href="#main">Παράκαμψη στο περιεχόμενο</a>
+<header class="top" id="top">
+  <a class="wordmark" href="/" aria-label="MENTALIA, αρχική σελίδα">MENTALIA</a>
+  <nav class="nav" id="nav" aria-label="Κύρια πλοήγηση">
+    <a href="about.html">Φιλοσοφία</a>
+    <a href="/#services" aria-current="page">Υπηρεσίες</a>
+    <a href="/#team">Ομάδα</a>
+    <a href="blog.html">Blog</a>
+    <a href="/#contact">Επικοινωνία</a>
+  </nav>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Μενού</button>
+  <a class="cta" href="/#contact"><span class="dot" aria-hidden="true"></span><span class="long">Κλείστε ραντεβού</span><span class="short">Ραντεβού</span></a>
+</header>
+<svg class="page-logo" viewBox="-8.6 -8.6 17.2 17.2" aria-hidden="true"><circle cx="0" cy="0" r="8"/><circle cx="3" cy="0" r="5"/><circle cx="3" cy="2" r="3"/></svg>
 
   <main id="main" class="about-quarters about-quarters--content blog-article-page service-page">
     <section class="about-quarter about-content-section tone-cream parallax-section">
@@ -173,61 +148,36 @@
     </section>
   </main>
 
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-grid">
-      <div class="footer-column footer-column--brand">
-        <h3>MENTALIA</h3>
-        <p>ΓΚΟΤΟΣΙΔΗΣ ΚΑΙ ΣΙΑ ΕΕ<br>Αρ. ΓΕΜΗ 18861121100</p>
-        <p>Οργανωμένο Κέντρο Ψυχικής Υγείας</p>
-      </div>
-      <nav class="footer-column footer-column--nav" aria-label="Footer πλοήγηση">
-        <h3>Πλοήγηση</h3>
-        <ul class="footer-links">
-          <li><a href="/#home">ΑΡΧΙΚΗ</a></li>
-          <li><a href="/#services">ΥΠΗΡΕΣΙΕΣ</a></li>
-          <li><a href="about.html">Η ΦΙΛΟΣΟΦΙΑ ΜΑΣ</a></li>
-          <li><a href="/#team">Η ΟΜΑΔΑ ΜΑΣ</a></li>
-          <li><a href="blog.html">BLOG</a></li>
-          <li><a href="/#contact">ΕΠΙΚΟΙΝΩΝΙΑ</a></li>
-        </ul>
-      </nav>
-      <div class="footer-column footer-column--contact">
-        <h3>Επικοινωνια</h3>
-        <ul class="footer-links footer-links--contact">
-          <li>Αποστόλου Σούζου 6, Κομοτηνή, 69133</li>
-          <li><a href="mailto:mentalia.info@gmail.com">mentalia.info@gmail.com</a></li>
-          <li><a href="https://www.instagram.com/mentalia.co?igsh=MTdncGN6b3ZjNXV4bw==" target="_blank" rel="noopener">@mentalia.co</a></li>
-          <li>Facebook: <a href="https://www.facebook.com/profile.php?id=61583363356599" target="_blank" rel="noopener">Mentalia</a></li>
-          <li><a href="tel:+302531036007">25310 36007</a></li>
-          <li><a href="tel:+306977008040">+30 6977008040</a></li>
-        </ul>
-      </div>
+  <footer class="site-foot">
+  <div class="site-foot__grid">
+    <div>
+      <p class="site-foot__lead">Ο επόμενος κύκλος ξεκινά με ένα τηλεφώνημα.</p>
+      <a class="cta" href="tel:+302531036007"><span class="dot" aria-hidden="true"></span>Καλέστε 25310 36007</a>
     </div>
-    <div class="container footer-legal">
-      <small>© <span id="year"></span> MENTALIA. Όλα τα δικαιώματα διατηρούνται.</small>
+    <nav aria-label="Πλοήγηση υποσέλιδου">
+      <h2>Mentalia</h2>
+      <ul>
+        <li><a href="/">Αρχική</a></li>
+        <li><a href="about.html">Η φιλοσοφία μας</a></li>
+        <li><a href="services.html">Υπηρεσίες</a></li>
+        <li><a href="/#team">Η ομάδα μας</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h2>Επικοινωνία</h2>
+      <ul>
+        <li><a href="tel:+306977008040">+30 697 700 8040</a></li>
+        <li><a href="mailto:mentalia.info@gmail.com">mentalia.info@gmail.com</a></li>
+        <li><a href="https://maps.google.com/?q=%CE%91%CF%80%CE%BF%CF%83%CF%84%CF%8C%CE%BB%CE%BF%CF%85+%CE%A3%CE%BF%CF%8D%CE%B6%CE%BF%CF%85+6+%CE%9A%CE%BF%CE%BC%CE%BF%CF%84%CE%B7%CE%BD%CE%AE" target="_blank" rel="noopener">Αποστόλου Σούζου 6, 4ος όροφος, Κομοτηνή</a></li>
+        <li><a href="https://www.instagram.com/mentalia.co" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/profile.php?id=61583363356599" target="_blank" rel="noopener">Facebook</a></li>
+      </ul>
     </div>
-  </footer>
-
-  <script src="navbar.js" defer></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var blocks = document.querySelectorAll('.reveal');
-      if ('IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function(entries) {
-          entries.filter(function(e){ return e.isIntersecting; }).forEach(function(entry, idx) {
-            var t = entry.target;
-            t.style.setProperty('--reveal-delay', (idx * 130) + 'ms');
-            requestAnimationFrame(function(){ t.classList.add('visible'); });
-            io.unobserve(t);
-          });
-        }, { threshold: 0.15 });
-        blocks.forEach(function(el){ io.observe(el); });
-      } else {
-        blocks.forEach(function(el){ el.classList.add('visible'); });
-      }
-      var yr = document.getElementById('year');
-      if(yr) yr.textContent = new Date().getFullYear();
-    });
-  </script>
+  </div>
+  <div class="site-foot__legal">
+    <span>ΓΚΟΤΟΣΙΔΗΣ ΚΑΙ ΣΙΑ ΕΕ · Αρ. ΓΕΜΗ 18861121100</span>
+    <span>© <span data-year>2026</span> MENTALIA. Όλα τα δικαιώματα διατηρούνται.</span>
+  </div>
+</footer>
 </body>
 </html>

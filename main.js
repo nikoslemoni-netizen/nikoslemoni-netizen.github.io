@@ -982,6 +982,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 const POSTS = [
   {
+    slug: 'article-o-fovos-tis-apotychias.html',
+    title: 'Όταν ο φόβος της αποτυχίας μάς κρατά πίσω',
+    date: '2026-11-19',
+    newUntil: '2026-11-21T20:00:00+02:00',
+    tags: ['Άγχος', 'Αυτοεκτίμηση'],
+    excerpt: 'Ο φόβος της αποτυχίας μάς αγγίζει όλους. Πώς γεννιέται, τι μπορούμε να κάνουμε για να μη μας παραλύει και πότε βοηθά η στήριξη ενός ψυχολόγου.'
+  },
+  {
     slug: 'article-prota-na-synantiseis-to-synaisthima.html',
     title: 'Πρώτα, να συναντήσεις το συναίσθημα',
     date: '2026-10-17',
@@ -1020,7 +1028,7 @@ function buildPostCards(posts){
     const monthLabel = new Date(`${p.date}T00:00:00`).toLocaleDateString('el-GR', { month: 'short' }).replace('.', '');
     const dayLabel = new Date(`${p.date}T00:00:00`).toLocaleDateString('el-GR', { day: '2-digit' });
     return `
-      <a class="post post-card" href="${p.slug}" aria-label="Διαβάστε το άρθρο: ${p.title}">
+      <a class="post post-card" href="${p.slug}"${p.newUntil ? ` data-new-until="${p.newUntil}"` : ''} aria-label="Διαβάστε το άρθρο: ${p.title}">
         <div class="post-meta">
           <div class="post-tags">${tags}</div>
           ${newBadge}

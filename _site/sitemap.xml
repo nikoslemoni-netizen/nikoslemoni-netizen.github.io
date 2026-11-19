@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://mentalia.gr/about.html</loc></url>
+  <url><loc>https://mentalia.gr/article-o-fovos-tis-apotychias.html</loc></url>
   <url><loc>https://mentalia.gr/article-oi-anthropoi-niothoun.html</loc></url>
   <url><loc>https://mentalia.gr/article-otan-kapoios-skontaftei.html</loc></url>
   <url><loc>https://mentalia.gr/article-prota-na-synantiseis-to-synaisthima.html</loc></url>
   <url><loc>https://mentalia.gr/article-ta-paidia-pou-megalonoun-goneis.html</loc></url>
   <url><loc>https://mentalia.gr/bio-chariklia.html</loc></url>
+  <url><loc>https://mentalia.gr/bio-marilia.html</loc></url>
   <url><loc>https://mentalia.gr/bio-christos.html</loc></url>
   <url><loc>https://mentalia.gr/bio-gotosidis.html</loc></url>
   <url><loc>https://mentalia.gr/bio-patroklos.html</loc></url>
@@ -19,7 +21,6 @@
   <url><loc>https://mentalia.gr/nevropsychologikos-elegchos-komotini.html</loc></url>
   <url><loc>https://mentalia.gr/paidopsychologiki-ypostirixi-komotini.html</loc></url>
   <url><loc>https://mentalia.gr/psychotherapeia-komotini.html</loc></url>
-  <url><loc>https://mentalia.gr/seminaria-psychikis-ygeias-komotini.html</loc></url>
   <url><loc>https://mentalia.gr/services.html</loc></url>
   <url><loc>https://mentalia.gr/symvouleftiki-goneon-zevgous-komotini.html</loc></url>
 </urlset>

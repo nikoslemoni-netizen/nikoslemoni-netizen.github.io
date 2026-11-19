@@ -1,226 +1,34 @@
-/* intentionally left blank */
-
-:root{
-  --bg:#f5f3dd;
-  --text:#4d5350;
-  --muted:#6a6f69;
-  --accent:#3e4541;
-  --line:#5a605b;
-  --panel:#f5f3dd;
-  --photo:url("hero-waterdrop.jpg");
-}
-
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:'Comfortaa','Helvetica Neue',Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.6;
-}
-a{color:inherit;text-decoration:none}
-
-.bio-shell{
-  display:grid;
-  grid-template-columns:48vw 1fr;
-  min-height:100vh;
-  background:var(--bg);
-}
-.left{
-  display:flex;
-  flex-direction:column;
-  background:var(--panel);
-  position:sticky;
-  top:0;
-  align-self:start;
-  height:100vh;
-}
-.left-top{
-  display:flex;
-  flex-direction:row;
-  align-items:center;
-  flex:1 1 auto;
-}
-.photo{
-  flex:0 0 52%;
-  aspect-ratio:3/4;
-  background:var(--panel);
-  display:flex;
-  align-items:stretch;
-  justify-content:stretch;
-  padding:0;
-  margin:1.6rem 0 0 1.6rem;
-  border-radius:1.5rem;
-  border:1px solid rgba(90,96,91,.25);
-  overflow:hidden;
-}
-.left-fill{
-  display:none;
-}
-.photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:top;
-  border-radius:1.5rem;
-  box-shadow:none;
-}
-.left-info{
-  flex:1 1 auto;
-  min-width:0;
-  background:var(--panel);
-  padding:2.4rem 1.2rem 0;
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-start;
-}
-.name{
-  margin:clamp(0.5rem,1vh,1.2rem) 0 .35rem;
-  font-size:clamp(1.15rem,1vw + 0.7rem,1.7rem);
-  font-weight:600;
-  letter-spacing:.02em;
-  color:var(--accent);
-  overflow-wrap:break-word;
-  word-break:break-word;
-  hyphens:auto;
-}
-.role{
-  font-size:.92rem;
-  line-height:1.4;
-  overflow-wrap:break-word;
-  word-break:break-word;
-}
-.left-logo{
-  flex:0 0 auto;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:1.6rem 1rem 2.2rem;
-  background:var(--panel);
-}
-.brand-logo{
-  width:240px;
-  height:auto;
-  aspect-ratio:1/1;
-  display:block;
-  object-fit:contain;
-  filter:saturate(.95) brightness(.98);
-  mix-blend-mode:multiply;
-}
-.left-info .brand-logo{
-  width:170px;
-  margin-top:1.4rem;
-}
-.contact-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:1.15rem 3rem;
-  border-radius:999px;
-  background:var(--accent);
-  color:var(--panel);
-  font-weight:600;
-  letter-spacing:.04em;
-  font-size:1.15rem;
-  transition:background .2s ease, transform .2s ease;
-}
-.contact-btn:hover{
-  background:var(--line);
-  transform:translateY(-6px) scale(1.06);
-  box-shadow:0 14px 28px rgba(19,31,28,.28);
-}
-
-.right{
-  background:#e2e8ca;
-  padding:3.4rem 3.3rem 2.4rem;
-  display:flex;
-  flex-direction:column;
-}
-.content{
-  max-width:780px;
-  margin:0 auto;
-}
-.heading{
-  margin:0 0 1.2rem;
-  padding-bottom:.9rem;
-  border-bottom:1px solid var(--line);
-  font-size:clamp(2.2rem,1.7vw + 1.4rem,2.8rem);
-  font-weight:600;
-  letter-spacing:.02em;
-}
-.lead{
-  margin:0 0 .5rem;
-  font-weight:700;
-  font-size:1.04rem;
-  letter-spacing:.01em;
-}
-.upper{
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  color:var(--accent);
-  font-size:1.02rem;
-}
-p{
-  margin:0 0 .55rem;
-  font-size:1.05rem;
-}
-ul{
-  margin:.15rem 0 1rem 1.1rem;
-  padding:0;
-  color:var(--text);
-}
-li{
-  margin:0 0 .35rem;
-  font-size:1.05rem;
-}
-
-.social{
-  margin-top:auto;
-  display:flex;
-  justify-content:flex-end;
-  gap:.8rem;
-  padding-top:1.4rem;
-}
-.social a{
-  width:42px;
-  height:42px;
-  display:grid;
-  place-items:center;
-  border:1px solid rgba(90,96,91,.55);
-  border-radius:50%;
-  background:var(--panel);
-  transition:background .2s ease, transform .2s ease;
-}
-.social a:hover{
-  background:rgba(208,211,191,.8);
-  transform:translateY(-2px);
-}
-.social svg{
-  width:22px;
-  height:22px;
-  fill:var(--text);
-}
-
-@media (max-width:1080px){
+/* MENTALIA — team bio pages (loads after site.css) */
+.bio-shell{position:relative;z-index:2;display:grid;grid-template-columns:minmax(300px,0.9fr) 1.3fr;gap:clamp(32px,6vw,96px);
+  max-width:1240px;margin:0 auto;padding:clamp(110px,15vh,150px) var(--gutter) clamp(64px,10vh,110px)}
+.left{position:sticky;top:110px;align-self:start}
+.left-top{display:flex;flex-direction:column;gap:22px}
+.photo{height:min(40vh,420px);width:auto;align-self:flex-start;aspect-ratio:4/5;border-radius:240px 240px 24px 24px;overflow:hidden;background:var(--bg-deep)}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:top;filter:saturate(.9)}
+.left-info .kicker{margin-bottom:12px}
+.name{font-size:clamp(32px,3.4vw,48px);line-height:1.04;margin:0 0 14px}
+.role{font-size:16px;line-height:1.55;color:var(--muted);margin:0;max-width:26rem}
+.brand-logo{display:none}
+.left-logo{margin-top:20px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.contact-btn{font-family:var(--sans);font-weight:500;font-size:14px;text-decoration:none;padding:12px 22px;min-height:44px;
+  display:inline-flex;align-items:center;gap:10px;border-radius:999px;background:var(--ink);color:var(--bg);transition:transform .4s var(--ease), background .4s}
+.contact-btn::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.contact-btn:hover{transform:translateY(-2px);background:var(--accent-deep)}
+.bio-back{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:14px;font-weight:500;color:var(--muted);text-decoration:none}
+.bio-back:hover{color:var(--ink)}
+.right{min-width:0}
+.content{max-width:44rem}
+.heading{font-size:clamp(28px,3vw,40px);margin:8px 0 26px}
+.content p{font-size:clamp(17px,1.25vw,19px);line-height:1.78;color:var(--ink);margin:0 0 20px;text-wrap:pretty}
+.content .lead{font-size:clamp(19px,1.6vw,23px);line-height:1.6}
+@media (max-width: 860px){
   .bio-shell{grid-template-columns:1fr}
-  .left{
-    position:sticky;
-    top:0;
-    height:auto;
-  }
-  .left-top{flex-direction:column}
-  .photo{flex:0 0 auto;aspect-ratio:4/5;margin:1.2rem 1.2rem 0}
-  .right{
-    position:relative;
-    padding:2.6rem 1.8rem 2.1rem;
-    border-radius:1.5rem 1.5rem 0 0;
-    box-shadow:0 -10px 24px rgba(19,31,28,.18);
-  }
-  .left-info{padding:2.2rem 1.6rem 2rem}
-  .name{font-size:clamp(2rem,5vw + 1rem,2.8rem)}
-  .role{font-size:1.05rem}
-  .brand-logo{width:190px}
-  .social{justify-content:flex-start}
+  .left{position:static}
+  .left-top{flex-direction:row;align-items:flex-end;gap:20px}
+  .photo{flex:0 0 42%;height:auto}
+  .name{font-size:clamp(28px,7vw,40px)}
+}
+@media (max-width: 480px){
+  .left-top{flex-direction:column;align-items:flex-start}
+  .photo{width:70%;height:auto}
 }

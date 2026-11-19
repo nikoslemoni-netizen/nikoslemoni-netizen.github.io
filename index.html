@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <title>MENTALIA | Κέντρο Ψυχικής Υγείας στην Κομοτηνή</title>
   <meta name="description" content="Η Mentalia στην Κομοτηνή προσφέρει ψυχοθεραπεία, παιδοψυχολογική υποστήριξη, συμβουλευτική και νευροψυχολογικό έλεγχο από διεπιστημονική ομάδα." />
   <meta name="robots" content="index, follow" />
@@ -12,10 +11,6 @@
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?v=4" />
   <link rel="shortcut icon" href="favicon.ico?v=4" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=4" />
-
-  <!-- Open Graph -->
-
-  <!-- Structured data -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -47,26 +42,6 @@
   "hasMap": "https://www.google.com/maps?cid=3118990553099312370"
 }
   </script>
-
-  <!-- Fonts & CSS -->
-    <link rel="preload" href="fonts/comfortaa-greek.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="fonts/comfortaa-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="fonts.css?v=1" />
-  <link rel="stylesheet" href="style.css?v=103" />
-  <link rel="preload" as="image" href="teliko2.webp" fetchpriority="high" media="(max-width: 600px)" />
-  <link rel="preload" as="image" href="teliko1.webp" fetchpriority="high" media="(min-width: 601px)" />
-
-  <script type="module" defer src="main.js?v=14"></script>
-  <script defer src="analytics.js"></script>
-
-  <link rel="canonical" href="https://mentalia.gr/" />
-  <meta property="og:title" content="MENTALIA | Κέντρο Ψυχικής Υγείας στην Κομοτηνή" />
-  <meta property="og:description" content="Η Mentalia στην Κομοτηνή προσφέρει ψυχοθεραπεία, παιδοψυχολογική υποστήριξη, συμβουλευτική και νευροψυχολογικό έλεγχο από διεπιστημονική ομάδα." />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="el_GR" />
-  <meta property="og:url" content="https://mentalia.gr/" />
-  <meta property="og:site_name" content="MENTALIA" />
-  <meta property="og:image" content="https://mentalia.gr/12.jpg" />
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -81,500 +56,618 @@
   }
 }
   </script>
-  <noscript><style>
-    .reveal, .nav-wrap > *, .hero-content > *, .hero-tagline,
-    .post.post-card, .service-post.reveal, .hero-second-title.reveal {
-      opacity:1 !important; transform:none !important; animation:none !important;
-    }
-    @media(max-width:900px){
-      .site-header{position:relative}
-      .nav-wrap{display:flex;flex-wrap:wrap}
-      .nav-wrap > nav{width:100%}
-      #primaryNav.nav{position:static;display:flex;flex-wrap:wrap;gap:.4rem;
-        width:100%;height:auto;max-height:none;opacity:1;visibility:visible;
-        transform:none;pointer-events:auto;padding:.5rem 0;overflow:visible}
-      .menu-toggle{display:none}
-    }
-  </style></noscript>
-  <link rel="preload" href="logo-static.svg" as="image" fetchpriority="high" media="(max-width:1024px), (pointer:coarse)" />
+  <link rel="canonical" href="https://mentalia.gr/" />
+  <meta property="og:title" content="MENTALIA | Κέντρο Ψυχικής Υγείας στην Κομοτηνή" />
+  <meta property="og:description" content="Η Mentalia στην Κομοτηνή προσφέρει ψυχοθεραπεία, παιδοψυχολογική υποστήριξη, συμβουλευτική και νευροψυχολογικό έλεγχο από διεπιστημονική ομάδα." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="el_GR" />
+  <meta property="og:url" content="https://mentalia.gr/" />
+  <meta property="og:site_name" content="MENTALIA" />
+  <meta property="og:image" content="https://mentalia.gr/12.jpg" />
+  <script defer src="analytics.js"></script>
+  <script defer src="site.js?v=3"></script>
+  <link rel="stylesheet" href="fonts.css?v=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@300;400;500;600&family=Didact+Gothic&display=swap" />
+  <link rel="stylesheet" href="site.css?v=7" />
+<style>
+/* ---------- background film ---------- */
+.stage{position:fixed;inset:0;z-index:0;pointer-events:none;transform:translateZ(0);contain:strict}
+.stage svg{position:absolute;inset:0;width:100%;height:100%}
+.stage circle{fill:none;stroke:var(--logo);stroke-linecap:round}
+.stage circle.new{stroke:var(--accent-deep)}
+.stage circle.seed{fill:var(--logo);stroke:none}
+.fib{position:fixed;right:var(--gutter);bottom:28px;z-index:1;display:flex;gap:14px;align-items:baseline;pointer-events:none;
+  font-family:var(--display);font-size:15px;color:var(--muted);font-variant-numeric:tabular-nums}
+.fib span{transition:color .5s, transform .5s}
+.fib span.on{color:var(--ink);transform:translateY(-3px)}
+.fib span.now{color:var(--accent-deep)}
+.fib small{font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-right:6px}
+
+main{position:relative;z-index:2}
+
+/* ---------- film scenes ---------- */
+.panel{position:relative}
+.panel-inner{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;padding:96px var(--gutter) 80px}
+.copy{max-width:36rem}
+.kicker{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin:0 0 22px;font-weight:500}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.025em;text-wrap:balance}
+h1{font-size:clamp(38px,5.6vw,84px);line-height:1.06;margin:0 0 26px}
+h2{font-size:clamp(31px,4.2vw,62px);line-height:1.08;margin:0 0 24px}
+h3{font-size:clamp(20px,1.7vw,25px);line-height:1.2;letter-spacing:-.015em;margin:0 0 10px}
+.lead{font-size:clamp(17px,1.35vw,20px);line-height:1.6;color:var(--muted);margin:0 0 14px;max-width:32rem;text-wrap:pretty}
+.lead strong,.muted strong{color:var(--ink);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0 0 22px;padding:0;list-style:none;font-size:15px;color:var(--ink)}
+.tags li{display:flex;align-items:center;gap:8px}
+.tags li::before{content:"";width:7px;height:7px;border-radius:50%;border:1.5px solid var(--logo)}
+.byline{font-size:14px;color:var(--muted);margin:0}
+.hint{position:absolute;left:var(--gutter);bottom:26px;display:flex;gap:22px;align-items:center;font-size:13px;color:var(--muted)}
+.hint a{text-decoration:none;border-bottom:1px solid currentColor;padding:12px 0}
+.scrollcue{display:inline-flex;align-items:center;gap:10px}
+.scrollcue i{width:1px;height:34px;background:var(--line);position:relative;overflow:hidden;display:inline-block}
+.scrollcue i::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:var(--ink);animation:cue 2.2s cubic-bezier(.6,0,.3,1) infinite}
+@keyframes cue{to{top:100%}}
+.pillars{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:16px;max-width:32rem}
+.pillars li{display:grid;grid-template-columns:28px 1fr;gap:12px;font-size:16px;line-height:1.55;color:var(--muted)}
+.pillars b{grid-column:2;display:block;color:var(--ink);font-weight:500;margin-bottom:2px}
+.pillars li::before{content:"";grid-row:span 2;width:14px;height:14px;margin-top:5px;border-radius:50%;border:1.5px solid var(--logo)}
+.brand-xl{font-family:var(--brand);font-weight:700;letter-spacing:.3em;font-size:clamp(32px,4.2vw,64px);line-height:1;margin:0 0 18px}
+.tagline{font-family:var(--display);font-size:clamp(22px,2.2vw,32px);color:var(--ink);margin:0 0 26px}
+.equation{font-family:var(--display);font-size:18px;color:var(--accent-deep);margin:0 0 14px;font-variant-numeric:tabular-nums}
+.actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:26px}
+.ghost{display:inline-flex;align-items:center;min-height:44px;padding:12px 4px;font-size:14px;font-weight:500;text-decoration:none;border-bottom:1px solid var(--line)}
+
+/* ---------- content sections ---------- */
+.section{position:relative;padding:20vh var(--gutter) 14vh}
+.section-head{max-width:46rem;margin-bottom:56px}
+.muted{color:var(--muted);font-size:17px;line-height:1.65;margin:0 0 12px;max-width:40rem}
+
+.choices{display:flex;flex-wrap:wrap;gap:12px;max-width:60rem}
+.choices a{text-decoration:none;font-size:17px;padding:16px 24px;min-height:52px;display:inline-flex;align-items:center;gap:12px;
+  background:var(--veil);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  border:1px solid var(--hair);border-radius:999px;transition:background .3s,border-color .3s,transform .4s var(--ease)}
+.choices a:hover{border-color:var(--ink);transform:translateY(-2px)}
+.choices a span{color:var(--muted);font-size:14px}
+.choices a.unsure{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.choices a.unsure span{color:color-mix(in oklch, var(--bg) 75%, transparent)}
+
+.services{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:18px}
+.svc{position:relative;background:var(--veil);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid var(--hair);border-radius:22px;padding:30px 28px 26px;display:flex;flex-direction:column;
+  transition:border-color .4s, transform .5s var(--ease), box-shadow .5s}
+.svc:hover{transform:translateY(-4px);border-color:color-mix(in oklch, var(--line) 50%, transparent)}
+.svc.focus{border-color:var(--logo);box-shadow:0 0 0 4px color-mix(in oklch, var(--logo) 28%, transparent)}
+.svc .ico{display:block;width:40px;height:40px;margin-bottom:22px;background:var(--accent-deep);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
+.svc p{font-size:16px;line-height:1.6;color:var(--muted);margin:0 0 16px}
+.svc ul{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:7px;font-size:14px;color:var(--ink)}
+.svc li{padding-left:16px;position:relative}
+.svc li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--logo)}
+.svc .more{margin-top:auto;font-size:14px;font-weight:500;text-decoration:none;display:inline-flex;gap:8px;align-items:center;min-height:44px}
+.svc .more::after{content:"→";transition:transform .4s var(--ease)}
+.svc:hover .more::after{transform:translateX(4px)}
+.online{margin-top:28px;font-size:14px;color:var(--muted)}
+
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+.steps li{background:var(--veil);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--hair);border-radius:22px;padding:30px 28px}
+.steps li::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;
+  border:1.5px solid var(--logo);font-family:var(--display);font-size:19px;color:var(--accent-deep);margin-bottom:22px}
+.steps p{font-size:16px;line-height:1.6;color:var(--muted);margin:0}
+
+.team{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:22px}
+@media (min-width: 981px) and (max-width: 1139px){ .team{grid-template-columns:repeat(3,1fr);gap:40px 32px} }
+/* desktop: the team as a circle around Dr. Gotosidis, centred on the page */
+@media (min-width: 1140px){
+  #team .section-head{margin-left:auto;margin-right:auto;text-align:center}
+  #team .section-head .muted{margin-left:auto;margin-right:auto}
+  #team .team{display:block;position:relative;width:900px;height:880px;margin:0 auto}
+  #team .team::before{content:"";position:absolute;left:450px;top:410px;width:610px;height:610px;margin:-305px 0 0 -305px;border-radius:50%;
+    border:1.5px solid color-mix(in oklch, var(--logo) 55%, transparent);pointer-events:none}
+  #team .team::after{content:"";position:absolute;left:450px;top:410px;width:360px;height:360px;margin:-180px 0 0 -180px;border-radius:50%;
+    border:1px dashed color-mix(in oklch, var(--logo) 35%, transparent);pointer-events:none}
+  #team .member{position:absolute;z-index:1;width:200px;left:calc(var(--x) - 100px);top:calc(var(--y) - 70px);text-align:center}
+  #team .member .ph{width:140px;height:140px;aspect-ratio:1;border-radius:50%;margin:0 auto 12px;
+    box-shadow:0 0 0 5px var(--bg), 0 0 0 6.5px color-mix(in oklch, var(--logo) 55%, transparent)}
+  #team .member .ph img{border-radius:50%}
+  #team .member h3{font-size:17px;margin-bottom:3px}
+  #team .member p{font-size:12.5px;line-height:1.4;max-width:190px;margin:0 auto}
+  #team .member:nth-child(1){width:270px;left:315px;top:318px}
+  #team .member:nth-child(1) .ph{width:185px;height:185px}
+  #team .member:nth-child(1) h3{font-size:21px}
+  #team .member:nth-child(2){--x:450px;--y:105px}
+  #team .member:nth-child(3){--x:714px;--y:258px}
+  #team .member:nth-child(4){--x:714px;--y:562px}
+  #team .member:nth-child(5){--x:450px;--y:715px}
+  #team .member:nth-child(6){--x:186px;--y:562px}
+  #team .member:nth-child(7){--x:186px;--y:258px}
+}
+
+
+.member{text-decoration:none;display:block}
+.member .ph{aspect-ratio:4/5;border-radius:200px 200px 22px 22px;overflow:hidden;background:var(--bg-deep);margin-bottom:16px}
+.member img{width:100%;height:100%;object-fit:cover;filter:saturate(.85);transition:transform .8s var(--ease), filter .6s}
+.member:hover img{transform:scale(1.04);filter:saturate(1)}
+.member h3{font-size:21px;margin-bottom:6px}
+.member p{font-size:14px;line-height:1.5;color:var(--muted);margin:0}
+
+.split{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,80px);align-items:start}
+.posts{list-style:none;margin:0;padding:0}
+.posts li{border-top:1px solid var(--hair)}
+.posts li:last-child{border-bottom:1px solid var(--hair)}
+.posts a{display:grid;grid-template-columns:1fr auto;gap:4px 20px;padding:22px 0;text-decoration:none;align-items:baseline}
+.posts .t{font-family:var(--display);font-size:21px;line-height:1.25;letter-spacing:-.015em}
+.posts time{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.posts a:hover .t{color:var(--accent-deep)}
+
+.contact{min-height:100vh;display:flex;align-items:center}
+.contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,80px);align-items:center;width:100%}
+.contact h2{font-size:clamp(40px,6vw,92px)}
+.contact{padding-top:16vh}
+.channels{list-style:none;margin:40px 0 0;padding:0;max-width:34rem;display:grid;gap:0;background:var(--veil);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--hair);border-radius:22px;overflow:hidden}
+.channels li+li{border-top:1px solid var(--hair)}
+.channels a,.channels div{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:18px 24px;text-decoration:none;font-size:16px;min-height:56px;align-items:center}
+.channels span{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.channels a:hover{background:color-mix(in oklch, var(--accent) 14%, transparent)}
+
+@media (max-width: 980px){
+  .nav{display:none}
+  .menu-btn{display:inline-flex;align-items:center}
+  .nav.open{display:flex;flex-direction:column;position:fixed;top:72px;left:12px;right:12px;padding:10px;background:var(--bg);border:1px solid var(--hair);border-radius:20px}
+  .nav.open a{font-size:16px;color:var(--ink);padding:14px 16px}
+  .top .cta{padding:10px 16px;font-size:13px;white-space:nowrap}
+  .top .cta .long{display:none}
+  .top .cta .short{display:inline}
+  .choices{flex-direction:column}
+  .choices a{flex-direction:column;align-items:flex-start;gap:2px;border-radius:20px;padding:14px 20px}
+  .split,.contact-grid{grid-template-columns:minmax(0,1fr)}
+  .channels a,.channels div{grid-template-columns:1fr;gap:2px;padding:14px 20px}
+  .channels a{overflow-wrap:anywhere}
+  .steps{grid-template-columns:1fr}
+}
+@media (max-width: 900px){
+  .panel-inner{align-items:center;padding-top:88px;padding-bottom:88px}
+  .copy{background:radial-gradient(120% 90% at 20% 80%, color-mix(in oklch, var(--bg) 92%, transparent) 55%, transparent 100%);margin:0 -12px;padding:24px 12px}
+  .fib{bottom:auto;top:78px;font-size:13px;gap:10px}
+  .fib small{display:none}
+  .hint{bottom:22px}
+}
+@media (prefers-reduced-motion: reduce){
+  .scrollcue i::after{animation:none}
+  *{transition:none!important}
+}
+</style>
 </head>
+
 <body>
-  <a class="skip-link" href="#main">Παράκαμψη στο περιεχόμενο</a>
-  <!-- Header / Nav -->
-  <header class="site-header" id="siteHeader" role="banner">
-    <div class="container nav-wrap">
-      <div class="brand">
-        <a href="#home" class="logo-link" aria-label="MENTALIA - Αρχική">
-          <span class="logo-circle" aria-hidden="true"></span>
-          <span class="brand-name">MENTALIA</span>
-        </a>
-      </div>
-      <nav aria-label="Κύρια πλοήγηση">
-        <button class="menu-toggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Άνοιγμα μενού">
-          <span class="visually-hidden">Μενού</span>
-          <span class="menu-toggle__bars" aria-hidden="true">
-            <span class="menu-toggle__bar"></span>
-            <span class="menu-toggle__bar"></span>
-          </span>
-        </button>
-        <ul id="primaryNav" class="nav">
-          <li><a href="#home" aria-current="page">ΑΡΧΙΚΗ</a></li>
-          <li><a href="#services">ΥΠΗΡΕΣΙΕΣ</a></li>
-          <li><a href="about.html">Η ΦΙΛΟΣΟΦΙΑ ΜΑΣ</a></li>
-          <li><a href="#team">Η ΟΜΑΔΑ ΜΑΣ</a></li>
-          <li><a href="blog.html">BLOG</a></li>
-          <li><a href="#contact">ΕΠΙΚΟΙΝΩΝΙΑ</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<a class="skip" href="#services">Παράλειψη στις υπηρεσίες</a>
 
-  <!-- Social rail -->
-  <aside class="social-rail" aria-label="Κοινωνικά δίκτυα">
-    <ul>
-      <li>
-        <a href="https://www.instagram.com/mentalia.co?igsh=MTdncGN6b3ZjNXV4bw==" aria-label="Instagram MENTALIA" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2.5a4.5 4.5 0 104.5 4.5A4.505 4.505 0 0012 6.5zm0 2a2.5 2.5 0 11-2.5 2.5A2.5 2.5 0 0112 8.5zM18.25 6a1.25 1.25 0 11-1.25-1.25A1.25 1.25 0 0118.25 6z"/>
-          </svg>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.facebook.com/profile.php?id=61583363356599" aria-label="Facebook MENTALIA" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M21 12a9 9 0 10-10.4 8.9V15h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1a12.8 12.8 0 011.8.16v2h-1c-1 0-1.3.62-1.3 1.25V12h2.2l-.35 3h-1.85v5.9A9 9 0 0021 12z"/>
-          </svg>
-        </a>
-      </li>
+<header class="top" id="top">
+  <a class="wordmark" href="#home" aria-label="MENTALIA, αρχή σελίδας">MENTALIA</a>
+  <nav class="nav" id="nav" aria-label="Κύρια πλοήγηση">
+    <a href="#philosophy">Φιλοσοφία</a>
+    <a href="#services">Υπηρεσίες</a>
+    <a href="#team">Ομάδα</a>
+    <a href="blog.html">Blog</a>
+    <a href="#contact">Επικοινωνία</a>
+  </nav>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Μενού</button>
+  <a class="cta" href="#contact"><span class="dot" aria-hidden="true"></span><span class="long">Κλείστε ραντεβού</span><span class="short">Ραντεβού</span></a>
+</header>
+
+<div class="stage" aria-hidden="true"><svg id="scene" xmlns="http://www.w3.org/2000/svg"></svg></div>
+<div class="fib" id="fib" aria-hidden="true"><small>Fibonacci</small><span>1</span><span>1</span><span>2</span><span>3</span><span>5</span><span>8</span><span>13</span></div>
+
+<main>
+<!-- ===== Film: scenes 1–5 ===== -->
+<section class="film" id="home" aria-label="Η Mentalia">
+  <article class="panel" style="height:170vh">
+    <div class="panel-inner"><div class="copy">
+      <p class="kicker">Κέντρο ψυχικής υγείας · Κομοτηνή</p>
+      <h1>Οργανωμένη ψυχική φροντίδα, με επιστήμη και&nbsp;ανθρωπιά.</h1>
+      <ul class="tags" aria-label="Υπηρεσίες">
+        <li>Ψυχοθεραπεία</li><li>Παιδοψυχολογία</li><li>Συμβουλευτική</li><li>Διαταραχές μνήμης</li><li>Διατροφικές διαταραχές</li><li>Κλινική αξιολόγηση</li>
+      </ul>
+      <p class="byline">Υπό την επιστημονική ευθύνη του Δρ. Κωνσταντίνου Γκοτοσίδη, ψυχιάτρου.</p>
+    </div>
+    <div class="hint">
+      <span class="scrollcue"><i aria-hidden="true"></i>Σκρολάρετε</span>
+      <a href="#choose">Παράλειψη ταινίας</a>
+    </div></div>
+  </article>
+
+  <article class="panel" id="philosophy" style="height:230vh">
+    <div class="panel-inner"><div class="copy">
+      <p class="kicker">Η αποστολή μας</p>
+      <h2>Να κατανοείτε τον εαυτό σας και να χτίζετε μια ζωή με&nbsp;νόημα.</h2>
+      <p class="lead">Προσφέρουμε έγκυρη, επιστημονικά τεκμηριωμένη ψυχική φροντίδα, για να εξελίσσετε τη σκέψη σας και να αποκτάτε τα κατάλληλα εργαλεία <strong>σε έναν κόσμο ολοένα πιο σύνθετο.</strong></p>
+    </div></div>
+  </article>
+
+  <article class="panel" style="height:170vh">
+    <div class="panel-inner"><div class="copy">
+      <p class="kicker">Σφαιρική φροντίδα</p>
+      <h2>Βλέπουμε όλο τον άνθρωπο, όχι μόνο το&nbsp;σύμπτωμα.</h2>
+      <p class="lead">Η ψυχική υγεία συνδέεται με το σώμα, τις σχέσεις, τον ύπνο, τη διατροφή, την άσκηση, την εργασία, την οικογένεια και τις αξίες σας. <strong>Γι’ αυτό τα κοιτάμε όλα μαζί.</strong></p>
+    </div></div>
+  </article>
+
+  <article class="panel" style="height:160vh">
+    <div class="panel-inner"><div class="copy">
+      <p class="kicker">Μια ομάδα, όχι άθροισμα</p>
+      <h2>Επιστήμονες που δουλεύουν με κοινό&nbsp;πλάνο.</h2>
+      <ul class="pillars">
+        <li><b>Επιστημονική εγκυρότητα</b>Κλινική εμπειρία και τεκμηριωμένες μέθοδοι.</li>
+        <li><b>Εκπαίδευση και εποπτεία</b>Κλινική καθοδήγηση, συζήτηση περιστατικών, συνεχής εκπαίδευση.</li>
+        <li><b>Κόμβος συνεργασίας</b>Ανοιχτοί σε επαγγελματίες που μοιράζονται τις ίδιες αξίες.</li>
+      </ul>
+    </div></div>
+  </article>
+
+  <article class="panel" style="height:140vh">
+    <div class="panel-inner"><div class="copy">
+      <p class="brand-xl">MENTALIA</p>
+      <p class="tagline">The mentality of a life worth living</p>
+      <p class="equation">3 + 5 = 8</p>
+      <p class="lead">Στο λογότυπό μας, η ακτίνα του μεγάλου κύκλου είναι το άθροισμα των δύο μικρότερων, όπως στην ακολουθία Fibonacci. <strong>Ό,τι έρχεται κουβαλά κάτι από όσα προηγήθηκαν.</strong> Ξεκινάτε από την ιστορία που έχετε ήδη και χτίζετε το επόμενο κομμάτι της.</p>
+      <div class="actions">
+        <a class="cta" href="#choose"><span class="dot" aria-hidden="true"></span>Από πού να ξεκινήσω;</a>
+        <a class="ghost" href="about.html">Η φιλοσοφία μας αναλυτικά</a>
+      </div>
+    </div></div>
+  </article>
+</section>
+
+<!-- ===== Scene 6: guidance ===== -->
+<section class="section" id="choose" data-scene="choose">
+  <div class="section-head">
+    <p class="kicker">Ας ξεκινήσουμε από εσάς</p>
+    <h2>Τι σας φέρνει εδώ;</h2>
+    <p class="muted">Διαλέξτε ό,τι σας περιγράφει καλύτερα. Θα σας δείξουμε από πού να ξεκινήσετε.</p>
+  </div>
+  <nav class="choices" aria-label="Από πού να ξεκινήσω">
+    <a href="#svc-psy" data-focus="svc-psy">Για μένα <span>άγχος, διάθεση, σχέσεις, burnout</span></a>
+    <a href="#svc-child" data-focus="svc-child">Για το παιδί μου <span>4–14 ετών</span></a>
+    <a href="#svc-family" data-focus="svc-family">Για τη σχέση ή την οικογένεια <span>γονείς, ζευγάρι</span></a>
+    <a href="#svc-memory" data-focus="svc-memory">Για τη μνήμη <span>δική μου ή αγαπημένου</span></a>
+    <a href="#svc-food" data-focus="svc-food">Για τη σχέση με το φαγητό <span>σώμα, εικόνα εαυτού</span></a>
+    <a class="unsure" href="#svc-clinical" data-focus="svc-clinical">Δεν είμαι σίγουρος/η <span>ξεκινήστε με αξιολόγηση</span></a>
+  </nav>
+</section>
+
+<!-- ===== Scene 7: services ===== -->
+<section class="section" id="services" data-scene="services">
+  <div class="section-head">
+    <p class="kicker">Υπηρεσίες</p>
+    <h2>Κατανόηση πρώτα. Μετά, ένα πλάνο για&nbsp;εσάς.</h2>
+    <p class="muted">Κάθε άνθρωπος, παιδί, γονέας, ζευγάρι ή οικογένεια προσεγγίζεται με σεβασμό, διακριτικότητα και υπευθυνότητα, με την υποστήριξη όλης της διεπιστημονικής ομάδας.</p>
+  </div>
+  <div class="services">
+    <article class="svc" id="svc-clinical">
+      <span class="ico" style="--i:url(icon-clinical.svg)" aria-hidden="true"></span>
+      <h3>Κλινική αξιολόγηση &amp; θεραπευτικός σχεδιασμός</h3>
+      <p>Το πρώτο βήμα: ιστορικό, κατανόηση της δυσκολίας και συζήτηση στην επιστημονική ομάδα.</p>
+      <ul><li>Αρχική κλινική εκτίμηση</li><li>Εξατομικευμένο θεραπευτικό πλάνο</li><li>Παρακολούθηση &amp; επαναξιολόγηση</li></ul>
+      <a class="more" href="kliniki-axiologisi-komotini.html">Περισσότερα</a>
+    </article>
+    <article class="svc" id="svc-psy">
+      <span class="ico" style="--i:url(icon-psychotherapy.svg)" aria-hidden="true"></span>
+      <h3>Ψυχοθεραπεία ενηλίκων</h3>
+      <p>Ένας ασφαλής χώρος κατανόησης και αλλαγής, με σεβασμό στον ρυθμό σας.</p>
+      <ul><li>Άγχος &amp; καταθλιπτική διάθεση</li><li>Σχέσεις, κρίσεις ζωής, μεταβάσεις</li><li>Burnout &amp; επαγγελματική εξουθένωση</li></ul>
+      <a class="more" href="psychotherapeia-komotini.html">Περισσότερα</a>
+    </article>
+    <article class="svc" id="svc-child">
+      <span class="ico" style="--i:url(icon-child.svg)" aria-hidden="true"></span>
+      <h3>Παιδοψυχολογική υποστήριξη</h3>
+      <p>Για παιδιά 4–14 ετών, σε στενή συνεργασία με γονείς και σχολείο.</p>
+      <ul><li>Συναίσθημα &amp; συμπεριφορά</li><li>Σχολική προσαρμογή</li><li>Σχέση γονέα–παιδιού</li></ul>
+      <a class="more" href="paidopsychologiki-ypostirixi-komotini.html">Περισσότερα</a>
+    </article>
+    <article class="svc" id="svc-family">
+      <span class="ico" style="--i:url(icon-counseling.svg)" aria-hidden="true"></span>
+      <h3>Συμβουλευτική γονέων, οικογένειας &amp; ζεύγους</h3>
+      <p>Καλύτερη επικοινωνία, όρια και στήριξη στις σημαντικές σχέσεις, ειδικά σε περιόδους έντασης.</p>
+      <ul><li>Συμβουλευτική γονέων</li><li>Συμβουλευτική ζεύγους</li><li>Συμβουλευτική οικογένειας</li></ul>
+      <a class="more" href="symvouleftiki-goneon-zevgous-komotini.html">Περισσότερα</a>
+    </article>
+    <article class="svc" id="svc-memory">
+      <span class="ico" style="--i:url(icon-memory.svg)" aria-hidden="true"></span>
+      <h3>Διαταραχές μνήμης &amp; νευροψυχολογικός έλεγχος</h3>
+      <p>Αξιολόγηση μνήμης, προσοχής και γνωστικής λειτουργίας, με πλήρη έκθεση και πλάνο για ασθενή και φροντιστές.</p>
+      <ul><li>Νευροψυχολογικές δοκιμασίες</li><li>Κατανόηση γνωστικών αλλαγών</li><li>Στήριξη οικογένειας &amp; φροντιστών</li></ul>
+      <a class="more" href="nevropsychologikos-elegchos-komotini.html">Περισσότερα</a>
+    </article>
+    <article class="svc" id="svc-food">
+      <span class="ico" style="--i:url(icon-nutrition.svg)" aria-hidden="true"></span>
+      <h3>Διατροφικές δυσκολίες &amp; διαταραχές</h3>
+      <p>Ψυχολόγοι και κλινική διατροφολόγος μαζί, για τη σχέση με το φαγητό, το σώμα και την εικόνα εαυτού.</p>
+      <ul><li>Ψυχολογική υποστήριξη</li><li>Συναισθηματική ρύθμιση</li><li>Συνεργασία με διατροφολόγο</li></ul>
+      <a class="more" href="diatrofikes-diataraches-komotini.html">Περισσότερα</a>
+    </article>
+  </div>
+  <p class="online">Όλες οι υπηρεσίες, εκτός από τον νευροψυχολογικό έλεγχο, προσφέρονται και διαδικτυακά.</p>
+</section>
+
+<!-- ===== Scene 8: how we start ===== -->
+<section class="section" id="start" data-scene="steps">
+  <div class="section-head">
+    <p class="kicker">Πώς ξεκινάμε</p>
+    <h2>Τρία βήματα. Κάθε ένα χτίζει πάνω στο&nbsp;προηγούμενο.</h2>
+  </div>
+  <ol class="steps">
+    <li><h3>Επικοινωνία</h3><p>Καλείτε τη γραμματεία μας και κλείνουμε την πρώτη συνάντηση, δια ζώσης ή διαδικτυακά.</p></li>
+    <li><h3>Αξιολόγηση</h3><p>Λήψη ιστορικού και κατανόηση της δυσκολίας. Το υλικό συζητείται στην επιστημονική ομάδα.</p></li>
+    <li><h3>Εξατομικευμένο πλάνο</h3><p>Η κατάλληλη θεραπευτική προσέγγιση για εσάς, με παρακολούθηση της πορείας και συνεργασία ειδικοτήτων όπου χρειάζεται.</p></li>
+  </ol>
+</section>
+
+<!-- ===== Scene 9: team ===== -->
+<section class="section" id="team" data-scene="team">
+  <div class="section-head">
+    <p class="kicker">Η ομάδα μας</p>
+    <h2>Ψυχίατροι, ψυχολόγοι και συναφείς ειδικότητες, σε μία&nbsp;ομάδα.</h2>
+    <p class="muted">Με κλινική καθοδήγηση, εσωτερική εποπτεία και τακτικές συναντήσεις, ώστε κάθε πλάνο να έχει τη ματιά όλης της ομάδας.</p>
+  </div>
+  <div class="team">
+    <a class="member" href="bio-gotosidis.html"><div class="ph"><img src="team-gotosidis.webp" alt="Κωνσταντίνος Γκοτοσίδης" loading="lazy"></div><h3>Κωνσταντίνος Γκοτοσίδης</h3><p>Ψυχίατρος – Ψυχοθεραπευτής, Ιδρυτής &amp; Διευθυντής</p></a>
+    <a class="member" href="bio-patroklos.html"><div class="ph"><img src="team-patroklos.webp" alt="Πάτροκλος Θεοχάρης" loading="lazy"></div><h3>Πάτροκλος Θεοχάρης</h3><p>Ψυχίατρος – Ψυχοφαρμακολογία &amp; Γνωστική Αναλυτική Ψυχοθεραπεία</p></a>
+    <a class="member" href="bio-stratos.html"><div class="ph"><img src="team-stratos.webp" alt="Στράτος Βραχιώλιας" loading="lazy"></div><h3>Στράτος Βραχιώλιας</h3><p>Ψυχολόγος – Συμβουλευτική γονέων, ζευγαριών &amp; πρόληψη εξαρτήσεων</p></a>
+    <a class="member" href="bio-soultana.html"><div class="ph"><img src="team-soultana.webp" alt="Σουλτάνα Γεωργιάδου" loading="lazy"></div><h3>Σουλτάνα Γεωργιάδου</h3><p>Ψυχολόγος – Παιδοψυχολογία &amp; Νευροψυχολογικός Έλεγχος</p></a>
+    <a class="member" href="bio-christos.html"><div class="ph"><img src="team-christos.webp" alt="Χρήστος Πανούσης" loading="lazy"></div><h3>Χρήστος Πανούσης</h3><p>Ψυχολόγος – Κοινωνική Ψυχολογία &amp; Συνθετική Ψυχοθεραπεία</p></a>
+    <a class="member" href="bio-chariklia.html"><div class="ph"><img src="team-chariklia.webp" alt="Χαρίκλεια Φυγκά" loading="lazy"></div><h3>Χαρίκλεια Φυγκά</h3><p>Διαιτολόγος – Διατροφολόγος, εξειδίκευση στις διατροφικές διαταραχές</p></a>
+    <a class="member" href="bio-marilia.html"><div class="ph"><img src="team-marilia.jpg" alt="Μαρία Ευαγγελία Παρασχάκη" loading="lazy"></div><h3>Μαρία Ευαγγελία Παρασχάκη</h3><p>Κοινωνική Λειτουργός – Ψυχοκοινωνική υποστήριξη παιδιών, εφήβων &amp; οικογενειών</p></a>
+  </div>
+</section>
+
+<!-- ===== Scene 10: blog ===== -->
+<section class="section" id="blog" data-scene="learn">
+  <div class="split">
+    <div class="section-head">
+      <p class="kicker">Από το blog</p>
+      <h2>Γνώση για την ψυχική υγεία, κατανοητή και&nbsp;χρήσιμη.</h2>
+      <p class="muted">Σύντομα κείμενα από την ομάδα μας για το παιδί, την οικογένεια και τις σχέσεις.</p>
+      <div class="actions"><a class="ghost" href="blog-library.html">Όλα τα άρθρα</a></div>
+    </div>
+    <ul class="posts">
+      <li><a href="article-o-fovos-tis-apotychias.html" data-new-until="2026-11-21T20:00:00+02:00"><span class="t">Όταν ο φόβος της αποτυχίας μάς κρατά πίσω</span><time datetime="2026-11-19">19.11.2026</time></a></li>
+      <li><a href="article-prota-na-synantiseis-to-synaisthima.html"><span class="t">Πρώτα, να συναντήσεις το συναίσθημα</span><time datetime="2026-10-17">17.10.2026</time></a></li>
+      <li><a href="article-ta-paidia-pou-megalonoun-goneis.html"><span class="t">Τα παιδιά που μεγαλώνουν γονείς</span><time datetime="2026-10-05">05.10.2026</time></a></li>
     </ul>
-  </aside>
+  </div>
+</section>
 
-  <main id="main">
-    <!-- Hero -->
-    <section id="home" class="hero" aria-label="Κεντρική ενότητα">
-      <div class="hero-logo-wrap" aria-hidden="true">
-        <img class="hero-logo-static" src="logo-static.svg" alt="" width="520" height="520" fetchpriority="high" loading="eager" decoding="async" />
-        <svg class="hero-logo" viewBox="0 0 1366 768" role="presentation" focusable="false">
-          <g class="logo-circles">
-            <circle id="circle-outer" cx="681" cy="384" r="260" />
-            <circle id="circle-mid" cx="681" cy="384" r="175" />
-            <circle id="circle-inner" cx="681" cy="384" r="90" />
-          </g>
-        </svg>
+<!-- ===== Scene 11: contact ===== -->
+<section class="section contact" id="contact" data-scene="contact">
+  <div class="contact-grid">
+    <div>
+      <p class="kicker">Επικοινωνία</p>
+      <h2>Ο επόμενος κύκλος ξεκινά με ένα&nbsp;τηλεφώνημα.</h2>
+      <p class="muted">Για ραντεβού και πληροφορίες, η γραμματεία μας είναι στη διάθεσή σας.</p>
+      <div class="actions">
+        <a class="cta" href="tel:+302531036007"><span class="dot" aria-hidden="true"></span>Καλέστε 25310 36007</a>
+        <a class="ghost" href="tel:+306977008040">ή 697 700 8040</a>
       </div>
-      <div class="hero-content container">
-        <h1 class="hero-title">MENTALIA</h1>
-        <div class="hero-services">
-          <p class="hero-services-intro">Οργανωμένο ιδιωτικό κέντρο ψυχικής υγείας που προσφέρει υπηρεσίες:</p>
-          <ul class="hero-services-list">
-            <li>Ψυχοθεραπείας</li>
-            <li>Παιδοψυχολογίας</li>
-            <li>Συμβουλευτικής</li>
-            <li>Διαταραχών μνήμης</li>
-            <li>Διατροφικών διαταραχών</li>
-            <li>Σεμινάρια - Workshops</li>
-          </ul>
-        </div>
-        <p class="hero-founder">By Dr. Konstantinos Gotosidis</p>
-        <div class="hero-ctas">
-          <a href="#services" class="btn primary">Μάθετε περισσότερα</a>
-          <a href="#contact" class="btn">Κλείστε Ραντεβού</a>
-        </div>
-      </div>
-      <div class="hero-page2">
-        <p class="hero-tagline">The mentality of a life worth living</p>
-        <div class="hero-second-title reveal">
-          Οργανωμένη ψυχική φροντίδα με επιστημονική<br>εγκυρότητα και ανθρωποκεντρική προσέγγιση
-        </div>
-        <div class="hero-cards">
-          <div class="hero-card reveal">
-            <p>Η Mentalia είναι ένα οργανωμένο ιδιωτικό κέντρο ψυχικής υγείας.</p>
-            <p>Προσφέρει υπηρεσίες:</p>
-            <ul class="hero-card-list">
-              <li>Ψυχοθεραπείας</li>
-              <li>Παιδοψυχολογίας</li>
-              <li>Συμβουλευτικής</li>
-              <li>Διαταραχών μνήμης</li>
-              <li>Διατροφικών διαταραχών</li>
-              <li>Σεμινάρια – Workshops</li>
-            </ul>
-          </div>
-          <div class="hero-card reveal">
-            <p>Στελεχώνεται από οργανωμένη ομάδα επιστημόνων ψυχικής υγείας και συναφών ειδικοτήτων με:</p>
-            <ul class="hero-card-list">
-              <li>Εποπτεία &amp; κλινική καθοδήγηση.</li>
-              <li>Εσωτερικό εκπαιδευτικό πρόγραμμα.</li>
-              <li>Σφαιρική προσέγγιση στον άνθρωπο και στις ανάγκες του.</li>
-            </ul>
-          </div>
-          <div class="hero-card reveal">
-            <p>Η Mentalia αναπτύσσεται παράλληλα ως κόμβος:</p>
-            <ul class="hero-card-list">
-              <li>Συνεργασίας</li>
-              <li>Επιστημονικής ανταλλαγής</li>
-              <li>Συνάντησης επαγγελματιών ψυχικής υγείας</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="hero-page3">
-        <h2 class="hero-page3-title">Οι βασικές αξίες μας</h2>
-        <div class="hero-axis-cards">
-          <div class="hero-axis-card reveal">
-            <span class="axis-num">01</span>
-            <h3>Η φιλοσοφία μας</h3>
-            <p>Η αποστολή της Mentalia είναι να προσφέρει έγκυρη, επιστημονικά τεκμηριωμένη ψυχική φροντίδα και να βοηθά τον άνθρωπο να κατανοεί τον εαυτό του, να εξελίσσει τη σκέψη του και να αναπτύσσει τα κατάλληλα εργαλεία για μια ζωή με νόημα, πληρότητα και αξία σε έναν κόσμο ολοένα πιο σύνθετο και πιο χαοτικό.</p>
-          </div>
-          <div class="hero-axis-card reveal">
-            <span class="axis-num">02</span>
-            <h3>Επιστημονική εγκυρότητα</h3>
-            <p>Η Mentalia στελεχώνεται από επιστήμονες ψυχικής υγείας με αξιόλογη επιστημονική και επαγγελματική διαδρομή, κλινική εμπειρία και επιστημονική τεκμηρίωση.</p>
-          </div>
-          <div class="hero-axis-card reveal">
-            <span class="axis-num">03</span>
-            <h3>Σφαιρική φροντίδα</h3>
-            <p>Η φιλοσοφία της Mentalia προσεγγίζει τον άνθρωπο σφαιρικά, συνδέοντας την ψυχική υγεία με το σώμα, το αξιακό του σύστημα, τις σχέσεις, τον ύπνο, τη διατροφή, την άσκηση, τις συνήθειες, την εργασία, την οικογένεια και τον συνολικό τρόπο ζωής.</p>
-          </div>
-          <div class="hero-axis-card reveal">
-            <span class="axis-num">04</span>
-            <h3>Δομημένη ομάδα</h3>
-            <p>Η Mentalia δεν λειτουργεί ως άθροισμα μεμονωμένων επαγγελματιών, αλλά ως οργανωμένη ομάδα επιστημόνων ψυχικής υγείας και συναφών ειδικοτήτων. Η θεραπευτική, διοικητική και λειτουργική οργάνωση διασφαλίζει συντονισμό, συνέπεια και υψηλό επίπεδο ευθύνης, με επιμέρους τομείς εξειδίκευσης.</p>
-          </div>
-          <div class="hero-axis-card reveal">
-            <span class="axis-num">05</span>
-            <h3>Εκπαίδευση και εποπτεία</h3>
-            <p>Η Mentalia λειτουργεί ως γόνιμο πλαίσιο θεραπευτικής, επιστημονικής και επαγγελματικής εξέλιξης. Η κλινική καθοδήγηση, η εσωτερική εποπτεία, η συζήτηση περιστατικών και η δομημένη εκπαίδευση αποτελούν βασικό άξονα ποιότητας και βάση για μελλοντικές εκπαιδευτικές δράσεις.</p>
-          </div>
-          <div class="hero-axis-card reveal">
-            <span class="axis-num">06</span>
-            <h3>Κόμβος συνεργασίας</h3>
-            <p>Η Mentalia αναπτύσσεται ως ζωντανός επιστημονικός κόμβος συνεργασίας, εκπαίδευσης, ανταλλαγής γνώσης και αμοιβαίας εξέλιξης για επαγγελματίες ψυχικής υγείας που μοιράζονται κοινές αξίες ποιότητας και υπευθυνότητας, καλλιεργώντας ένα πλαίσιο διαλόγου και εμπιστοσύνης.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" class="fullpage-section tone-cream parallax-section">
-      <div class="container services-layout reveal">
-        <div class="services-header">
-          <h2>ΥΠΗΡΕΣΙΕΣ</h2>
-          <p class="subtitle">Στη Mentalia προσφέρουμε υπηρεσίες ψυχικής υγείας με έμφαση στην κλινική κατανόηση, τη θεραπευτική σχέση, την επιστημονική εγκυρότητα και τον εξατομικευμένο σχεδιασμό.<br><br>Κάθε άνθρωπος, παιδί, γονέας, ζευγάρι ή οικογένεια προσεγγίζεται με σεβασμό, διακριτικότητα και υπευθυνότητα. Στόχος μας είναι η ουσιαστική κατανόηση της δυσκολίας και η διαμόρφωση ενός εξατομικευμένου δομημένου θεραπευτικού πλάνου με την υποστήριξη μιας πλήρους διεπιστημονικής ομάδας.<br><br>Όλες οι υπηρεσίες προσφέρονται και διαδικτυακά.</p>
-          <div class="hero-ctas">
-            <a href="services.html" class="btn primary">Μάθε περισσότερα</a>
-            <a href="#contact" class="btn">Κλείστε Ραντεβού</a>
-          </div>
-        </div>
-        <ul class="posts-grid services-grid">
-          <li class="post service-post service-post--with-icon reveal" data-service="psychotherapy" data-reveal-order="1" data-reveal-stagger="200">
-            <span class="service-icon-link">
-              <img src="icon-psychotherapy.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
-            </span>
-            <div class="service-copy">
-              <h3><a class="service-page-link" href="psychotherapeia-komotini.html">ΨΥΧΟΘΕΡΑΠΕΙΑ ΕΝΗΛΙΚΩΝ</a></h3>
-              <p>Απευθύνεται σε όλο το φάσμα των ζητημάτων ψυχικής σφαίρας — άγχος, κατάθλιψη, δυσκολίες σχέσεων, κρίσεις ζωής, burnout ή ανάγκη βαθύτερης αυτογνωσίας.</p>
-            </div>
-            <details class="service-details">
-              <summary>Διαβάστε περισσότερα</summary>
-              <div class="service-panel">
-                <p>Μέσα από αρχική αξιολόγηση και εσωτερική αξιολόγηση από τη διεπιστημονική ομάδα της Mentalia, προτείνεται η κατάλληλη θεραπευτική προσέγγιση. Στόχος είναι ένας ασφαλής χώρος κατανόησης, επεξεργασίας και αλλαγής, με σεβασμό στον ρυθμό και τις ανάγκες κάθε ανθρώπου.</p>
-                <ul class="cta-list">
-                  <li>Ατομική ψυχοθεραπεία ενηλίκων</li>
-                  <li>Άγχος και συναισθηματικές δυσκολίες</li>
-                  <li>Καταθλιπτική διάθεση</li>
-                  <li>Δυσκολίες σχέσεων και επικοινωνίας</li>
-                  <li>Κρίσεις ζωής και προσωπικές μεταβάσεις</li>
-                  <li>Burnout και επαγγελματική εξουθένωση</li>
-                  <li>Μακροχρόνια ψυχοθεραπευτική υποστήριξη</li>
-                  <li>Διαδικτυακές συνεδρίες</li>
-                </ul>
-              </div>
-            </details>
-          </li>
-          <li class="post service-post service-post--with-icon reveal" data-service="clinical" data-reveal-order="2" data-reveal-stagger="200">
-            <span class="service-icon-link">
-              <img src="icon-clinical.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
-            </span>
-            <div class="service-copy">
-              <h3><a class="service-page-link" href="kliniki-axiologisi-komotini.html">ΚΛΙΝΙΚΗ ΑΞΙΟΛΟΓΗΣΗ & ΘΕΡΑΠΕΥΤΙΚΟΣ ΣΧΕΔΙΑΣΜΟΣ</a></h3>
-              <p>Ξεκινά από την πρώτη συνάντηση και περιλαμβάνει λήψη ιστορικού, κατανόηση συμπτωμάτων και συνολική εκτίμηση της κατάστασης.</p>
-            </div>
-            <details class="service-details">
-              <summary>Διαβάστε περισσότερα</summary>
-              <div class="service-panel">
-                <p>Το αρχικό υλικό αξιολογείται στις τακτικές συναντήσεις της διεπιστημονικής ομάδας και διαμορφώνεται εξατομικευμένο θεραπευτικό πλάνο, που μπορεί να περιλαμβάνει συνεργασία με άλλες ειδικότητες της Mentalia.</p>
-                <ul class="cta-list">
-                  <li>Αρχική κλινική εκτίμηση και λήψη ιστορικού</li>
-                  <li>Συζήτηση στην επιστημονική ομάδα</li>
-                  <li>Σφαιρική αξιολόγηση από όλες τις ειδικότητες</li>
-                  <li>Θεραπευτικός σχεδιασμός</li>
-                  <li>Κατεύθυνση προς κατάλληλη μορφή υποστήριξης</li>
-                  <li>Παρακολούθηση πορείας &amp; επαναξιολόγηση</li>
-                  <li>Διαδικτυακές συνεδρίες</li>
-                </ul>
-              </div>
-            </details>
-          </li>
-          <li class="post service-post service-post--with-icon reveal" data-service="childpsychology" data-reveal-order="3" data-reveal-stagger="200">
-            <span class="service-icon-link">
-              <img src="icon-child.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
-            </span>
-            <div class="service-copy">
-              <h3><a class="service-page-link" href="paidopsychologiki-ypostirixi-komotini.html">ΠΑΙΔΟΨΥΧΟΛΟΓΙΚΗ ΥΠΟΣΤΗΡΙΞΗ</a></h3>
-              <p>Απευθύνεται σε παιδιά και γονείς που αντιμετωπίζουν δυσκολίες στη συμπεριφορά, το συναίσθημα, τη σχολική προσαρμογή ή την καθημερινή οικογενειακή λειτουργία.</p>
-            </div>
-            <details class="service-details">
-              <summary>Διαβάστε περισσότερα</summary>
-              <div class="service-panel">
-                <p>Η εργασία με το παιδί δεν απομονώνεται από το οικογενειακό του περιβάλλον. Η συνεργασία με γονείς και εκπαιδευτικούς αποτελεί βασικό μέρος της θεραπευτικής διαδικασίας.</p>
-                <ul class="cta-list">
-                  <li>Παιδοψυχολογική αξιολόγηση</li>
-                  <li>Συναισθηματικές και συμπεριφορικές δυσκολίες</li>
-                  <li>Σχολική προσαρμογή</li>
-                  <li>Δυσκολίες στη σχέση γονέα–παιδιού</li>
-                  <li>Συνεργασία με γονείς και οικογένεια</li>
-                  <li>Ηλικιακό εύρος: ~4–14 ετών</li>
-                  <li>Διαδικτυακές συνεδρίες</li>
-                </ul>
-              </div>
-            </details>
-          </li>
-          <li class="post service-post service-post--with-icon reveal" data-service="counseling" data-reveal-order="4" data-reveal-stagger="200">
-            <span class="service-icon-link">
-              <img src="icon-counseling.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
-            </span>
-            <div class="service-copy">
-              <h3><a class="service-page-link" href="symvouleftiki-goneon-zevgous-komotini.html">ΣΥΜΒΟΥΛΕΥΤΙΚΗ ΓΟΝΕΩΝ, ΟΙΚΟΓΕΝΕΙΑΣ & ΖΕΥΓΟΥΣ</a></h3>
-              <p>Βοηθά τους ανθρώπους να κατανοήσουν καλύτερα τις δυσκολίες που εμφανίζονται μέσα στις σημαντικές σχέσεις της ζωής τους.</p>
-            </div>
-            <details class="service-details">
-              <summary>Διαβάστε περισσότερα</summary>
-              <div class="service-panel">
-                <p>Στόχος είναι η βελτίωση επικοινωνίας, οριοθέτησης και υποστήριξης — τόσο στον γονεϊκό ρόλο όσο και στη δυναμική ζεύγους ή οικογένειας σε περιόδους έντασης ή κρίσης.</p>
-                <ul class="cta-list">
-                  <li>Συμβουλευτική γονέων</li>
-                  <li>Κατανόηση της συμπεριφοράς του παιδιού</li>
-                  <li>Όρια και επικοινωνία</li>
-                  <li>Στήριξη γονέων σε περιόδους κρίσης</li>
-                  <li>Συμβουλευτική οικογένειας</li>
-                  <li>Συμβουλευτική ζεύγους</li>
-                  <li>Βελτίωση επικοινωνίας και σχέσεων</li>
-                  <li>Διαδικτυακές συνεδρίες</li>
-                </ul>
-              </div>
-            </details>
-          </li>
-          <li class="post service-post service-post--with-icon reveal" data-service="memory" data-reveal-order="5" data-reveal-stagger="200">
-            <span class="service-icon-link">
-              <img src="icon-memory.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
-            </span>
-            <div class="service-copy">
-              <h3><a class="service-page-link" href="nevropsychologikos-elegchos-komotini.html">ΔΙΑΤΑΡΑΧΕΣ ΜΝΗΜΗΣ & ΝΕΥΡΟΨΥΧΟΛΟΓΙΚΟΣ ΕΛΕΓΧΟΣ</a></h3>
-              <p>Στη Mentalia λειτουργεί τμήμα διαταραχών μνήμης με νευροψυχολογική αξιολόγηση για δυσκολίες μνήμης, προσοχής και συνολικής γνωστικής λειτουργίας.</p>
-            </div>
-            <details class="service-details">
-              <summary>Διαβάστε περισσότερα</summary>
-              <div class="service-panel">
-                <p>Η διαγνωστική διαδικασία περιλαμβάνει κλινική αξιολόγηση, νευροψυχολογικές δοκιμασίες και πλήρη έκθεση αποτελεσμάτων. Συνολική αξιολόγηση από την ομάδα νευροεπιστημόνων με πρόταση θεραπευτικού σχεδιασμού για τον πάσχοντα και τους φροντιστές.</p>
-                <ul class="cta-list">
-                  <li>Αξιολόγηση μνήμης</li>
-                  <li>Αξιολόγηση προσοχής και συγκέντρωσης</li>
-                  <li>Γνωστική λειτουργικότητα</li>
-                  <li>Δυσκολίες καθημερινής οργάνωσης</li>
-                  <li>Υποστήριξη οικογένειας και φροντιστών</li>
-                  <li>Κατανόηση γνωστικών αλλαγών</li>
-                </ul>
-              </div>
-            </details>
-          </li>
-          <li class="post service-post service-post--with-icon reveal" data-service="nutrition" data-reveal-order="6" data-reveal-stagger="200">
-            <span class="service-icon-link">
-              <img src="icon-nutrition.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
-            </span>
-            <div class="service-copy">
-              <h3><a class="service-page-link" href="diatrofikes-diataraches-komotini.html">ΔΙΑΤΡΟΦΙΚΕΣ ΔΥΣΚΟΛΙΕΣ & ΔΙΑΤΑΡΑΧΕΣ</a></h3>
-              <p>Εξειδικευμένη υποστήριξη για δυσκολίες που αφορούν τη σχέση με το φαγητό, το σώμα, την εικόνα εαυτού και τη συναισθηματική ρύθμιση.</p>
-            </div>
-            <details class="service-details">
-              <summary>Διαβάστε περισσότερα</summary>
-              <div class="service-panel">
-                <p>Βασίζεται στη συνεργασία επιστημόνων ψυχικής υγείας και κλινικής διατροφολόγου. Οι διατροφικές δυσκολίες συνδέονται με συναίσθημα, αυτοεκτίμηση, άγχος και τον συνολικό τρόπο ζωής.</p>
-                <ul class="cta-list">
-                  <li>Ψυχολογική υποστήριξη σε διατροφικές δυσκολίες</li>
-                  <li>Υποστήριξη στη σχέση με το σώμα και την εικόνα εαυτού</li>
-                  <li>Συναισθηματική ρύθμιση</li>
-                  <li>Συνεργασία με κλινική διατροφολόγο</li>
-                  <li>Υποστήριξη σε διατροφικές διαταραχές</li>
-                  <li>Σφαιρική προσέγγιση ψυχικής υγείας και διατροφής</li>
-                  <li>Διαδικτυακές συνεδρίες</li>
-                </ul>
-              </div>
-            </details>
-          </li>
-          <li class="post service-post service-post--with-icon reveal" data-service="seminars" data-reveal-order="7" data-reveal-stagger="200">
-            <span class="service-icon-link">
-              <img src="icon-seminars.svg" alt="" class="service-icon service-icon--img" loading="lazy" decoding="async" />
-            </span>
-            <div class="service-copy">
-              <h3><a class="service-page-link" href="seminaria-psychikis-ygeias-komotini.html">ΣΕΜΙΝΑΡΙΑ, WORKSHOPS & ΕΚΠΑΙΔΕΥΤΙΚΕΣ ΔΡΑΣΕΙΣ</a></h3>
-              <p>Σχεδιασμός σεμιναρίων, ομιλιών, workshops και εκπαιδευτικών δράσεων για γονείς, κοινό, επαγγελματίες ψυχικής υγείας και εταιρείες.</p>
-            </div>
-            <details class="service-details">
-              <summary>Διαβάστε περισσότερα</summary>
-              <div class="service-panel">
-                <p>Στόχος είναι η διάδοση έγκυρης, κατανοητής και πρακτικά χρήσιμης γνώσης γύρω από την ψυχική υγεία. Η Mentalia διαθέτει αίθουσα ως 15 ατόμων με υψηλής τεχνολογίας οπτικοακουστικό εξοπλισμό και επαγγελματικό content creation studio (Vidcast, Podcast).</p>
-                <ul class="cta-list">
-                  <li>Σεμινάρια–σχολεία για γονείς</li>
-                  <li>Workshops για θέματα ψυχικής υγείας για το κοινό</li>
-                  <li>Workshops ατομικής εξέλιξης και αυτοβελτίωσης</li>
-                  <li>Εκπαιδευτικές δράσεις για επαγγελματίες ψυχικής υγείας</li>
-                  <li>Εποπτικές και εκπαιδευτικές συναντήσεις</li>
-                  <li>Σταδιακή παραγωγή ψηφιακού εκπαιδευτικού υλικού</li>
-                </ul>
-              </div>
-            </details>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Team -->
-    <section id="team" class="fullpage-section tone-navy parallax-section" style="background:#F1EADC;">
-      <div class="container reveal">
-        <h2>Η ΟΜΑΔΑ ΜΑΣ</h2>
-        <div class="mslider-wrap">
-          <button class="mslider-btn" id="msliderPrev" aria-label="Προηγούμενο μέλος">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
-          <div class="mslider-viewport">
-            <div class="mslider-track" id="msliderTrack">
-
-              <a href="bio-gotosidis.html" class="mslider-card">
-                <div class="mslider-photo"><img src="team-gotosidis.webp" alt="Κωνσταντίνος Γκοτοσίδης" loading="lazy"></div>
-                <div class="mslider-info">
-                  <h3 class="mslider-name">Κωνσταντίνος Γκοτοσίδης</h3>
-                  <p class="mslider-role">Ψυχίατρος – Ψυχοθεραπευτής, Ιδρυτής &amp; Διευθυντής της Mentalia</p>
-                </div>
-              </a>
-
-              <a href="bio-stratos.html" class="mslider-card">
-                <div class="mslider-photo"><img src="team-stratos.webp" alt="Στράτος Βραχιώλιας" loading="lazy"></div>
-                <div class="mslider-info">
-                  <h3 class="mslider-name">Στράτος Βραχιώλιας</h3>
-                  <p class="mslider-role">Ψυχολόγος - συμβουλευτική γονέων,ζευγαριών &amp; πρόληψη εξαρτήσεων</p>
-                </div>
-              </a>
-
-              <a href="bio-soultana.html" class="mslider-card">
-                <div class="mslider-photo"><img src="team-soultana.webp" alt="Σουλτάνα Γεωργιάδου" loading="lazy"></div>
-                <div class="mslider-info">
-                  <h3 class="mslider-name">Σουλτάνα Γεωργιάδου</h3>
-                  <p class="mslider-role">Ψυχολόγος – Παιδοψυχολογία &amp; Νευροψυχολογικός Έλεγχος</p>
-                </div>
-              </a>
-
-              <a href="bio-christos.html" class="mslider-card">
-                <div class="mslider-photo"><img src="team-christos.webp" alt="Χρήστος Πανούσης" loading="lazy"></div>
-                <div class="mslider-info">
-                  <h3 class="mslider-name">Χρήστος Πανούσης</h3>
-                  <p class="mslider-role">Ψυχολόγος – Κοινωνική Ψυχολογία &amp; Συνθετική Ψυχοθεραπεία</p>
-                </div>
-              </a>
-
-              <a href="bio-chariklia.html" class="mslider-card">
-                <div class="mslider-photo"><img src="team-chariklia.webp" alt="Χαρίκλεια Φυγκά" loading="lazy"></div>
-                <div class="mslider-info">
-                  <h3 class="mslider-name">Χαρίκλεια Φυγκά</h3>
-                  <p class="mslider-role">Διαιτολόγος - Διατροφολόγος με εξειδίκευση στις διατροφικές διαταραχές</p>
-                </div>
-              </a>
-
-              <a href="bio-patroklos.html" class="mslider-card">
-                <div class="mslider-photo"><img src="team-patroklos.webp" alt="Πάτροκλος Θεοχάρης" loading="lazy"></div>
-                <div class="mslider-info">
-                  <h3 class="mslider-name">Πάτροκλος Θεοχάρης</h3>
-                  <p class="mslider-role">Ψυχίατρος – Ψυχοφαρμακολογία &amp; Γνωστική Αναλυτική Ψυχοθεραπεία</p>
-                </div>
-              </a>
-
-            </div>
-          </div>
-          <button class="mslider-btn" id="msliderNext" aria-label="Επόμενο μέλος">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
-        </div>
-        <div class="mslider-dots" id="msliderDots"></div>
-      </div>
-    </section>
-
-    
-
-    <!-- Contact -->
-    <section id="contact" class="fullpage-section tone-cream parallax-section">
-      <div class="container reveal">
-        <h2>ΕΠΙΚΟΙΝΩΝΙΑ</h2>
-        <div class="contact-grid">
-          <div class="contact-panel">
-            <h3 class="contact-title">Κλείστε Ραντεβού</h3>
-            <p class="contact-intro">Είμαστε διαθέσιμοι για πληροφορίες, ραντεβού και άμεση επικοινωνία με την ομάδα της MENTALIA. <strong class="contact-intro-emphasis">Για να κλείσετε ραντεβού μπορείτε να επικοινωνήσετε με την γραμματεία μας μέσω των διαθέσιμων αριθμών που αναγράφονται στα στοιχεία επικοινωνίας μας.</strong></p>
-            <h3>ΣΤΟΙΧΕΙΑ ΕΠΙΚΟΙΝΩΝΙΑΣ</h3>
-            <ul class="contact-list">
-              <li>Κινητό: <a href="tel:+306977008040">+30 6977008040</a></li>
-              <li>Τηλέφωνο: <a href="tel:+302531036007">25310 36007</a></li>
-              <li>Facebook: <a href="https://www.facebook.com/profile.php?id=61583363356599" target="_blank" rel="noopener">Mentalia</a></li>
-              <li>Instagram: <a href="https://www.instagram.com/mentalia.co?igsh=MTdncGN6b3ZjNXV4bw==" target="_blank" rel="noopener">@mentalia.co</a></li>
-              <li>Email: <a href="mailto:mentalia.info@gmail.com">mentalia.info@gmail.com</a></li>
-              <li>Διεύθυνση: Αποστόλου Σούζου 6, Κομοτηνή, 69133</li>
-            </ul>
-            <div class="contact-cta-wrap">
-              <a class="btn contact-cta" href="mailto:mentalia.info@gmail.com?subject=%CE%95%CF%80%CE%B9%CE%BA%CE%BF%CE%B9%CE%BD%CF%89%CE%BD%CE%AF%CE%B1%20%CE%BC%CE%B5%20MENTALIA">Άμεση Επικοινωνία</a>
-            </div>
-          </div>
-          <div class="map-wrap" aria-label="Χάρτης Google">
-            <iframe title="MENTALIA στο χάρτη" width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen
-              referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?cid=3118990553099312370&amp;output=embed"></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-grid">
-      <div class="footer-column footer-column--brand">
-        <h3>MENTALIA</h3>
-        <p>ΓΚΟΤΟΣΙΔΗΣ ΚΑΙ ΣΙΑ ΕΕ<br>Αρ. ΓΕΜΗ 18861121100</p>
-        <p>Οργανωμένο Κέντρο Ψυχικής Υγείας</p>
-      </div>
-      <nav class="footer-column footer-column--nav" aria-label="Footer πλοήγηση">
-        <h3>Πλοήγηση</h3>
-        <ul class="footer-links">
-          <li><a href="#home">ΑΡΧΙΚΗ</a></li>
-          <li><a href="#services">ΥΠΗΡΕΣΙΕΣ</a></li>
-          <li><a href="about.html">Η ΦΙΛΟΣΟΦΙΑ ΜΑΣ</a></li>
-          <li><a href="#team">Η ΟΜΑΔΑ ΜΑΣ</a></li>
-          <li><a href="blog.html">BLOG</a></li>
-          <li><a href="#contact">ΕΠΙΚΟΙΝΩΝΙΑ</a></li>
-        </ul>
-      </nav>
-      <div class="footer-column footer-column--contact">
-        <h3>Επικοινωνια</h3>
-        <ul class="footer-links footer-links--contact">
-          <li>Αποστόλου Σούζου 6, Κομοτηνή, 69133</li>
-          <li><a href="mailto:mentalia.info@gmail.com">mentalia.info@gmail.com</a></li>
-          <li><a href="https://www.instagram.com/mentalia.co?igsh=MTdncGN6b3ZjNXV4bw==" target="_blank" rel="noopener">@mentalia.co</a></li>
-          <li>Facebook: <a href="https://www.facebook.com/profile.php?id=61583363356599" target="_blank" rel="noopener">Mentalia</a></li>
-          <li><a href="tel:+302531036007">25310 36007</a></li>
-          <li><a href="tel:+306977008040">+30 6977008040</a></li>
-        </ul>
-      </div>
+    <ul class="channels">
+      <li><a href="tel:+302531036007"><span>Τηλέφωνο</span>25310 36007</a></li>
+      <li><a href="tel:+306977008040"><span>Κινητό</span>+30 697 700 8040</a></li>
+      <li><a href="mailto:mentalia.info@gmail.com"><span>Email</span>mentalia.info@gmail.com</a></li>
+      <li><a href="https://maps.google.com/?q=%CE%91%CF%80%CE%BF%CF%83%CF%84%CF%8C%CE%BB%CE%BF%CF%85+%CE%A3%CE%BF%CF%8D%CE%B6%CE%BF%CF%85+6+%CE%9A%CE%BF%CE%BC%CE%BF%CF%84%CE%B7%CE%BD%CE%AE" target="_blank" rel="noopener"><span>Διεύθυνση</span>Αποστόλου Σούζου 6, 4ος όροφος, Κομοτηνή 69133</a></li>
+      <li><a href="https://www.instagram.com/mentalia.co" target="_blank" rel="noopener"><span>Instagram</span>@mentalia.co</a></li>
+      <li><a href="https://www.facebook.com/profile.php?id=61583363356599" target="_blank" rel="noopener"><span>Facebook</span>Mentalia</a></li>
+    </ul>
     </div>
-    <div class="container footer-legal">
-      <small>© <span id="year"></span> MENTALIA. Όλα τα δικαιώματα διατηρούνται.</small>
-    </div>
-  </footer>
+    <div aria-hidden="true"></div>
+  </div>
+</section>
+</main>
 
+<footer class="foot">
+  <span>MENTALIA · Οργανωμένο Κέντρο Ψυχικής Υγείας</span>
+  <span>ΓΚΟΤΟΣΙΔΗΣ ΚΑΙ ΣΙΑ ΕΕ · Αρ. ΓΕΜΗ 18861121100</span>
+  <span>© MENTALIA. Όλα τα δικαιώματα διατηρούνται.</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+  /* ---------- UI: menu, header, guidance ---------- */
+  const menuBtn = document.getElementById('menuBtn'), nav = document.getElementById('nav');
+  menuBtn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  nav.addEventListener('click', e => { if (e.target.closest('a')) { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); } });
+  const top = document.getElementById('top');
+  const onScroll = () => top.classList.toggle('solid', scrollY > innerHeight * 0.5 && scrollY > document.getElementById('choose').offsetTop - 200);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  document.querySelectorAll('[data-focus]').forEach(a => a.addEventListener('click', () => {
+    const card = document.getElementById(a.dataset.focus);
+    document.querySelectorAll('.svc.focus').forEach(c => c.classList.remove('focus'));
+    card.classList.add('focus');
+    setTimeout(() => card.classList.remove('focus'), 3200);
+  }));
+
+  /* ---------- the film ---------- */
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.getElementById('scene');
+  const fib = document.getElementById('fib');
+  const fibEls = [...fib.querySelectorAll('span')];
+  const R = [1, 1, 2, 3, 5, 8, 13];
+  const dirs = [[1, 0], [0, -1], [-1, 0], [0, 1]];
+
+  // r(n) = r(n-1) + r(n-2): each new circle encloses the previous one and one of the radius before it.
+  // Circles 3, 5 and 8 of this spiral are exactly the Mentalia logo.
+  const circles = [];
+  const add = (cx, cy, r, step) => {
+    const el = document.createElementNS(NS, 'circle');
+    svg.appendChild(el);
+    const c = { cx, cy, r, step, el, draw: 0, op: 1, logo: false };
+    circles.push(c); return c;
+  };
+  const C0 = add(0, 0, 1, 1);
+  let prev = C0;
+  const E = { 1: C0 }, B = {};
+  for (let n = 2; n <= 6; n++) {
+    const [dx, dy] = dirs[(n - 2) % 4], rb = R[n - 2];
+    B[n] = add(prev.cx + dx * (prev.r + rb), prev.cy + dy * (prev.r + rb), rb, n);
+    E[n] = add(prev.cx + dx * (R[n] - prev.r), prev.cy + dy * (R[n] - prev.r), R[n], n);
+    prev = E[n];
+  }
+  const logo = [E[3], E[4], E[5]];
+  const pivot = { x: E[5].cx, y: E[5].cy };
+  // "three steps" layout: the three circles side by side, bottoms aligned, growing left to right
+  const gap = 1.6, baseY = E[5].cy + 8, left = pivot.x - (2 * (3 + 5 + 8) + 2 * gap) / 2;
+  const rowPos = [[left + 3, baseY - 3], [left + 6 + gap + 5, baseY - 5], [left + 6 + gap + 10 + gap + 8, baseY - 8]];
+  logo.forEach((c, i) => { c.logo = true; c.lx = c.cx; c.ly = c.cy; c.rx = rowPos[i][0]; c.ry = rowPos[i][1]; });
+
+  const seed = { cx: 0, cy: 0, op: 1, el: document.createElementNS(NS, 'circle') };
+  seed.el.setAttribute('class', 'seed'); svg.appendChild(seed.el);
+
+  const cam = { fx: 0, fy: 0, fr: 4 };
+  const st = { logoT: 0, step: 0, ax: 0.66, ay: 0.5, rot: 0, row: 0, dim: 1, fibOp: 1 };
+
+  let vw = innerWidth, vh0 = innerHeight;
+  const render = () => {
+    const w = vw, h = vh0, wide = w > 900;
+    const ox = wide ? w * st.ax : w * 0.5;
+    const oy = wide ? h * st.ay : h * (0.36 + (st.ay - 0.5) * 0.4);
+    const fit = wide ? Math.min(w * 0.27, h * 0.36) : Math.min(w * 0.40, h * 0.27);
+    const s = fit / cam.fr;
+    const cos = Math.cos(st.rot * Math.PI / 180), sin = Math.sin(st.rot * Math.PI / 180);
+    for (const c of circles) {
+      let x = c.cx, y = c.cy;
+      if (c.logo) {
+        const px = c.lx - pivot.x, py = c.ly - pivot.y;
+        const lx = pivot.x + px * cos - py * sin, ly = pivot.y + px * sin + py * cos;
+        x = lx + (c.rx - lx) * st.row; y = ly + (c.ry - ly) * st.row;
+      }
+      const r = c.r * s, len = 2 * Math.PI * r, el = c.el;
+      el.setAttribute('cx', (ox + (x - cam.fx) * s).toFixed(2));
+      el.setAttribute('cy', (oy + (y - cam.fy) * s).toFixed(2));
+      el.setAttribute('r', Math.max(r, 0.01).toFixed(2));
+      el.setAttribute('stroke-dasharray', len.toFixed(2));
+      el.setAttribute('stroke-dashoffset', (len * (1 - c.draw)).toFixed(2));
+      const thin = 1.4, thick = Math.max(r * 0.075, thin);
+      el.setAttribute('stroke-width', (c.logo ? thin + (thick - thin) * st.logoT : thin).toFixed(2));
+      // on phones, content sits on top of the film: keep the logo quiet once the film is over
+      el.style.opacity = c.op * (wide || st.fibOp > 0.5 ? st.dim : Math.min(st.dim, 0.3));
+      el.classList.toggle('new', c.step === Math.round(st.step) && c.draw > 0 && c.draw < 1);
+    }
+    seed.el.setAttribute('cx', (ox + (seed.cx - cam.fx) * s).toFixed(2));
+    seed.el.setAttribute('cy', (oy + (seed.cy - cam.fy) * s).toFixed(2));
+    seed.el.setAttribute('r', 4.5);
+    seed.el.style.opacity = seed.op;
+    const k = Math.round(st.step);
+    fibEls.forEach((el, i) => { el.classList.toggle('on', i <= k); el.classList.toggle('now', i === k); });
+    fib.style.opacity = st.fibOp;
+  };
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !window.gsap || !window.ScrollTrigger) {
+    circles.forEach(c => { c.draw = 1; c.op = c.logo ? 1 : 0; });
+    seed.op = 0; Object.assign(cam, { fx: pivot.x, fy: pivot.y, fr: 8 * 1.12 });
+    Object.assign(st, { logoT: 1, step: 6, dim: 0.35, fibOp: 0, rot: 90 });
+    render(); addEventListener('resize', () => { vw = innerWidth; vh0 = innerHeight; render(); });
+    return;
+  }
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+
+  let tl, trig;
+  const build = () => {
+    if (trig) trig.kill();
+    if (tl) tl.kill();
+    const vh = innerHeight;
+    const total = document.documentElement.scrollHeight - vh;
+    const film = document.querySelector('.film');
+    const filmEnd = film.offsetHeight - vh;
+    const k = filmEnd / 10.6;               // film scenes are authored on a 0–10.6 scale
+    const at = t => t * k, d = t => t * k;
+    const topOf = id => document.getElementById(id).offsetTop;
+    const ease = 'power2.inOut';
+
+    tl = gsap.timeline({ paused: true, defaults: { ease: 'none' }, onUpdate: render });
+
+    // reset to the opening frame
+    tl.set(circles, { draw: 0, op: 1 }, 0).set(seed, { op: 1 }, 0)
+      .set(cam, { fx: 0, fy: 0, fr: 4 }, 0)
+      .set(st, { logoT: 0, step: 0, ax: 0.66, ay: 0.5, rot: 0, row: 0, dim: 1, fibOp: 1 }, 0);
+
+    // 1 · a seed becomes the first circle
+    tl.to(C0, { draw: 1, duration: d(0.9), ease: 'power1.inOut' }, at(0.3))
+      .to(seed, { op: 0, duration: d(0.4) }, at(0.9))
+      .set(st, { step: 1 }, at(0.3));
+
+    // 2–3 · each circle is born from the two before it; the past stays, quieter
+    const grow = (n, t) => {
+      tl.set(st, { step: n }, at(t))
+        .to(B[n], { draw: 1, duration: d(0.5), ease: 'power1.inOut' }, at(t))
+        .to(E[n], { draw: 1, duration: d(0.6), ease: 'power1.inOut' }, at(t + 0.5))
+        .to(cam, { fx: E[n].cx, fy: E[n].cy, fr: E[n].r * 1.12, duration: d(1.1), ease }, at(t));
+    };
+    grow(2, 1.4); grow(3, 2.6); grow(4, 3.8);
+    tl.to([C0, B[2], E[2], B[3]], { op: 0.35, duration: d(0.6) }, at(5.0));
+    grow(5, 5.0); grow(6, 6.2);
+    tl.to([B[4], B[5]], { op: 0.4, duration: d(0.5) }, at(7.0));
+
+    // 4–5 · the camera returns: circles 3, 5, 8 were the logo all along
+    tl.to(circles.filter(c => !c.logo), { op: 0, duration: d(0.9), ease: 'power1.in' }, at(7.6))
+      .to(logo, { op: 1, duration: d(0.4) }, at(7.6))
+      .to(cam, { fx: pivot.x, fy: pivot.y, fr: 8 * 1.12, duration: d(1.4), ease }, at(7.6))
+      .to(st, { rot: 90, ax: 0.71, duration: d(1.3), ease }, at(8.0))   // the real logo sits a quarter-turn clockwise
+      .to(st, { logoT: 1, duration: d(0.8), ease: 'power2.out' }, at(8.6));
+
+    // after the film the logo keeps living quietly behind the content
+    const span = (id, startOff, len) => [Math.max(topOf(id) - vh * startOff, filmEnd), vh * len];
+    let [p, l] = span('choose', 0.9, 0.8);
+    tl.to(st, { fibOp: 0, duration: l * 0.4 }, p)
+      .to(st, { ax: 0.5, ay: 0.52, dim: 0.22, logoT: 0.35, duration: l, ease }, p)
+      .to(cam, { fr: 8 * 0.62, duration: l, ease }, p);
+    [p, l] = span('services', 0.6, 1.2);
+    tl.to(st, { ax: 0.86, ay: 0.55, rot: 130, dim: 0.16, duration: l, ease }, p)
+      .to(cam, { fr: 8 * 0.9, duration: l, ease }, p);
+    [p, l] = span('start', 0.8, 0.9);
+    tl.to(st, { ax: 0.5, ay: 0.6, rot: 90, row: 1, dim: 0.32, duration: l, ease }, p)
+      .to(cam, { fr: 16, duration: l, ease }, p);
+    [p, l] = span('team', 0.7, 0.9);
+    tl.to(st, { ax: 0.5, ay: 0.62, row: 0, rot: 90, dim: 0.05, duration: l, ease }, p)
+      .to(cam, { fr: 8 * 0.85, duration: l, ease }, p);
+    [p, l] = span('blog', 0.7, 0.9);
+    tl.to(st, { ax: 0.8, ay: 0.8, rot: 0, dim: 0.18, duration: l, ease }, p)
+      .to(cam, { fr: 8 * 1.9, duration: l, ease }, p);
+    [p, l] = span('contact', 0.9, 0.9);
+    tl.to(st, { ax: 0.76, ay: 0.52, rot: 90, dim: 0.9, logoT: 1, duration: l, ease }, p)
+      .to(cam, { fr: 8 * 1.12, duration: l, ease }, p);
+
+    if (tl.duration() < total) tl.to({}, { duration: total - tl.duration() });
+    trig = ScrollTrigger.create({ start: 0, end: total, scrub: 1.2, animation: tl });
+    tl.progress(scrollY / Math.max(total, 1)); render();
+  };
+
+  // copy: film panels fade in on arrival and out while still pinned
+  document.querySelectorAll('.panel').forEach((p, i, all) => {
+    const inner = p.querySelector('.copy');
+    if (i > 0) gsap.fromTo(inner, { opacity: 0, y: 36 }, { opacity: 1, y: 0, ease: 'power2.out',
+      scrollTrigger: { trigger: p, start: 'top 75%', end: 'top 25%', scrub: true } });
+    if (i < all.length - 1) gsap.fromTo(inner, { opacity: 1, y: 0 }, { opacity: 0, y: -36, ease: 'power2.in', immediateRender: false,
+      scrollTrigger: { trigger: p, start: 'bottom 145%', end: 'bottom 102%', scrub: true } });
+  });
+  // content sections rise gently into place
+  gsap.utils.toArray('.section-head, .choices, .svc, .steps li, .member, .posts, .contact-grid > *').forEach(el => {
+    gsap.from(el, { opacity: 0, y: 40, duration: 0.9, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' } });
+  });
+
+  build();
+  let rt;
+  addEventListener('resize', () => {
+    // only rebuild for real size changes (rotation, window resize), not the mobile URL bar
+    if (innerWidth === vw && Math.abs(innerHeight - vh0) < 160) return;
+    clearTimeout(rt); rt = setTimeout(() => { vw = innerWidth; vh0 = innerHeight; ScrollTrigger.refresh(); build(); }, 200);
+  });
+  addEventListener('load', () => { ScrollTrigger.refresh(); build(); });
+})();
+</script>
 </body>
 </html>
