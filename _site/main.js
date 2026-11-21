@@ -982,6 +982,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 const POSTS = [
   {
+    slug: 'article-ta-oria-pou-fernoun-konta.html',
+    title: 'Τα όρια που μας φέρνουν πιο κοντά',
+    date: '2026-11-21',
+    newUntil: '2026-11-23T20:00:00+02:00',
+    tags: ['Σχέσεις', 'Αυτοφροντίδα'],
+    excerpt: 'Τα υγιή όρια δεν είναι τείχη αλλά καθαροί δρόμοι επικοινωνίας. Γιατί μετρούν στις φιλικές και στις ερωτικές σχέσεις και πώς να τα θέσουμε στην πράξη.'
+  },
+  {
     slug: 'article-o-fovos-tis-apotychias.html',
     title: 'Όταν ο φόβος της αποτυχίας μάς κρατά πίσω',
     date: '2026-11-19',
